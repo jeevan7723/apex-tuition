@@ -30,6 +30,17 @@ document.addEventListener('DOMContentLoaded', () => {
       });
     });
 
+    // Book Free Demo button inside mobile drawer
+    const btnOpenDemoMobile = document.getElementById('btnOpenDemoMobile');
+    if (btnOpenDemoMobile) {
+      btnOpenDemoMobile.addEventListener('click', () => {
+        const demoModal = document.getElementById('freeDemoModal');
+        if (demoModal && typeof demoModal.showModal === 'function') {
+          demoModal.showModal();
+        }
+      });
+    }
+
     // Close mobile nav when clicking outside
     document.addEventListener('click', (e) => {
       if (mobileNavPanel.classList.contains('open') && !mobileNavPanel.contains(e.target) && !mobileMenuBtn.contains(e.target)) {
@@ -134,6 +145,13 @@ document.addEventListener('DOMContentLoaded', () => {
       });
       btn.classList.add('active');
       btn.setAttribute('aria-selected', 'true');
+
+      // Smoothly center the clicked tab in the mobile scroll container
+      try {
+        btn.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
+      } catch (err) {
+        // Fallback for older browsers
+      }
 
       const filter = btn.dataset.filter;
 
@@ -1123,63 +1141,7 @@ _Live Synced with Firebase Cloud Database._`;
     }, 4000);
   }
 
-  // ==========================================================================
-  // 12. MOBILE NAVIGATION DRAWER TOGGLE & INTERACTION
-  // ==========================================================================
-  const mobileMenuBtn = document.getElementById('mobileMenuBtn');
-  const mobileNavPanel = document.getElementById('mobileNavPanel');
 
-  if (mobileMenuBtn && mobileNavPanel) {
-    mobileMenuBtn.addEventListener('click', (e) => {
-      e.stopPropagation();
-      const isOpen = mobileNavPanel.classList.toggle('open');
-      mobileMenuBtn.classList.toggle('active', isOpen);
-      mobileMenuBtn.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
-    });
-
-    // Close mobile nav when clicking any nav link
-    mobileNavPanel.querySelectorAll('.mobile-link').forEach(link => {
-      link.addEventListener('click', () => {
-        mobileNavPanel.classList.remove('open');
-        mobileMenuBtn.classList.remove('active');
-        mobileMenuBtn.setAttribute('aria-expanded', 'false');
-      });
-    });
-
-    // Book Free Demo button inside mobile drawer
-    const btnOpenDemoMobile = document.getElementById('btnOpenDemoMobile');
-    if (btnOpenDemoMobile) {
-      btnOpenDemoMobile.addEventListener('click', () => {
-        mobileNavPanel.classList.remove('open');
-        mobileMenuBtn.classList.remove('active');
-        mobileMenuBtn.setAttribute('aria-expanded', 'false');
-        const demoModal = document.getElementById('freeDemoModal');
-        if (demoModal && typeof demoModal.showModal === 'function') {
-          demoModal.showModal();
-        }
-      });
-    }
-
-    // Dismiss drawer when tapping anywhere outside
-    document.addEventListener('click', (e) => {
-      if (mobileNavPanel.classList.contains('open') &&
-          !mobileNavPanel.contains(e.target) &&
-          !mobileMenuBtn.contains(e.target)) {
-        mobileNavPanel.classList.remove('open');
-        mobileMenuBtn.classList.remove('active');
-        mobileMenuBtn.setAttribute('aria-expanded', 'false');
-      }
-    });
-
-    // Close on Escape key press
-    document.addEventListener('keydown', (e) => {
-      if (e.key === 'Escape' && mobileNavPanel.classList.contains('open')) {
-        mobileNavPanel.classList.remove('open');
-        mobileMenuBtn.classList.remove('active');
-        mobileMenuBtn.setAttribute('aria-expanded', 'false');
-      }
-    });
-  }
 
   // ==========================================================================
   // Protocol checker

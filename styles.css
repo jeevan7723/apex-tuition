@@ -849,6 +849,9 @@ body {
   cursor: pointer;
   transition: all var(--transition-fast);
   white-space: nowrap;
+  touch-action: manipulation;
+  -webkit-tap-highlight-color: transparent;
+  user-select: none;
 }
 
 .tab-btn:hover {
@@ -3585,7 +3588,8 @@ body {
     justify-content: flex-start;
     overflow-x: auto;
     -webkit-overflow-scrolling: touch;
-    padding-bottom: 0.5rem;
+    scroll-snap-type: x proximity;
+    padding: 0.25rem 0.25rem 0.75rem 0.25rem;
     margin-bottom: 1.5rem;
     scrollbar-width: none;
   }
@@ -3597,12 +3601,14 @@ body {
     flex-shrink: 0;
     min-width: max-content;
     gap: 0.35rem;
-    padding: 0.25rem;
+    padding: 0.3rem;
   }
   .tab-btn {
-    padding: 0.5rem 0.85rem;
-    font-size: 0.8rem;
+    padding: 0.55rem 1rem;
+    font-size: 0.825rem;
     white-space: nowrap;
+    scroll-snap-align: center;
+    border-radius: var(--radius-full);
   }
 
   /* Tuition Grid & Cards */
