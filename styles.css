@@ -1112,12 +1112,20 @@ body {
   border-radius: var(--radius-xl);
   padding: 2.5rem;
   box-shadow: var(--shadow-xl);
+  width: 100%;
+  max-width: 100%;
+  box-sizing: border-box;
+  min-width: 0;
 }
 
 .calc-panel-controls {
   display: flex;
   flex-direction: column;
   gap: 1.5rem;
+  width: 100%;
+  max-width: 100%;
+  min-width: 0;
+  box-sizing: border-box;
 }
 
 .panel-heading {
@@ -1127,6 +1135,15 @@ body {
   font-weight: 700;
   border-bottom: 1px solid var(--border-color);
   padding-bottom: 0.75rem;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.calc-field {
+  width: 100%;
+  max-width: 100%;
+  min-width: 0;
+  box-sizing: border-box;
 }
 
 .calc-field label {
@@ -1135,10 +1152,14 @@ body {
   font-weight: 700;
   color: var(--secondary);
   margin-bottom: 0.5rem;
+  width: 100%;
 }
 
 .calc-select {
   width: 100%;
+  max-width: 100%;
+  min-width: 0;
+  box-sizing: border-box;
   padding: 0.75rem 1rem;
   border-radius: var(--radius-md);
   border: 1.5px solid var(--border-color);
@@ -1150,11 +1171,16 @@ body {
   display: grid;
   grid-template-columns: 1fr;
   gap: 0.65rem;
+  width: 100%;
+  max-width: 100%;
+  min-width: 0;
+  box-sizing: border-box;
 }
 
 .calc-radio-card {
   display: flex;
   flex-direction: column;
+  align-items: flex-start;
   padding: 0.85rem 1rem;
   border: 1.5px solid var(--border-color);
   border-radius: var(--radius-md);
@@ -1162,6 +1188,12 @@ body {
   background-color: #ffffff;
   transition: all var(--transition-fast);
   position: relative;
+  width: 100%;
+  max-width: 100%;
+  min-width: 0;
+  box-sizing: border-box;
+  word-break: break-word;
+  overflow-wrap: break-word;
 }
 
 .calc-radio-card input {
@@ -1176,14 +1208,23 @@ body {
 }
 
 .card-radio-title {
+  display: block;
+  width: 100%;
   font-weight: 700;
   font-size: 0.925rem;
   color: var(--secondary);
+  line-height: 1.35;
+  margin-bottom: 0.2rem;
+  word-break: break-word;
 }
 
 .card-radio-sub {
+  display: block;
+  width: 100%;
   font-size: 0.775rem;
   color: var(--text-muted);
+  line-height: 1.35;
+  word-break: break-word;
 }
 
 .range-display-wrap {
@@ -1219,6 +1260,16 @@ body {
   border: 1px solid #a7f3d0;
   padding: 0.45rem 0.85rem;
   border-radius: var(--radius-md);
+}
+
+.calc-policy-box {
+  background: #f8fafc;
+  border: 1px solid #e2e8f0;
+  padding: 1rem;
+  border-radius: var(--radius-md);
+  width: 100%;
+  max-width: 100%;
+  box-sizing: border-box;
 }
 
 .cycle-pill-group {
@@ -1257,6 +1308,10 @@ body {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  width: 100%;
+  max-width: 100%;
+  min-width: 0;
+  box-sizing: border-box;
 }
 
 .quote-header {
@@ -3164,7 +3219,13 @@ body {
     grid-template-columns: repeat(2, 1fr);
   }
   .calc-wrapper {
-    grid-template-columns: 1fr;
+    grid-template-columns: minmax(0, 1fr) !important;
+    padding: 1.5rem !important;
+    gap: 1.5rem !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    box-sizing: border-box !important;
+    min-width: 0 !important;
   }
   .admission-wrapper {
     grid-template-columns: 1fr;
@@ -3705,55 +3766,149 @@ body {
     justify-content: center;
   }
 
-  /* Fee Calculator */
+  /* Fee Calculator Mobile Optimization */
   .calc-wrapper {
-    grid-template-columns: 1fr;
-    gap: 1.25rem;
+    grid-template-columns: minmax(0, 1fr) !important;
+    gap: 1.5rem !important;
+    padding: 1.25rem 0.85rem !important;
+    border-radius: var(--radius-lg) !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    box-sizing: border-box !important;
+    overflow: hidden !important;
+    min-width: 0 !important;
   }
-  .calc-panel-controls,
+  .calc-panel-controls {
+    padding: 0 !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    min-width: 0 !important;
+    box-sizing: border-box !important;
+    gap: 1.25rem !important;
+  }
   .calc-panel-quote {
-    padding: 1.25rem 1rem;
-    border-radius: var(--radius-lg);
+    padding: 1.25rem 0.85rem !important;
+    border-radius: var(--radius-md) !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    min-width: 0 !important;
+    box-sizing: border-box !important;
+  }
+  .calc-field {
+    width: 100% !important;
+    max-width: 100% !important;
+    min-width: 0 !important;
+    box-sizing: border-box !important;
+  }
+  .calc-field label {
+    width: 100% !important;
+    max-width: 100% !important;
+    font-size: 0.85rem !important;
+    margin-bottom: 0.4rem !important;
+  }
+  .calc-select {
+    width: 100% !important;
+    max-width: 100% !important;
+    min-width: 0 !important;
+    box-sizing: border-box !important;
+    font-size: 16px !important;
+    padding: 0.75rem 0.65rem !important;
+    white-space: normal !important;
   }
   .calc-options-grid {
-    display: flex;
-    flex-direction: column;
-    gap: 0.5rem;
-    width: 100%;
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 0.65rem !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    min-width: 0 !important;
+    box-sizing: border-box !important;
   }
   .calc-radio-card {
-    padding: 0.75rem;
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: flex-start !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    min-width: 0 !important;
+    box-sizing: border-box !important;
+    padding: 0.85rem 0.85rem !important;
+    word-break: break-word !important;
+    overflow-wrap: break-word !important;
+  }
+  .card-radio-title {
+    display: block !important;
+    width: 100% !important;
+    font-size: 0.925rem !important;
+    font-weight: 700 !important;
+    line-height: 1.35 !important;
+    margin-bottom: 0.25rem !important;
+    word-break: break-word !important;
+  }
+  .card-radio-sub {
+    display: block !important;
+    width: 100% !important;
+    font-size: 0.775rem !important;
+    color: var(--text-muted) !important;
+    line-height: 1.4 !important;
+    word-break: break-word !important;
+  }
+  .calc-policy-box {
+    padding: 0.85rem 0.75rem !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    box-sizing: border-box !important;
   }
   .cycle-pill-group {
-    display: flex;
-    flex-direction: column;
-    gap: 0.4rem;
-    width: 100%;
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 0.45rem !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    min-width: 0 !important;
+    box-sizing: border-box !important;
   }
   .cycle-pill {
-    width: 100%;
-    min-height: 42px;
-    padding: 0.6rem 0.5rem;
-    font-size: 0.825rem;
+    width: 100% !important;
+    max-width: 100% !important;
+    min-width: 0 !important;
+    min-height: 44px !important;
+    padding: 0.65rem 0.75rem !important;
+    font-size: 0.825rem !important;
+    box-sizing: border-box !important;
+    text-align: center !important;
+    justify-content: center !important;
+    white-space: normal !important;
   }
   .quote-breakdown {
-    gap: 0.75rem;
-    font-size: 0.85rem;
+    gap: 0.75rem !important;
+    font-size: 0.85rem !important;
+    width: 100% !important;
+    box-sizing: border-box !important;
+  }
+  .breakdown-line {
+    display: flex !important;
+    justify-content: space-between !important;
+    align-items: center !important;
+    width: 100% !important;
+    font-size: 0.85rem !important;
   }
   .final-payable-box {
-    padding: 1rem 0.75rem;
+    padding: 1rem 0.75rem !important;
+    width: 100% !important;
+    box-sizing: border-box !important;
   }
   .final-amount {
-    font-size: 1.85rem;
+    font-size: 1.85rem !important;
   }
   .monthly-breakup {
-    font-size: 0.825rem;
+    font-size: 0.825rem !important;
   }
   #btnClaimQuote {
-    min-height: 48px;
-    width: 100%;
-    justify-content: center;
-    font-size: 0.925rem;
+    min-height: 48px !important;
+    width: 100% !important;
+    justify-content: center !important;
+    font-size: 0.925rem !important;
   }
 
   /* Form & Inputs: 16px minimum font-size prevents iOS Safari zoom */
