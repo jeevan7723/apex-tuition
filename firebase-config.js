@@ -97,15 +97,20 @@ window.ApexDB = {
 
   // Save student admission registration to 'admissions' collection
   async saveAdmission(data) {
-    const documentId = data.appId || `APEX-2026-${Math.floor(1000 + Math.random() * 9000)}`;
+    const rawFirst = (data.firstName || data.studentName || 'Student').trim().split(/\s+/)[0] || 'Student';
+    const cleanFirst = rawFirst.replace(/[^a-zA-Z0-9]/g, '');
+    const firstName = cleanFirst ? (cleanFirst.charAt(0).toUpperCase() + cleanFirst.slice(1).toLowerCase()) : 'Student';
+    const randomNum = Math.floor(1000 + Math.random() * 9000);
+    const documentId = data.appId || `${firstName}-${randomNum}`;
     const cleanRecord = {
       ...data,
       appId: documentId,
+      firstName: firstName,
       submittedAt: new Date().toISOString(),
       cloudStatus: 'SAVED_TO_FIRESTORE'
     };
 
-    console.log(`📡 Syncing application ${documentId} with Firebase Firestore...`);
+    console.log(`📡 Syncing application ${documentId} with Firebase Firestore (Sorted by First Name)...`);
 
     // 1. Direct HTTPS REST API write (Guaranteed delivery, fast, works across all browsers & networks)
     try {
@@ -159,22 +164,27 @@ window.ApexDB = {
     return { success: false, error: 'Could not write to Firebase Firestore' };
   },
 
-  // Query application record by ID or parent phone
+  // Query application record by ID, Student Name, or parent phone
   async findAdmission(queryStr) {
     if (!queryStr) return null;
-    const cleanId = queryStr.trim().toUpperCase();
-    const cleanPhone = queryStr.trim();
+    const cleanRaw = queryStr.trim();
+    const cleanUpper = cleanRaw.toUpperCase();
+    const cleanLower = cleanRaw.toLowerCase();
+    const cleanTitle = cleanRaw.charAt(0).toUpperCase() + cleanRaw.slice(1).toLowerCase();
 
-    // 1. Try finding by Document ID directly
-    try {
-      const getUrl = `${FIRESTORE_BASE_URL}/admissions/${encodeURIComponent(cleanId)}?key=${firebaseConfig.apiKey}`;
-      const res = await fetch(getUrl);
-      if (res.ok) {
-        const doc = await res.json();
-        return { ...fromFirestoreFields(doc.fields), source: 'Firebase Cloud DB' };
+    // 1. Try finding by Document ID directly (TitleCase, UpperCase, Raw)
+    const docIdCandidates = [...new Set([cleanTitle, cleanRaw, cleanUpper, cleanLower])];
+    for (const docId of docIdCandidates) {
+      try {
+        const getUrl = `${FIRESTORE_BASE_URL}/admissions/${encodeURIComponent(docId)}?key=${firebaseConfig.apiKey}`;
+        const res = await fetch(getUrl);
+        if (res.ok) {
+          const doc = await res.json();
+          return { ...fromFirestoreFields(doc.fields), source: 'Firebase Cloud DB' };
+        }
+      } catch (e) {
+        // Continue to next candidate
       }
-    } catch (e) {
-      console.warn("Direct ID lookup notice:", e);
     }
 
     // 2. Try structured query for parentPhone
@@ -187,7 +197,7 @@ window.ApexDB = {
             fieldFilter: {
               field: { fieldPath: 'parentPhone' },
               op: 'EQUAL',
-              value: { stringValue: cleanPhone }
+              value: { stringValue: cleanRaw }
             }
           },
           limit: 1
@@ -208,6 +218,39 @@ window.ApexDB = {
       }
     } catch (qErr) {
       console.warn("Structured query notice:", qErr);
+    }
+
+    // 3. Try structured query for firstName
+    try {
+      const queryUrl = `https://firestore.googleapis.com/v1/projects/${firebaseConfig.projectId}/databases/(default)/documents:runQuery?key=${firebaseConfig.apiKey}`;
+      const queryPayload = {
+        structuredQuery: {
+          from: [{ collectionId: 'admissions' }],
+          where: {
+            fieldFilter: {
+              field: { fieldPath: 'firstName' },
+              op: 'EQUAL',
+              value: { stringValue: cleanTitle }
+            }
+          },
+          limit: 1
+        }
+      };
+
+      const qRes = await fetch(queryUrl, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(queryPayload)
+      });
+
+      if (qRes.ok) {
+        const results = await qRes.json();
+        if (results && results.length > 0 && results[0].document) {
+          return { ...fromFirestoreFields(results[0].document.fields), source: 'Firebase Cloud DB' };
+        }
+      }
+    } catch (qErr) {
+      console.warn("First name structured query notice:", qErr);
     }
 
     return null;

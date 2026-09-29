@@ -606,9 +606,17 @@ document.addEventListener('DOMContentLoaded', () => {
       const finalEmail = (parentEmail && parentEmail.value.trim()) ? parentEmail.value.trim() : `${cleanPhone}@applicant.local`;
       const finalLocality = (residentialArea && residentialArea.value.trim()) ? residentialArea.value.trim() : 'City Area';
 
-      // Generate Unique Application ID
+      // Extract student's first name for document ID and alphabetical sorting in Firestore
+      const rawName = studentName.value.trim();
+      const nameParts = rawName.split(/\s+/);
+      const rawFirst = nameParts[0] || 'Student';
+      const cleanFirst = rawFirst.replace(/[^a-zA-Z0-9]/g, '');
+      const firstName = cleanFirst ? (cleanFirst.charAt(0).toUpperCase() + cleanFirst.slice(1).toLowerCase()) : 'Student';
+      const lastName = nameParts.slice(1).join(' ') || '';
+
+      // Generate Unique Application ID prefixed by Student First Name (ensures alphabetical Firestore sorting)
       const randomNum = Math.floor(1000 + Math.random() * 9000);
-      const generatedId = `APEX-2026-${randomNum}`;
+      const generatedId = `${firstName}-${randomNum}`;
       const now = new Date();
       const formattedDate = now.toLocaleDateString('en-IN', {
         day: 'numeric',
@@ -626,7 +634,9 @@ document.addEventListener('DOMContentLoaded', () => {
       // Store in localStorage for status tracker
       const applicationRecord = {
         appId: generatedId,
-        studentName: studentName.value.trim(),
+        firstName: firstName,
+        lastName: lastName,
+        studentName: rawName,
         dob: finalDob,
         school: finalSchool,
         score: finalScore,
@@ -670,6 +680,8 @@ document.addEventListener('DOMContentLoaded', () => {
         try {
           const res = await window.ApexDB.saveAdmission({
             appId: generatedId,
+            firstName: applicationRecord.firstName,
+            lastName: applicationRecord.lastName,
             studentName: applicationRecord.studentName,
             dob: applicationRecord.dob,
             school: applicationRecord.school,
@@ -860,16 +872,20 @@ _Live Synced with Firebase Cloud Database._`;
         storedApps = [];
       }
 
-      // Find match locally
+      // Find match locally (by App ID, phone, student name, or first name)
       let match = storedApps.find(app =>
         (app.appId && app.appId.toUpperCase() === query) ||
-        (app.phone && app.phone.includes(query))
+        (app.phone && app.phone.includes(query)) ||
+        (app.studentName && app.studentName.toUpperCase().includes(query)) ||
+        (app.firstName && app.firstName.toUpperCase() === query) ||
+        (app.appId && query.length >= 4 && app.appId.toUpperCase().includes(query))
       );
 
       // If not found locally, query Cloud Firestore
       if (!match && window.ApexDB && typeof window.ApexDB.findAdmission === 'function') {
         try {
-          const cloudMatch = await window.ApexDB.findAdmission(query);
+          const rawQ = trackQuery.value.trim();
+          const cloudMatch = await window.ApexDB.findAdmission(rawQ);
           if (cloudMatch) {
             match = cloudMatch;
           }
