@@ -41,7 +41,7 @@ def create_multipage_pdf(filename, title, pages_data):
             "0 -16 Td",
             "(APEX SCHOLARS ACADEMY - PREMIER COACHING FOR CLASSES 11TH & 12TH) Tj",
             "0 -14 Td",
-            f"(Document: Official Publication | Page {page_num + 1} of {num_pages} | Helpline: +91 98765 43210) Tj",
+            f"(Document: Official Publication | Page {page_num + 1} of {num_pages} | Helpline: +91 73858 03641) Tj",
             "0 -8 Td",
             "(/F1 1 Tf) Tj", # dummy
             "0 -18 Td"
@@ -64,7 +64,7 @@ def create_multipage_pdf(filename, title, pages_data):
                 stream_commands.append(f"/F2 9.5 Tf 0 -13 Td ({safe}) Tj")
                 
         # Footer
-        stream_commands.append(f"/F2 8 Tf 0 -25 Td (Apex Scholars Academy • 402 Excellence Tower, Knowledge Park • contact@apexscholars.edu • +91 98765 43210) Tj")
+        stream_commands.append(f"/F2 8 Tf 0 -25 Td (Apex Scholars Academy • 402 Excellence Tower, Knowledge Park • contact@apexscholars.edu • +91 73858 03641) Tj")
         stream_commands.append("ET")
         
         stream_bytes = "\n".join(stream_commands).encode("latin1", "replace")
@@ -180,8 +180,8 @@ prospectus_p3 = [
     "",
     "## CAMPUS & CONTACT HELPLINE",
     "- Address: Apex Scholars Academy, 402 Excellence Tower, Knowledge Park, Central Avenue",
-    "- Admissions Hotline: +91 98765 43210 / +91 98765 43211",
-    "- Official WhatsApp Desk: +91 98765 43210 (24x7 Quick Assistance)",
+    "- Admissions Hotline: +91 73858 03641",
+    "- Official WhatsApp Desk: +91 73858 03641 (24x7 Quick Assistance)",
     "- Email: admissions@apexscholars.edu | Website: http://localhost:8080"
 ]
 
@@ -269,7 +269,7 @@ fee_p1 = [
     "",
     "## 4. ADMISSION HOTLINE & DESK",
     "- Campus: 402 Excellence Tower, Knowledge Park, Central Avenue",
-    "- Telephone: +91 98765 43210 | WhatsApp: +91 98765 43210"
+    "- Telephone: +91 73858 03641 | WhatsApp: +91 73858 03641"
 ]
 
 create_multipage_pdf("Apex_Scholars_Official_Fee_Sheet.pdf", "APEX SCHOLARS - OFFICIAL FEE SHEET 2026-27", [fee_p1])

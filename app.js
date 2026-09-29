@@ -915,7 +915,7 @@ _Live Synced with Firebase Cloud Database._`;
             <div><strong>Batch Timing:</strong> ${match.timing || 'Evening Slot A'}</div>
             <div><strong>Mode:</strong> ${match.mode || 'Classroom'}</div>
             <div><strong>Fee Policy:</strong> <span style="color:#047857; font-weight:700;">${match.scholarship || 'Standard Uniform Slabs'}</span></div>
-            <div><strong>Counselor Contact:</strong> +91 98765 43210</div>
+            <div><strong>Counselor Contact:</strong> +91 73858 03641</div>
             <div><strong>Orientation Slot:</strong> Upcoming Saturday 5:00 PM</div>
           </div>
 
