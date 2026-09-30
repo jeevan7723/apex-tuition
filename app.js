@@ -35,6 +35,273 @@ document.addEventListener('DOMContentLoaded', () => {
     // Ignore URL parse errors
   }
 
+
+  // ==========================================================================
+  // 1B. THEMED CUSTOM SELECT COMPONENT
+  // ==========================================================================
+  function initCustomSelects() {
+    const selects = document.querySelectorAll('select:not(.custom-select-native):not([data-no-custom])');
+
+    selects.forEach(select => {
+      if (select.closest('.custom-select-wrapper')) return;
+
+      const wrapper = document.createElement('div');
+      wrapper.className = 'custom-select-wrapper';
+      if (select.className) {
+        select.className.split(' ').forEach(cls => {
+          if (cls && cls !== 'custom-select-native') wrapper.classList.add(cls);
+        });
+      }
+      if (select.id) {
+        wrapper.setAttribute('data-select-id', select.id);
+      }
+
+      // Insert wrapper before select, then place select inside
+      select.parentNode.insertBefore(wrapper, select);
+      wrapper.appendChild(select);
+      select.classList.add('custom-select-native');
+
+      // Create Trigger Button
+      const trigger = document.createElement('button');
+      trigger.type = 'button';
+      trigger.className = 'custom-select-trigger';
+      trigger.setAttribute('role', 'combobox');
+      trigger.setAttribute('aria-haspopup', 'listbox');
+      trigger.setAttribute('aria-expanded', 'false');
+      if (select.id) {
+        trigger.id = `${select.id}-trigger`;
+      }
+
+      const valueSpan = document.createElement('span');
+      valueSpan.className = 'custom-select-value';
+
+      const arrowSpan = document.createElement('span');
+      arrowSpan.className = 'custom-select-arrow';
+      arrowSpan.innerHTML = `<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>`;
+
+      trigger.appendChild(valueSpan);
+      trigger.appendChild(arrowSpan);
+      wrapper.appendChild(trigger);
+
+      // Create Dropdown Menu
+      const dropdown = document.createElement('div');
+      dropdown.className = 'custom-select-dropdown';
+      dropdown.setAttribute('role', 'listbox');
+      wrapper.appendChild(dropdown);
+
+      function buildDropdownOptions() {
+        dropdown.innerHTML = '';
+        const currentOpt = select.options[select.selectedIndex];
+        if (currentOpt) {
+          valueSpan.textContent = currentOpt.textContent;
+          if (currentOpt.disabled || currentOpt.value === '') {
+            valueSpan.classList.add('is-placeholder');
+          } else {
+            valueSpan.classList.remove('is-placeholder');
+          }
+        } else {
+          valueSpan.textContent = '';
+        }
+
+        let optIndex = 0;
+        Array.from(select.children).forEach(child => {
+          const tag = child.tagName.toLowerCase();
+          if (tag === 'optgroup') {
+            const groupHeader = document.createElement('div');
+            groupHeader.className = 'custom-select-optgroup';
+            groupHeader.textContent = child.label;
+            dropdown.appendChild(groupHeader);
+
+            Array.from(child.children).forEach(opt => {
+              appendOption(opt, optIndex++);
+            });
+          } else if (tag === 'option') {
+            appendOption(child, optIndex++);
+          }
+        });
+
+        function appendOption(opt, idx) {
+          const item = document.createElement('div');
+          item.className = 'custom-select-option';
+          item.setAttribute('role', 'option');
+          item.setAttribute('data-value', opt.value);
+          item.setAttribute('data-index', idx);
+          item.textContent = opt.textContent;
+
+          if (opt.disabled) {
+            item.classList.add('is-disabled');
+            item.setAttribute('aria-disabled', 'true');
+          }
+
+          if (idx === select.selectedIndex) {
+            item.classList.add('is-selected');
+            item.setAttribute('aria-selected', 'true');
+          } else {
+            item.setAttribute('aria-selected', 'false');
+          }
+
+          const checkIcon = document.createElement('span');
+          checkIcon.className = 'custom-select-check';
+          checkIcon.innerHTML = `<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>`;
+          item.appendChild(checkIcon);
+
+          item.addEventListener('click', (e) => {
+            e.stopPropagation();
+            if (opt.disabled) return;
+            select.selectedIndex = idx;
+            select.value = opt.value;
+            select.dispatchEvent(new Event('change', { bubbles: true }));
+            select.dispatchEvent(new Event('input', { bubbles: true }));
+            closeDropdown();
+            trigger.focus();
+          });
+
+          dropdown.appendChild(item);
+        }
+      }
+
+      buildDropdownOptions();
+
+      function openDropdown() {
+        document.querySelectorAll('.custom-select-wrapper.is-open').forEach(w => {
+          if (w !== wrapper) {
+            w.classList.remove('is-open');
+            const tr = w.querySelector('.custom-select-trigger');
+            if (tr) tr.setAttribute('aria-expanded', 'false');
+          }
+        });
+
+        const rect = wrapper.getBoundingClientRect();
+        const spaceBelow = window.innerHeight - rect.bottom;
+        if (spaceBelow < 280 && rect.top > 280) {
+          wrapper.classList.add('is-drop-up');
+        } else {
+          wrapper.classList.remove('is-drop-up');
+        }
+
+        wrapper.classList.add('is-open');
+        trigger.setAttribute('aria-expanded', 'true');
+
+        const selected = dropdown.querySelector('.custom-select-option.is-selected');
+        if (selected) {
+          selected.scrollIntoView({ block: 'nearest' });
+        }
+      }
+
+      function closeDropdown() {
+        wrapper.classList.remove('is-open');
+        trigger.setAttribute('aria-expanded', 'false');
+      }
+
+      function toggleDropdown() {
+        if (wrapper.classList.contains('is-open')) {
+          closeDropdown();
+        } else {
+          openDropdown();
+        }
+      }
+
+      trigger.addEventListener('click', (e) => {
+        e.stopPropagation();
+        toggleDropdown();
+      });
+
+      trigger.addEventListener('keydown', (e) => {
+        if (e.key === 'ArrowDown' || e.key === 'ArrowUp' || e.key === 'Enter' || e.key === ' ') {
+          e.preventDefault();
+          if (!wrapper.classList.contains('is-open')) {
+            openDropdown();
+          } else {
+            const options = Array.from(dropdown.querySelectorAll('.custom-select-option:not(.is-disabled)'));
+            if (!options.length) return;
+            let currentFocusIdx = options.findIndex(o => o.classList.contains('is-focused') || o.classList.contains('is-selected'));
+            if (e.key === 'ArrowDown') {
+              currentFocusIdx = (currentFocusIdx + 1) % options.length;
+            } else if (e.key === 'ArrowUp') {
+              currentFocusIdx = (currentFocusIdx - 1 + options.length) % options.length;
+            } else if (e.key === 'Enter' || e.key === ' ') {
+              const focused = dropdown.querySelector('.custom-select-option.is-focused') || options[currentFocusIdx];
+              if (focused) {
+                focused.click();
+                return;
+              }
+            }
+            options.forEach((o, i) => o.classList.toggle('is-focused', i === currentFocusIdx));
+            if (options[currentFocusIdx]) {
+              options[currentFocusIdx].scrollIntoView({ block: 'nearest' });
+            }
+          }
+        } else if (e.key === 'Escape') {
+          closeDropdown();
+        } else if (e.key === 'Tab') {
+          closeDropdown();
+        }
+      });
+
+      select.addEventListener('change', () => {
+        buildDropdownOptions();
+        const fieldWrap = wrapper.closest('.form-field, .form-group');
+        if (fieldWrap && fieldWrap.classList.contains('has-error') && select.value) {
+          fieldWrap.classList.remove('has-error');
+        }
+      });
+
+      select.addEventListener('focus', () => {
+        trigger.focus();
+      });
+
+      if (select.id) {
+        const label = document.querySelector(`label[for="${select.id}"]`);
+        if (label) {
+          label.addEventListener('click', (e) => {
+            e.preventDefault();
+            trigger.focus();
+            toggleDropdown();
+          });
+        }
+      }
+
+      // Observe DOM updates on select (e.g. from language translator)
+      if (window.MutationObserver) {
+        const observer = new MutationObserver(() => {
+          buildDropdownOptions();
+        });
+        observer.observe(select, { childList: true, subtree: true, characterData: true });
+      }
+
+      wrapper.__rebuildOptions = buildDropdownOptions;
+    });
+
+    document.removeEventListener('click', handleOutsideSelectClick);
+    document.addEventListener('click', handleOutsideSelectClick);
+
+    window.removeEventListener('languageChanged', handleLanguageSwitchSelects);
+    window.addEventListener('languageChanged', handleLanguageSwitchSelects);
+  }
+
+  function handleOutsideSelectClick(e) {
+    if (!e.target.closest('.custom-select-wrapper')) {
+      document.querySelectorAll('.custom-select-wrapper.is-open').forEach(w => {
+        w.classList.remove('is-open');
+        const tr = w.querySelector('.custom-select-trigger');
+        if (tr) tr.setAttribute('aria-expanded', 'false');
+      });
+    }
+  }
+
+  function handleLanguageSwitchSelects() {
+    setTimeout(() => {
+      document.querySelectorAll('.custom-select-wrapper').forEach(w => {
+        if (typeof w.__rebuildOptions === 'function') {
+          w.__rebuildOptions();
+        }
+      });
+    }, 50);
+  }
+
+
+  initCustomSelects();
+
   // ==========================================================================
   // 1. MOBILE NAVIGATION TOGGLE
   // ==========================================================================

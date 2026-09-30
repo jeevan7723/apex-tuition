@@ -5218,5 +5218,281 @@ html[lang="mr"] .hero-title {
   }
 }
 
+/* ==========================================================================
+   THEMED SELECT DROPDOWNS (NATIVE BASE-SELECT + CUSTOM ACCESSIBLE SELECT UI)
+   ========================================================================== */
 
+/* 1. Base Select Enhancement for modern supporting browsers */
+select,
+::picker(select) {
+  appearance: base-select;
+}
 
+select {
+  font-family: var(--font-body, 'Outfit', 'Plus Jakarta Sans', sans-serif);
+  cursor: pointer;
+}
+
+::picker(select) {
+  background-color: #ffffff;
+  border: 1.5px solid #cbd5e1;
+  border-radius: 12px;
+  padding: 6px;
+  box-shadow: 0 16px 36px -4px rgba(15, 23, 42, 0.18), 0 4px 12px -2px rgba(15, 23, 42, 0.08);
+  font-family: var(--font-body, 'Outfit', 'Plus Jakarta Sans', sans-serif);
+}
+
+select option {
+  padding: 0.7rem 1rem;
+  border-radius: 8px;
+  color: #1e293b;
+  font-size: 0.92rem;
+  font-family: var(--font-body, 'Outfit', 'Plus Jakarta Sans', sans-serif);
+  cursor: pointer;
+  background-color: #ffffff;
+}
+
+select option:hover,
+select option:focus,
+select option:checked {
+  background-color: #eff6ff !important;
+  color: #1d4ed8 !important;
+  font-weight: 600;
+}
+
+select optgroup {
+  font-weight: 800;
+  font-size: 0.78rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: #1d4ed8;
+  padding: 8px 10px 4px;
+}
+
+/* 2. Custom Themed Select Component (Works universally across ALL browsers) */
+.custom-select-wrapper {
+  position: relative;
+  width: 100%;
+  font-family: var(--font-body, 'Outfit', 'Plus Jakarta Sans', sans-serif);
+  user-select: none;
+}
+
+/* Native select is preserved invisibly for native form submission & screen readers */
+.custom-select-wrapper select.custom-select-native {
+  position: absolute !important;
+  width: 100% !important;
+  height: 100% !important;
+  opacity: 0 !important;
+  pointer-events: none !important;
+  top: 0 !important;
+  left: 0 !important;
+  z-index: -1 !important;
+  margin: 0 !important;
+}
+
+/* Custom Select Trigger Button */
+.custom-select-trigger {
+  width: 100%;
+  min-height: 46px;
+  padding: 0.72rem 1rem;
+  background: #ffffff;
+  border: 1.5px solid var(--border-color, #e2e8f0);
+  border-radius: var(--radius-md, 10px);
+  color: var(--secondary, #0f172a);
+  font-family: inherit;
+  font-size: 0.925rem;
+  font-weight: 500;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+  cursor: pointer;
+  outline: none;
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: 0 1px 2px rgba(15, 23, 42, 0.03);
+  text-align: left;
+}
+
+/* In inquiry form wrap */
+.inquiry-input-wrap .custom-select-trigger {
+  padding-left: 2.75rem;
+  background-color: #f8fafc;
+}
+.inquiry-input-wrap:focus-within .custom-select-trigger {
+  background-color: #ffffff;
+}
+
+/* Hover & Focus state matching website theme */
+.custom-select-trigger:hover {
+  border-color: #94a3b8;
+  background-color: #ffffff;
+}
+
+.custom-select-wrapper.is-open .custom-select-trigger,
+.custom-select-trigger:focus-visible {
+  border-color: var(--primary, #1d4ed8);
+  background-color: #ffffff;
+  box-shadow: 0 0 0 3.5px rgba(29, 78, 216, 0.15), 0 2px 4px rgba(0, 0, 0, 0.02);
+}
+
+/* Error state in form fields */
+.form-field.has-error .custom-select-trigger,
+.form-group.has-error .custom-select-trigger {
+  border-color: #ef4444 !important;
+  background-color: #fff5f5 !important;
+  box-shadow: 0 0 0 3px rgba(239, 68, 68, 0.15) !important;
+}
+
+.custom-select-value {
+  flex: 1;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  color: var(--secondary, #0f172a);
+}
+
+.custom-select-value.is-placeholder {
+  color: #94a3b8;
+  font-weight: 400;
+}
+
+/* Themed Chevron Arrow */
+.custom-select-arrow {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--primary, #1d4ed8);
+  transition: transform 0.25s cubic-bezier(0.4, 0, 0.2, 1), color 0.2s ease;
+  flex-shrink: 0;
+}
+
+.custom-select-wrapper.is-open .custom-select-arrow {
+  transform: rotate(180deg);
+  color: var(--primary-hover, #1e40af);
+}
+
+/* Themed Dropdown Options Menu Popup */
+.custom-select-dropdown {
+  position: absolute;
+  top: calc(100% + 6px);
+  left: 0;
+  right: 0;
+  background: #ffffff;
+  border: 1.5px solid #cbd5e1;
+  border-radius: 12px;
+  box-shadow: 0 16px 36px -4px rgba(15, 23, 42, 0.18), 0 6px 14px -2px rgba(15, 23, 42, 0.08);
+  max-height: 280px;
+  overflow-y: auto;
+  z-index: 1050;
+  padding: 6px;
+  display: none;
+  opacity: 0;
+  transform: translateY(-6px) scale(0.99);
+  transition: opacity 0.18s cubic-bezier(0.16, 1, 0.3, 1), transform 0.18s cubic-bezier(0.16, 1, 0.3, 1);
+  scrollbar-width: thin;
+  scrollbar-color: #cbd5e1 #f8fafc;
+}
+
+/* Drop-up variation when near bottom of viewport */
+.custom-select-wrapper.is-drop-up .custom-select-dropdown {
+  top: auto;
+  bottom: calc(100% + 6px);
+  transform: translateY(6px) scale(0.99);
+}
+
+.custom-select-wrapper.is-open .custom-select-dropdown {
+  display: block;
+  opacity: 1;
+  transform: translateY(0) scale(1);
+}
+
+/* Dropdown scrollbar */
+.custom-select-dropdown::-webkit-scrollbar {
+  width: 6px;
+}
+.custom-select-dropdown::-webkit-scrollbar-track {
+  background: #f8fafc;
+  border-radius: 8px;
+}
+.custom-select-dropdown::-webkit-scrollbar-thumb {
+  background: #cbd5e1;
+  border-radius: 8px;
+}
+.custom-select-dropdown::-webkit-scrollbar-thumb:hover {
+  background: #94a3b8;
+}
+
+/* Optgroup Header */
+.custom-select-optgroup {
+  padding: 8px 12px 4px;
+  font-size: 0.76rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--primary, #1d4ed8);
+  background: #f8fafc;
+  border-radius: 6px;
+  margin: 4px 0 2px;
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+
+.custom-select-optgroup::before {
+  content: "";
+  display: inline-block;
+  width: 3px;
+  height: 12px;
+  background: var(--primary, #1d4ed8);
+  border-radius: 2px;
+}
+
+/* Dropdown Option Items */
+.custom-select-option {
+  padding: 0.68rem 0.95rem;
+  border-radius: 8px;
+  color: #1e293b;
+  font-size: 0.915rem;
+  font-weight: 500;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.5rem;
+  cursor: pointer;
+  transition: all 0.15s ease;
+  margin: 1px 0;
+  line-height: 1.35;
+}
+
+.custom-select-option:hover,
+.custom-select-option.is-focused {
+  background-color: #eff6ff;
+  color: var(--primary, #1d4ed8);
+  font-weight: 600;
+  transform: translateX(2px);
+}
+
+/* Selected option */
+.custom-select-option.is-selected {
+  background: linear-gradient(135deg, #eff6ff 0%, #dbeafe 100%);
+  color: #1e3a8a;
+  font-weight: 700;
+}
+
+.custom-select-option .custom-select-check {
+  display: none;
+  color: var(--primary, #1d4ed8);
+  flex-shrink: 0;
+}
+
+.custom-select-option.is-selected .custom-select-check {
+  display: inline-flex;
+}
+
+/* Disabled / Placeholder Option */
+.custom-select-option.is-disabled {
+  color: #94a3b8;
+  font-style: italic;
+  cursor: default;
+  pointer-events: none;
+}
