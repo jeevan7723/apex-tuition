@@ -21,8 +21,8 @@ document.addEventListener('DOMContentLoaded', () => {
       mobileMenuBtn.setAttribute('aria-expanded', isOpen);
     });
 
-    // Close mobile nav when clicking any link or button inside it
-    mobileNavPanel.querySelectorAll('a, button').forEach(item => {
+    // Close mobile nav when clicking links or action buttons inside it (exclude language switcher)
+    mobileNavPanel.querySelectorAll('a, button:not(.lang-btn)').forEach(item => {
       item.addEventListener('click', () => {
         mobileNavPanel.classList.remove('open');
         mobileMenuBtn.classList.remove('active');

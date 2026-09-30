@@ -677,7 +677,23 @@ const marathiDictionary = {
 };
 
 
-let currentLanguage = localStorage.getItem('sanstha_lang') || 'en';
+function getSavedLanguage() {
+  try {
+    return localStorage.getItem('sanstha_lang') || 'en';
+  } catch (e) {
+    return 'en';
+  }
+}
+
+function saveLanguage(lang) {
+  try {
+    localStorage.setItem('sanstha_lang', lang);
+  } catch (e) {
+    // Ignore storage errors in private browsing/incognito
+  }
+}
+
+let currentLanguage = getSavedLanguage();
 
 function normalizeText(str) {
   if (!str) return '';
@@ -731,6 +747,13 @@ function translateNode(node, lang) {
       }
     }
     return;
+  }
+
+  // Skip language switcher, scripts, styles, svgs and non-translatable containers
+  if (node.nodeType === Node.ELEMENT_NODE) {
+    if (node.classList && (node.classList.contains('lang-switch-wrap') || node.classList.contains('lang-btn') || node.hasAttribute('data-no-translate'))) {
+      return;
+    }
   }
 
   // Skip script, style, and svg
@@ -801,15 +824,18 @@ function translateNode(node, lang) {
 function setLanguage(lang) {
   if (lang !== 'en' && lang !== 'mr') return;
   currentLanguage = lang;
-  localStorage.setItem('sanstha_lang', lang);
+  saveLanguage(lang);
   document.documentElement.lang = lang;
 
-  // Update button active state
+  // Update button active state across all switchers (header and mobile drawer)
   document.querySelectorAll('.lang-btn').forEach(btn => {
-    if (btn.getAttribute('data-lang') === lang) {
+    const btnLang = btn.getAttribute('data-lang');
+    if (btnLang === lang) {
       btn.classList.add('active');
+      btn.setAttribute('aria-pressed', 'true');
     } else {
       btn.classList.remove('active');
+      btn.setAttribute('aria-pressed', 'false');
     }
   });
 
@@ -884,22 +910,50 @@ if (typeof MutationObserver !== 'undefined') {
   }
 }
 
-// Auto initialize when DOM loads
-if (typeof document !== 'undefined') {
-  document.addEventListener('DOMContentLoaded', () => {
-    // Bind language switcher buttons
-    document.querySelectorAll('.lang-btn').forEach(btn => {
-      btn.addEventListener('click', (e) => {
-        const lang = e.currentTarget.getAttribute('data-lang');
-        setLanguage(lang);
-      });
-    });
+// Language button click / touch handler
+function handleLangSwitch(e) {
+  const btn = e.target.closest('.lang-btn');
+  if (!btn) return;
+  e.preventDefault();
+  e.stopPropagation();
+  const lang = btn.getAttribute('data-lang');
+  if (lang) {
+    setLanguage(lang);
+  }
+}
 
-    // Apply chosen language if set to 'mr'
-    if (currentLanguage === 'mr') {
-      setTimeout(() => {
-        setLanguage('mr');
-      }, 40);
+// Auto initialize when DOM loads
+function initLanguageEngine() {
+  // Bind direct listeners to all .lang-btn elements
+  document.querySelectorAll('.lang-btn').forEach(btn => {
+    btn.removeEventListener('click', handleLangSwitch);
+    btn.addEventListener('click', handleLangSwitch);
+    btn.removeEventListener('touchend', handleLangSwitch);
+    btn.addEventListener('touchend', handleLangSwitch, { passive: false });
+  });
+
+  // Global delegation fallback so dynamically inserted buttons also work instantly
+  document.addEventListener('click', (e) => {
+    const btn = e.target.closest('.lang-btn');
+    if (btn) {
+      handleLangSwitch(e);
     }
   });
+
+  // Apply chosen language if set to 'mr'
+  if (currentLanguage === 'mr') {
+    setTimeout(() => {
+      setLanguage('mr');
+    }, 20);
+  } else {
+    setLanguage('en');
+  }
+}
+
+if (typeof document !== 'undefined') {
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initLanguageEngine);
+  } else {
+    initLanguageEngine();
+  }
 }
