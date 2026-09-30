@@ -687,6 +687,11 @@ html[lang="mr"] .hero-title {
   padding-top: 0.5rem;
 }
 
+/* Mobile Quick Jump Bar (Hidden on desktop) */
+.mobile-quick-jump-bar {
+  display: none;
+}
+
 .hero-trust-bar {
   display: flex;
   align-items: center;
@@ -4083,6 +4088,76 @@ html[lang="mr"] .hero-title {
     min-height: 50px;
     font-size: 0.95rem;
   }
+
+  /* Mobile Quick Jump Action Bar */
+  .mobile-quick-jump-bar {
+    display: block;
+    width: 100%;
+    margin: 1.15rem 0 0.5rem;
+    padding: 0.75rem 0.85rem;
+    background: #f8fafc;
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-lg);
+    box-shadow: 0 2px 8px rgba(15, 23, 42, 0.04);
+    box-sizing: border-box;
+  }
+  .quick-jump-header {
+    margin-bottom: 0.5rem;
+  }
+  .quick-jump-title {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    font-size: 0.75rem;
+    font-weight: 800;
+    color: var(--primary);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+  .quick-jump-chips {
+    display: flex;
+    gap: 0.45rem;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+    padding-bottom: 3px;
+  }
+  .quick-jump-chips::-webkit-scrollbar {
+    display: none;
+  }
+  .jump-chip {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35rem;
+    padding: 0.45rem 0.7rem;
+    background: #ffffff;
+    border: 1px solid var(--border-color);
+    border-radius: 9999px;
+    font-size: 0.78rem;
+    font-weight: 700;
+    color: var(--secondary);
+    text-decoration: none;
+    white-space: nowrap;
+    flex-shrink: 0;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+    transition: all var(--transition-fast);
+    -webkit-tap-highlight-color: transparent;
+  }
+  .jump-chip:active {
+    background: var(--primary);
+    color: #ffffff !important;
+    border-color: var(--primary);
+    transform: scale(0.96);
+  }
+  .jump-chip.highlight {
+    background: #eff6ff;
+    border-color: #93c5fd;
+    color: var(--primary);
+    font-weight: 800;
+  }
+  .jump-chip .chip-icon {
+    font-size: 0.88rem;
+  }
   .hero-trust-bar {
     display: flex;
     flex-direction: column;
@@ -4826,7 +4901,7 @@ html[lang="mr"] .hero-title {
 /* Smartphone Screens (<= 640px) */
 @media (max-width: 640px) {
   body {
-    padding-bottom: calc(66px + env(safe-area-inset-bottom, 0px));
+    padding-bottom: calc(76px + env(safe-area-inset-bottom, 0px));
   }
 
   /* Mobile Sticky Bottom Action Bar */
@@ -4859,6 +4934,10 @@ html[lang="mr"] .hero-title {
     min-height: 44px;
     white-space: nowrap;
     transition: all var(--transition-fast);
+    -webkit-tap-highlight-color: transparent;
+  }
+  .mobile-cta-btn:active {
+    transform: scale(0.96);
   }
   .mobile-cta-btn.phone-btn {
     background: #f1f5f9;
