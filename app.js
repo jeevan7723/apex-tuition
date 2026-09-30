@@ -171,13 +171,8 @@ document.addEventListener('DOMContentLoaded', () => {
           }
         });
 
-        const rect = wrapper.getBoundingClientRect();
-        const spaceBelow = window.innerHeight - rect.bottom;
-        if (spaceBelow < 280 && rect.top > 280) {
-          wrapper.classList.add('is-drop-up');
-        } else {
-          wrapper.classList.remove('is-drop-up');
-        }
+        // Always open in downward direction as requested
+        wrapper.classList.remove('is-drop-up');
 
         wrapper.classList.add('is-open');
         trigger.setAttribute('aria-expanded', 'true');
