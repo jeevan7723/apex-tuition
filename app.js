@@ -194,11 +194,13 @@ document.addEventListener('DOMContentLoaded', () => {
       const grade = btn.dataset.grade;
       const course = btn.dataset.course || '';
       const gradeMapping = {
-        '11-sci': 'Class 11 Science',
-        '11-com': 'Class 11 Commerce',
-        '12-sci': 'Class 12 Science',
-        '12-com': 'Class 12 Commerce',
-        'competitive': 'Competitive (JEE / NEET / Olympiad)'
+        '11-sci': 'Class 11 Science Foundation (PCM/PCB)',
+        '11-com': 'Class 11 Commerce Excellence & Applied Math',
+        '12-sci': 'Class 12 Science Board Booster & CUET Prep',
+        '12-com': 'Class 12 Commerce Mastery & CA Foundation',
+        'jee': 'Integrated JEE Main & Advanced (11th & 12th)',
+        'neet': 'Integrated NEET-UG Medical Super-20 (11th & 12th)',
+        'competitive': 'Integrated JEE Main & Advanced (11th & 12th)'
       };
       const targetGrade = (grade && gradeMapping[grade]) ? gradeMapping[grade] : (grade || '');
       window.location.href = `admission.html?grade=${encodeURIComponent(targetGrade)}&course=${encodeURIComponent(course)}`;
@@ -633,7 +635,7 @@ document.addEventListener('DOMContentLoaded', () => {
       }
 
       if (!isGradeValid) {
-        showToast('Please select Current Grade / Class.', 'info');
+        showToast('Please select an Academic Tuition Program / Course.', 'info');
         if (admissionGrade) admissionGrade.focus();
         return;
       }

@@ -4,6 +4,23 @@
 // =============================================================================
 
 const marathiDictionary = {
+  "Academic Tuition Program / Course": "शैक्षणिक ट्युशन कोर्स / वर्ग",
+  "Academic Tuition Program / Course *": "शैक्षणिक ट्युशन कोर्स / वर्ग *",
+  "Select Academic Program / Course": "शैक्षणिक कोर्स निवडा",
+  "Class 11th Wing Programs": "इयत्ता ११ वी विभाग कोर्सेस",
+  "Class 11th - Science Foundation (PCM / PCB + JEE/NEET Base)": "इयत्ता ११ वी - सायन्स फाउंडेशन (PCM / PCB + JEE/NEET बेस)",
+  "Class 11 Science Foundation (PCM/PCB)": "इयत्ता ११ वी सायन्स फाउंडेशन (PCM/PCB)",
+  "Class 11th - Commerce Excellence (Accounts, Economics, Math)": "इयत्ता ११ वी - कॉमर्स एक्सलन्स (अकाउंट्स, अर्थशास्त्र, गणित)",
+  "Class 12th Wing Programs": "इयत्ता १२ वी विभाग कोर्सेस",
+  "Class 12th - Science Board Booster (Board 95%+ Target & CUET)": "इयत्ता १२ वी - सायन्स बोर्ड बूस्टर (बोर्ड ९५%+ टार्गेट व CUET)",
+  "Class 12th - Commerce Mastery (Board 98%+ Target & CA Track)": "इयत्ता १२ वी - कॉमर्स मास्टरी (बोर्ड ९८%+ टार्गेट व CA ट्रॅक)",
+  "Competitive Entrance Programs": "प्रवेश परीक्षा कोर्सेस (JEE / NEET)",
+  "Integrated JEE Main & Advanced 2-Year Program (Engineering Track)": "इंटिग्रेटेड JEE मेन व ॲडव्हान्स्ड २-वर्षीय प्रोग्राम (अभियांत्रिकी ट्रॅक)",
+  "Integrated JEE Main & Advanced (11th & 12th)": "इंटिग्रेटेड JEE मेन व ॲडव्हान्स्ड (११ वी व १२ वी)",
+  "Integrated NEET-UG Medical Super-20 Program (Medical Track)": "इंटिग्रेटेड NEET-UG मेडिकल सुपर-२० प्रोग्राम (वैद्यकीय ट्रॅक)",
+  "Integrated NEET-UG Medical Super-20 (11th & 12th)": "इंटिग्रेटेड NEET-UG मेडिकल सुपर-२० (११ वी व १२ वी)",
+  "Please select an academic tuition program": "कृपया शैक्षणिक ट्युशन कोर्स निवडा",
+  "Please select an Academic Tuition Program / Course.": "कृपया शैक्षणिक ट्युशन कोर्स निवडा.",
   "\"Accountancy balance sheets always gave me tension until Singhania Sir taught us the conceptual ledger method. Scored a perfect 100!\"": "\"सिंघानिया सरांनी लेजर पद्धत शिकवेपर्यंत बॅलन्स शीटची खूप भीती वाटायची. त्यांच्यामुळे अकाउंट्समध्ये १०० पैकी १०० गुण मिळाले!\"",
   "\"My son used to struggle with Class 11 Physics and Calculus derivations. Within 3 months of joining Sangli Shikshan Sanstha, his unit test marks jumped from 58% to 92%. The small batch size and daily doubt clinic are incredible.\"": "\"माझ्या मुलाला भौतिकशास्त्र आणि गणिताची भीती वाटायची. सांगली शिक्षण संस्थेत आल्यावर ३ महिन्यांत त्याचे गुण ५८% वरून ९२% झाले. लहान बॅच आणि दररोजच्या शंका समाधानाचा मोठा फायदा झाला.\"",
   "\"No big corporate coaching compares to the personal mentorship here. The teachers here know my exact weaknesses and pushed me to conquer them.\"": "\"येथील वैयक्तिक मार्गदर्शनाची तुलना कोणत्याही मोठ्या क्लासशी होऊ शकत नाही. शिक्षकांना माझ्या अडचणी माहिती होत्या व त्यांनी त्या सोडवल्या.\"",
@@ -817,6 +834,20 @@ function translateNode(node, lang) {
       }
     } else {
       node.placeholder = node.__origPlaceholder;
+    }
+  }
+
+  // 2b. Process optgroup labels
+  if (tagName === 'optgroup' && node.label) {
+    if (!node.__origLabel) {
+      node.__origLabel = node.label;
+    }
+    const cleanLabel = normalizeText(node.__origLabel);
+    if (lang === 'mr') {
+      const mr = lookupTranslation(cleanLabel);
+      if (mr) node.label = mr;
+    } else {
+      node.label = node.__origLabel;
     }
   }
 
