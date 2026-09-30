@@ -701,6 +701,15 @@ const marathiDictionary = {
   "Select Preferred Study Mode": "अभ्यास पद्धत निवडा",
   "Please select preferred shift timing slot": "कृपया पसंतीची वेळ निवडा",
   "Please select preferred study mode": "कृपया पसंतीची अभ्यास पद्धत निवडा",
+  "2. Select Academic Tuition Program": "२. शैक्षणिक ट्युशन कोर्स निवडा",
+  "(Click on your desired course below)": "(खालीलपैकी आपल्या पसंतीचा कोर्स निवडा)",
+  "Selected Grade / Class Program": "निवडलेला वर्ग / कोर्स",
+  "Please select your academic program above": "कृपया वरील पर्यायांमधून आपला कोर्स निवडा",
+  "3. Board, Shift & Study Mode": "३. बोर्ड, वेळ व अभ्यास पद्धत",
+  "4. Parent / Guardian Contact Details": "४. पालक संपर्क तपशील",
+  "Physics, Chemistry, Pure Math & Biology (Full Foundation + JEE/NEET Base)": "भौतिकशास्त्र, रसायनशास्त्र, गणित व जीवशास्त्र (पायाभूत + JEE/NEET तयारी)",
+  "Full Board Syllabus + 15 Pre-Board Mock Simulations & CUET Preparation": "संपूर्ण बोर्ड अभ्यासक्रम + १५ सराव परीक्षा व CUET तयारी",
+  "Advanced Accountancy, Economics, Corporate Law & CA Foundation Prep": "अ‍ॅडव्हान्स अकाउंट्स, अर्थशास्त्र, कायदे व CA फाउंडेशन तयारी",
 };
 
 

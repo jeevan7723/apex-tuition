@@ -5218,3 +5218,157 @@ html[lang="mr"] .hero-title {
   }
 }
 
+/* ==========================================================================
+   IN-FORM PROGRAM SELECTION CARDS
+   ========================================================================== */
+.program-selection-wrapper {
+  margin-bottom: 1.5rem;
+}
+
+.program-selection-prompt {
+  font-size: 0.88rem;
+  font-weight: 600;
+  color: #334155;
+  margin-bottom: 0.75rem;
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+
+.program-choice-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 0.85rem;
+  margin-bottom: 1rem;
+}
+
+.program-choice-card {
+  position: relative;
+  background: #ffffff;
+  border: 2px solid #e2e8f0;
+  border-radius: 12px;
+  padding: 1rem 1rem 0.9rem;
+  cursor: pointer;
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  user-select: none;
+}
+
+.program-choice-card:hover {
+  border-color: #3b82f6;
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px -6px rgba(59, 130, 246, 0.2);
+}
+
+.program-choice-card.selected {
+  border-color: #1e3a8a;
+  background: linear-gradient(180deg, #f0f7ff 0%, #ffffff 100%);
+  box-shadow: 0 0 0 3px rgba(30, 58, 138, 0.15), 0 10px 24px -6px rgba(30, 58, 138, 0.22);
+}
+
+.program-choice-card .p-card-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 0.5rem;
+}
+
+.program-choice-card .p-badge {
+  font-size: 0.72rem;
+  font-weight: 700;
+  padding: 0.2rem 0.6rem;
+  border-radius: 999px;
+  background: #e0f2fe;
+  color: #0369a1;
+  letter-spacing: 0.02em;
+}
+
+.program-choice-card .p-badge.badge-green {
+  background: #dcfce7;
+  color: #15803d;
+}
+
+.program-choice-card .p-badge.badge-amber {
+  background: #fef3c7;
+  color: #b45309;
+}
+
+.program-choice-card .p-check {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  border: 2px solid #cbd5e1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s ease;
+  font-size: 0.72rem;
+  font-weight: 800;
+  color: transparent;
+  background: #ffffff;
+}
+
+.program-choice-card.selected .p-check {
+  border-color: #1e3a8a;
+  background: #1e3a8a;
+  color: #ffffff;
+}
+
+.program-choice-card .p-title {
+  font-family: var(--font-heading);
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: #0f172a;
+  margin-bottom: 0.35rem;
+  line-height: 1.35;
+}
+
+.program-choice-card.selected .p-title {
+  color: #1e3a8a;
+}
+
+.program-choice-card .p-curriculum {
+  font-size: 0.79rem;
+  color: #64748b;
+  margin-bottom: 0.6rem;
+  line-height: 1.45;
+}
+
+.program-choice-card .p-meta-pills {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+  font-size: 0.74rem;
+}
+
+.program-choice-card .p-meta-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+  padding: 0.2rem 0.5rem;
+  border-radius: 6px;
+  font-weight: 600;
+  background: #f1f5f9;
+  color: #475569;
+}
+
+.program-choice-card .p-meta-pill.green {
+  background: #ecfdf5;
+  color: #047857;
+}
+
+.program-choice-card .p-meta-pill.orange {
+  background: #fffbeb;
+  color: #b45309;
+}
+
+@media (max-width: 600px) {
+  .program-choice-grid {
+    grid-template-columns: 1fr;
+    gap: 0.75rem;
+  }
+}
+
+
