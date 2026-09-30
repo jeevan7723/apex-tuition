@@ -20,9 +20,6 @@ document.addEventListener('DOMContentLoaded', () => {
         const optVal = admissionGrade.options[i].value.toLowerCase().trim();
         if (optVal === pLower || optVal.includes(pLower) || pLower.includes(optVal)) {
           admissionGrade.selectedIndex = i;
-          if (typeof syncProgramCardSelection === 'function') {
-            syncProgramCardSelection(admissionGrade.value);
-          }
           break;
         }
       }
@@ -190,63 +187,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
 
-  // ==========================================================================
-  // IN-FORM VISUAL PROGRAM CARDS & SMART ENROLL BUTTONS
-  // ==========================================================================
-  const programChoiceCards = document.querySelectorAll('.program-choice-card');
-  const admissionGradeInput = document.getElementById('admissionGrade');
-
-  function syncProgramCardSelection(selectedGradeVal) {
-    if (!programChoiceCards.length || !selectedGradeVal) return;
-    const cleanTarget = selectedGradeVal.toLowerCase().trim();
-    programChoiceCards.forEach(card => {
-      const cardVal = (card.dataset.gradeVal || '').toLowerCase().trim();
-      if (cardVal === cleanTarget || cardVal.includes(cleanTarget) || cleanTarget.includes(cardVal)) {
-        card.classList.add('selected');
-        card.setAttribute('aria-checked', 'true');
-      } else {
-        card.classList.remove('selected');
-        card.setAttribute('aria-checked', 'false');
-      }
-    });
-  }
-
-  // Bind click & keyboard handlers to in-form program choice cards
-  programChoiceCards.forEach(card => {
-    function handleCardSelect() {
-      const gradeVal = card.dataset.gradeVal;
-      const courseName = card.dataset.courseName || gradeVal;
-      if (admissionGradeInput && gradeVal) {
-        admissionGradeInput.value = gradeVal;
-        const wrap = admissionGradeInput.closest('.form-field');
-        if (wrap) wrap.classList.remove('has-error');
-      }
-      syncProgramCardSelection(gradeVal);
-      if (typeof showToast === 'function') {
-        showToast(`Selected Program: ${courseName}`, 'success');
-      }
-    }
-
-    card.addEventListener('click', handleCardSelect);
-    card.addEventListener('keydown', (e) => {
-      if (e.key === 'Enter' || e.key === ' ') {
-        e.preventDefault();
-        handleCardSelect();
-      }
-    });
-  });
-
-  if (admissionGradeInput) {
-    admissionGradeInput.addEventListener('change', () => {
-      syncProgramCardSelection(admissionGradeInput.value);
-    });
-    // Initial sync if already pre-selected
-    if (admissionGradeInput.value) {
-      syncProgramCardSelection(admissionGradeInput.value);
-    }
-  }
-
-  // Prefill enrollment from tuition cards
+  // Prefill enrollment from tuition cards -> navigate to dedicated admission page
   const enrollBtns = document.querySelectorAll('.btn-enroll-prefill');
   enrollBtns.forEach(btn => {
     btn.addEventListener('click', () => {
@@ -260,27 +201,7 @@ document.addEventListener('DOMContentLoaded', () => {
         'competitive': 'Competitive (JEE / NEET / Olympiad)'
       };
       const targetGrade = (grade && gradeMapping[grade]) ? gradeMapping[grade] : (grade || '');
-
-      const localForm = document.getElementById('admissionForm');
-      if (localForm) {
-        // We are on admission.html: select the program and scroll to form smoothly
-        if (admissionGradeInput) {
-          admissionGradeInput.value = targetGrade;
-          const wrap = admissionGradeInput.closest('.form-field');
-          if (wrap) wrap.classList.remove('has-error');
-        }
-        syncProgramCardSelection(targetGrade);
-        const admSection = document.getElementById('admission');
-        if (admSection) {
-          admSection.scrollIntoView({ behavior: 'smooth' });
-        }
-        if (typeof showToast === 'function') {
-          showToast(`Selected "${course || targetGrade}" — complete your details below!`, 'success');
-        }
-      } else {
-        // We are on index.html: navigate to dedicated admission page
-        window.location.href = `admission.html?grade=${encodeURIComponent(targetGrade)}&course=${encodeURIComponent(course)}`;
-      }
+      window.location.href = `admission.html?grade=${encodeURIComponent(targetGrade)}&course=${encodeURIComponent(course)}`;
     });
   });
 
