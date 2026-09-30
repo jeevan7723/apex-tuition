@@ -7,6 +7,35 @@
 document.addEventListener('DOMContentLoaded', () => {
 
   // ==========================================================================
+  // URL QUERY PARAMETER PREFILL HANDLER (e.g. admission.html?grade=...&course=...)
+  // ==========================================================================
+  try {
+    const searchParams = new URLSearchParams(window.location.search);
+    const paramGrade = searchParams.get('grade');
+    const paramCourse = searchParams.get('course');
+    const admissionGrade = document.getElementById('admissionGrade');
+    if (admissionGrade && paramGrade) {
+      const pLower = paramGrade.toLowerCase().trim();
+      for (let i = 0; i < admissionGrade.options.length; i++) {
+        const optVal = admissionGrade.options[i].value.toLowerCase().trim();
+        if (optVal === pLower || optVal.includes(pLower) || pLower.includes(optVal)) {
+          admissionGrade.selectedIndex = i;
+          break;
+        }
+      }
+      if (paramCourse) {
+        setTimeout(() => {
+          if (typeof showToast === 'function') {
+            showToast(`Selected "${paramCourse}" — Please fill in the student details below!`, 'info');
+          }
+        }, 350);
+      }
+    }
+  } catch (err) {
+    // Ignore URL parse errors
+  }
+
+  // ==========================================================================
   // 1. MOBILE NAVIGATION TOGGLE
   // ==========================================================================
   const mobileMenuBtn = document.getElementById('mobileMenuBtn');
@@ -110,23 +139,14 @@ document.addEventListener('DOMContentLoaded', () => {
         return;
       }
 
-      // Pre-fill admission form grade
-      const admissionGrade = document.getElementById('admissionGrade');
-      if (admissionGrade) {
-        const gradeValueMap = {
-          '11-sci': 'Class 11 Science',
-          '11-com': 'Class 11 Commerce',
-          '12-sci': 'Class 12 Science',
-          '12-com': 'Class 12 Commerce'
-        };
-        admissionGrade.value = gradeValueMap[selectedGrade] || '';
-      }
-
-      const admissionSection = document.getElementById('admission');
-      if (admissionSection) {
-        admissionSection.scrollIntoView({ behavior: 'smooth' });
-        showToast('Batch pre-selected in the Admission Form!', 'success');
-      }
+      const gradeValueMap = {
+        '11-sci': 'Class 11 Science',
+        '11-com': 'Class 11 Commerce',
+        '12-sci': 'Class 12 Science',
+        '12-com': 'Class 12 Commerce'
+      };
+      const mappedGrade = gradeValueMap[selectedGrade] || selectedGrade;
+      window.location.href = `admission.html?grade=${encodeURIComponent(mappedGrade)}`;
     });
   }
 
@@ -167,32 +187,21 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
 
-  // Prefill enrollment from tuition cards
+  // Prefill enrollment from tuition cards -> navigate to dedicated admission page
   const enrollBtns = document.querySelectorAll('.btn-enroll-prefill');
   enrollBtns.forEach(btn => {
-    btn.addEventListener('click', (e) => {
+    btn.addEventListener('click', () => {
       const grade = btn.dataset.grade;
-      const course = btn.dataset.course;
-      const admissionGrade = document.getElementById('admissionGrade');
-
-      if (admissionGrade && grade) {
-        const gradeMapping = {
-          '11-sci': 'Class 11 Science',
-          '11-com': 'Class 11 Commerce',
-          '12-sci': 'Class 12 Science',
-          '12-com': 'Class 12 Commerce',
-          'competitive': 'Competitive (JEE / NEET / Olympiad)'
-        };
-        if (gradeMapping[grade]) {
-          admissionGrade.value = gradeMapping[grade];
-        }
-      }
-
-      const admissionSec = document.getElementById('admission');
-      if (admissionSec) {
-        admissionSec.scrollIntoView({ behavior: 'smooth' });
-        showToast(`Selected "${course}" - proceed with admission details!`, 'success');
-      }
+      const course = btn.dataset.course || '';
+      const gradeMapping = {
+        '11-sci': 'Class 11 Science',
+        '11-com': 'Class 11 Commerce',
+        '12-sci': 'Class 12 Science',
+        '12-com': 'Class 12 Commerce',
+        'competitive': 'Competitive (JEE / NEET / Olympiad)'
+      };
+      const targetGrade = (grade && gradeMapping[grade]) ? gradeMapping[grade] : (grade || '');
+      window.location.href = `admission.html?grade=${encodeURIComponent(targetGrade)}&course=${encodeURIComponent(course)}`;
     });
   });
 

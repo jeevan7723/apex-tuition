@@ -1,0 +1,684 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Online Admission Application Form 2026-27 | Sangli Shikshan Sanstha</title>
+  <meta name="description" content="Apply online for Class 11th & 12th (Science & Commerce) tuition and coaching at Sangli Shikshan Sanstha. Small batches, top faculty, live sync and instant application receipt.">
+  <meta name="keywords" content="tuition admission form, coaching application, Class 11 admission, Class 12 admission, Sangli Shikshan Sanstha admission 2026">
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Mukta:wght@400;500;600;700;800&family=Outfit:wght@400;500;600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@600;700&display=swap" rel="stylesheet">
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/png" href="logo.png">
+  <link rel="apple-touch-icon" href="logo.png">
+
+  <link rel="stylesheet" href="styles.css?v=17.0">
+  <style>
+    /* Dedicated Admission Page Custom Accents */
+    .portal-hero-banner {
+      background: linear-gradient(135deg, #091e42 0%, #1e3a8a 50%, #172554 100%);
+      color: #ffffff;
+      padding: 3.5rem 0 3rem;
+      position: relative;
+      overflow: hidden;
+      border-bottom: 3px solid #f59e0b;
+    }
+    .portal-hero-banner::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(circle at 20% 30%, rgba(59, 130, 246, 0.25) 0%, transparent 60%),
+                  radial-gradient(circle at 80% 70%, rgba(245, 158, 11, 0.15) 0%, transparent 60%);
+      pointer-events: none;
+    }
+    .portal-hero-content {
+      position: relative;
+      z-index: 2;
+      max-width: 860px;
+      margin: 0 auto;
+      text-align: center;
+    }
+    .portal-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.35rem 1rem;
+      background: rgba(245, 158, 11, 0.2);
+      border: 1px solid rgba(245, 158, 11, 0.45);
+      color: #fbbf24;
+      font-size: 0.85rem;
+      font-weight: 700;
+      border-radius: 999px;
+      margin-bottom: 1.2rem;
+      letter-spacing: 0.02em;
+    }
+    .portal-title {
+      font-family: 'Outfit', sans-serif;
+      font-size: clamp(1.8rem, 4vw, 2.75rem);
+      font-weight: 800;
+      line-height: 1.25;
+      margin-bottom: 1rem;
+      color: #ffffff;
+    }
+    .portal-subtitle {
+      font-size: 1.05rem;
+      line-height: 1.65;
+      color: #cbd5e1;
+      margin-bottom: 1.8rem;
+    }
+    .portal-trust-pills {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 0.75rem;
+    }
+    .portal-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.45rem;
+      background: rgba(255, 255, 255, 0.1);
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      backdrop-filter: blur(8px);
+      padding: 0.4rem 0.9rem;
+      border-radius: 999px;
+      font-size: 0.82rem;
+      font-weight: 600;
+      color: #f1f5f9;
+    }
+    .breadcrumb-bar {
+      background: #f8fafc;
+      border-bottom: 1px solid #e2e8f0;
+      padding: 0.75rem 0;
+      font-size: 0.88rem;
+    }
+    .breadcrumb-list {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      color: #64748b;
+    }
+    .breadcrumb-list a {
+      color: #1e3a8a;
+      text-decoration: none;
+      font-weight: 600;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.3rem;
+    }
+    .breadcrumb-list a:hover {
+      text-decoration: underline;
+    }
+    .nav-back-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.45rem;
+      font-weight: 700;
+    }
+    @media (max-width: 768px) {
+      .portal-hero-banner {
+        padding: 2.25rem 0 2rem;
+      }
+      .portal-trust-pills {
+        gap: 0.5rem;
+      }
+      .portal-pill {
+        font-size: 0.76rem;
+        padding: 0.35rem 0.7rem;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- File protocol warning banner -->
+  <div id="fileProtocolWarning" style="display:none; background:#fef2f2; border-bottom:2px solid #ef4444; color:#991b1b; padding:0.85rem 1rem; text-align:center; font-size:0.9rem; font-weight:600;">
+    ⚠️ You are viewing this page as a local file (<code>file://</code>). Web browsers block database connections from local files. 
+    <a href="http://localhost:8080/admission.html" style="color:#b91c1c; text-decoration:underline; font-weight:800; margin-left:0.5rem;">Click here to open on http://localhost:8080/admission.html</a> to enable live sync to Firebase!
+  </div>
+
+  <!-- Top Announcement Bar -->
+  <div class="top-announcement" role="region" aria-label="Admission Notice">
+    <div class="container announcement-content">
+      <span class="badge-pulse" data-i18n="announcement_badge">📢 Admissions Open</span>
+      <p class="announcement-text" data-i18n="announcement_text">
+        <strong>Academic Session 2026-27:</strong> Admissions Open for Classes 11th & 12th (Science & Commerce). Transparent Uniform Tuition Fees. Only 15 students per batch!
+      </p>
+      <div class="announcement-actions">
+        <a href="tel:+917385803641" class="phone-link">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>
+          +91 73858 03641
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Header Navigation -->
+  <header class="site-header" id="siteHeader">
+    <div class="container header-container">
+      <a href="index.html" class="brand-logo" aria-label="Sangli Shikshan Sanstha Home">
+        <div class="logo-icon">
+          <img src="logo.png" alt="सांगली शिक्षण संस्था Logo" class="brand-logo-img" width="48" height="48" fetchpriority="high" decoding="async">
+        </div>
+        <div class="logo-text">
+          <span class="logo-title" data-i18n="logo_title">SANGLI SHIKSHAN SANSTHA</span>
+          <span class="logo-subtitle" data-i18n="logo_sub">सांगली शिक्षण संस्था • Estd. 1919</span>
+        </div>
+      </a>
+
+      <!-- Header Actions -->
+      <div class="header-actions">
+        <a href="index.html" class="btn btn-outline nav-back-btn" id="navBackHomeBtn">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>
+          <span data-i18n="back_to_home">Back to Home</span>
+        </a>
+
+        <!-- Direct Helpline Link -->
+        <a href="tel:+917385803641" class="btn btn-glass" style="display:inline-flex; align-items:center; gap:0.4rem;">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>
+          <span style="font-weight:700;">+91 73858 03641</span>
+        </a>
+
+        <!-- Language Switcher (English & मराठी) -->
+        <div class="lang-switch-wrap" role="group" aria-label="Language Selector">
+          <button type="button" class="lang-btn active" data-lang="en" aria-label="English">EN</button>
+          <span class="lang-divider">|</span>
+          <button type="button" class="lang-btn" data-lang="mr" aria-label="मराठी">मराठी</button>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- Breadcrumb Navigation Bar -->
+  <div class="breadcrumb-bar" role="navigation" aria-label="Breadcrumbs">
+    <div class="container">
+      <ul class="breadcrumb-list">
+        <li>
+          <a href="index.html">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path><polyline points="9 22 9 12 15 12 15 22"></polyline></svg>
+            <span data-i18n="breadcrumb_home">Home</span>
+          </a>
+        </li>
+        <li aria-hidden="true">&rsaquo;</li>
+        <li style="color:#0f172a; font-weight:700;">
+          <span data-i18n="breadcrumb_admission">Online Admission Form 2026-27</span>
+        </li>
+      </ul>
+    </div>
+  </div>
+
+  <main>
+    <!-- PORTAL HERO HEADER BANNER -->
+    <section class="portal-hero-banner">
+      <div class="container portal-hero-content">
+        <div class="portal-badge" data-i18n="portal_badge">
+          🎓 Academic Session 2026-27 • Online Admission Portal
+        </div>
+        <h1 class="portal-title" data-i18n="portal_title">
+          Student Admission Application Form
+        </h1>
+        <p class="portal-subtitle" data-i18n="portal_subtitle">
+          Secure your child's seat in our high-engagement micro-batches (Strictly capped at 15–18 students). Complete the application form below to receive your instant Application Reference ID and printable receipt.
+        </p>
+
+        <div class="portal-trust-pills">
+          <span class="portal-pill">
+            <span style="width:8px; height:8px; border-radius:50%; background:#10b981; box-shadow:0 0 6px #10b981;"></span>
+            Firebase Cloud Live Sync
+          </span>
+          <span class="portal-pill">
+            ⚡ 100% Free Diagnostic Assessment
+          </span>
+          <span class="portal-pill">
+            👨‍🏫 1-on-1 Academic Counseling
+          </span>
+          <span class="portal-pill">
+            🔒 Strictly Confidential
+          </span>
+        </div>
+      </div>
+    </section>
+
+    <!-- ADMISSION INQUIRY FORM SECTION (MAIN LEAD CAPTURE) -->
+    <section class="section-padded admission-section" id="admission">
+      <div class="container">
+        <div class="admission-wrapper">
+          <div class="admission-sidebar">
+            <span class="badge-gold" data-i18n="adm_sidebar_badge">Admission Portal 2026-27</span>
+            <h2>End-to-End 4-Step Pathway</h2>
+            <p class="sidebar-intro">
+              Secure your child's seat in the preferred batch. Batch sizes are strictly capped at 15–20 students on a first-come, first-served basis.
+            </p>
+
+            <div class="timeline-steps">
+              <div class="timeline-step active">
+                <div class="step-num">1</div>
+                <div class="step-info">
+                  <h4>Inquiry & Online Form</h4>
+                  <p>Fill student details, target grade, board, and questions.</p>
+                </div>
+              </div>
+
+              <div class="timeline-step">
+                <div class="step-num">2</div>
+                <div class="step-info">
+                  <h4>Diagnostic Assessment</h4>
+                  <p>Free gap analysis test to understand baseline proficiency.</p>
+                </div>
+              </div>
+
+              <div class="timeline-step">
+                <div class="step-num">3</div>
+                <div class="step-info">
+                  <h4>Mentor Counseling</h4>
+                  <p>Personal 1-on-1 counseling to choose optimal morning/evening shifts.</p>
+                </div>
+              </div>
+
+              <div class="timeline-step">
+                <div class="step-num">4</div>
+                <div class="step-info">
+                  <h4>Seat Allocation & Kit</h4>
+                  <p>Confirm seat, collect study kit booklets, and join orientation.</p>
+                </div>
+              </div>
+            </div>
+
+            <div class="helpline-card">
+              <div class="helpline-title">Direct Admission Helpline</div>
+              <p>Speak with our Academic Counselor right away:</p>
+              <a href="tel:+917385803641" class="helpline-number">📞 +91 73858 03641</a>
+              <span class="helpline-time">Available 8:00 AM – 8:30 PM (Mon to Sat)</span>
+            </div>
+          </div>
+
+          <!-- Admission Form Card -->
+          <div class="admission-form-card">
+            <div class="form-header">
+              <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:0.5rem; margin-bottom:0.4rem;">
+                <h3 style="margin-bottom:0;">Student Admission Inquiry Form</h3>
+                <span class="live-sync-pill" style="display:inline-flex; align-items:center; gap:0.4rem; padding:0.25rem 0.65rem; background:#ecfdf5; border:1px solid #a7f3d0; color:#065f46; border-radius:999px; font-size:0.75rem; font-weight:700;">
+                  <span style="width:7px; height:7px; border-radius:50%; background:#10b981; box-shadow:0 0 6px #10b981;"></span>
+                  Firebase Database Live Sync
+                </span>
+              </div>
+              <p>Please provide student and contact details below. You will receive an instant <strong>Application Receipt & Tracking ID</strong> upon submission.</p>
+            </div>
+
+            <form id="admissionForm" class="styled-form" novalidate>
+              <!-- SECTION 1: Student Information -->
+              <fieldset class="form-fieldset">
+                <legend class="form-legend">1. Student Details</legend>
+                <div class="form-row two-cols">
+                  <div class="form-field">
+                    <label for="studentName">Student Full Name <span class="required">*</span></label>
+                    <input type="text" id="studentName" name="studentName" placeholder="e.g. Aarav Sharma" required>
+                    <span class="field-error" id="errStudentName">Please enter student's full name</span>
+                  </div>
+
+                  <div class="form-field">
+                    <label for="studentDob">Date of Birth <span class="required">*</span></label>
+                    <input type="date" id="studentDob" name="studentDob" required>
+                    <span class="field-error" id="errStudentDob">Please select date of birth</span>
+                  </div>
+                </div>
+
+                <div class="form-row two-cols">
+                  <div class="form-field">
+                    <label for="currentSchool">Current School / Institution <span class="required">*</span></label>
+                    <input type="text" id="currentSchool" name="currentSchool" placeholder="e.g. St. Xavier's High School" required>
+                    <span class="field-error" id="errCurrentSchool">Please enter school name</span>
+                  </div>
+
+                  <div class="form-field">
+                    <label for="previousScore">Previous Academic Year Score (%) <span class="required">*</span></label>
+                    <input type="number" id="previousScore" name="previousScore" min="35" max="100" placeholder="e.g. 89" required>
+                    <span class="field-hint">For academic baseline profiling (all students pay uniform standard fees)</span>
+                    <span class="field-error" id="errPreviousScore">Enter percentage between 35 and 100</span>
+                  </div>
+                </div>
+              </fieldset>
+
+              <!-- SECTION 2: Course & Batch Preference -->
+              <fieldset class="form-fieldset">
+                <legend class="form-legend">2. Academic Level & Program</legend>
+                <div class="form-row two-cols">
+                  <div class="form-field">
+                    <label for="admissionGrade">Current Grade / Class <span class="required">*</span></label>
+                    <select id="admissionGrade" name="admissionGrade" required>
+                      <option value="" disabled selected>Select Grade (11th or 12th)</option>
+                      <option value="Class 11 Science">Class 11th - Science (PCM / PCB + JEE/NEET Base)</option>
+                      <option value="Class 11 Commerce">Class 11th - Commerce (Accounts, Economics, Math)</option>
+                      <option value="Class 12 Science">Class 12th - Science (Board Target 95%+ & CUET)</option>
+                      <option value="Class 12 Commerce">Class 12th - Commerce (Board Target 98%+ & CA Track)</option>
+                    </select>
+                    <span class="field-error" id="errAdmissionGrade">Please select current grade</span>
+                  </div>
+
+                  <div class="form-field">
+                    <label for="boardType">Target Board / Exam <span class="required">*</span></label>
+                    <select id="boardType" name="boardType" required>
+                      <option value="CBSE" selected>CBSE Board</option>
+                      <option value="ICSE">ICSE / ISC Board</option>
+                      <option value="State Board">State Board</option>
+                      <option value="Competitive (JEE / NEET / Olympiad)">Competitive (JEE / NEET / Olympiad)</option>
+                      <option value="IB / Cambridge">IB / Cambridge</option>
+                    </select>
+                    <span class="field-error" id="errBoardType">Please select target board/exam</span>
+                  </div>
+                </div>
+
+                <div class="form-row two-cols">
+                  <div class="form-field">
+                    <label for="preferredTiming">Preferred Shift Timing Slot <span class="required">*</span></label>
+                    <select id="preferredTiming" name="preferredTiming" required>
+                      <option value="Morning Shift (6:30 AM - 8:30 AM)">Morning Shift (6:30 AM – 8:30 AM)</option>
+                      <option value="Evening Shift (4:30 PM - 7:30 PM)" selected>Evening Shift (4:30 PM – 7:30 PM)</option>
+                      <option value="Weekend Intensive (Saturday & Sunday)">Weekend Intensive (Saturday & Sunday)</option>
+                    </select>
+                  </div>
+
+                  <div class="form-field">
+                    <label for="admissionMode">Preferred Study Mode <span class="required">*</span></label>
+                    <select id="admissionMode" name="admissionMode" required>
+                      <option value="Offline Center (Classroom)" selected>Offline Center (In-Person Classroom)</option>
+                      <option value="Hybrid (Offline + Live Online)">Hybrid (Offline + Live Online Flexibility)</option>
+                    </select>
+                  </div>
+                </div>
+              </fieldset>
+
+              <!-- SECTION 3: Parent & Contact Details -->
+              <fieldset class="form-fieldset">
+                <legend class="form-legend">3. Parent / Guardian Contact Details</legend>
+                <div class="form-row two-cols">
+                  <div class="form-field">
+                    <label for="parentName">Parent / Guardian Full Name <span class="required">*</span></label>
+                    <input type="text" id="parentName" name="parentName" placeholder="e.g. Rajesh Sharma" required>
+                    <span class="field-error" id="errParentName">Please enter parent's name</span>
+                  </div>
+
+                  <div class="form-field">
+                    <label for="parentPhone">Parent / Guardian Phone Number <span class="required">*</span></label>
+                    <input type="tel" id="parentPhone" name="parentPhone" placeholder="e.g. 9876543210" pattern="[0-9]{10}" required>
+                    <span class="field-hint">You will receive admission receipt and schedule here</span>
+                    <span class="field-error" id="errParentPhone">Enter a valid 10-digit mobile number</span>
+                  </div>
+                </div>
+
+                <div class="form-row two-cols">
+                  <div class="form-field">
+                    <label for="parentEmail">Parent / Guardian Email Address <span class="required">*</span></label>
+                    <input type="email" id="parentEmail" name="parentEmail" placeholder="e.g. parents@example.com" required>
+                    <span class="field-error" id="errParentEmail">Please enter a valid email address</span>
+                  </div>
+
+                  <div class="form-field">
+                    <label for="residentialArea">Residential Area / City Locality <span class="required">*</span></label>
+                    <input type="text" id="residentialArea" name="residentialArea" placeholder="e.g. Sector 14, Urban Estate" required>
+                    <span class="field-error" id="errResidentialArea">Please enter your locality</span>
+                  </div>
+                </div>
+
+                <!-- Message / Questions Field -->
+                <div class="form-field">
+                  <label for="studentMessage">Message / Specific Academic Concerns or Questions</label>
+                  <textarea id="studentMessage" name="studentMessage" rows="3" placeholder="Tell us about student's specific subject difficulties (e.g. Maths calculus, Physics mechanics), preferred shift timings, or questions for our academic counselor..."></textarea>
+                </div>
+
+                <div class="form-field checkbox-field">
+                  <label class="custom-checkbox">
+                    <input type="checkbox" id="requestDemo" name="requestDemo" checked>
+                    <span class="checkbox-box"></span>
+                    <span class="checkbox-text">Schedule a Free 2-Day Trial Demo Class before final fee payment</span>
+                  </label>
+                </div>
+              </fieldset>
+
+              <!-- Form Submit -->
+              <div class="form-actions">
+                <button type="submit" class="btn btn-primary btn-lg w-100" id="btnSubmitAdmission">
+                  <span>Submit Admission Application</span>
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                </button>
+                <p class="form-security-note">
+                  🔒 Your data is kept strictly confidential. No commercial sharing or spam.
+                </p>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- TRACK ADMISSION STATUS SECTION -->
+    <section class="section-padded bg-light" id="track-admission">
+      <div class="container">
+        <div class="track-card">
+          <div class="track-header">
+            <div class="track-icon">🔍</div>
+            <div>
+              <h3>Track Your Admission Application</h3>
+              <p>Already submitted an admission form? Enter your <strong>Application ID</strong> or registered mobile number to check verification status, counseling dates, and seat confirmation.</p>
+            </div>
+          </div>
+
+          <form id="trackForm" class="track-search-bar">
+            <div class="track-input-wrap">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+              <input type="text" id="trackQuery" placeholder="Enter Application ID (e.g. Aarav-8403), Student Name or Mobile Number" required>
+            </div>
+            <button type="submit" class="btn btn-primary" id="btnTrack" data-i18n="btn_track">Check Status</button>
+          </form>
+
+          <div id="trackResultBox" class="track-result-box" style="display: none;">
+            <!-- Populated via JavaScript -->
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="site-footer">
+    <div class="container footer-content">
+      <div class="footer-col brand-col">
+        <div class="footer-logo">
+          <img src="logo.png" alt="सांगली शिक्षण संस्था Logo" class="footer-logo-img" width="50" height="50" decoding="async">
+          <div>
+            <span class="footer-brand-name">SANGLI SHIKSHAN SANSTHA</span>
+            <span class="footer-tagline">सांगली शिक्षण संस्था • Estd. 1919</span>
+          </div>
+        </div>
+        <p class="footer-desc">
+          Premier tuition and academic excellence center exclusively for Classes 11th & 12th (Science & Commerce Wings) and competitive examination prep in Sangli, Maharashtra.
+        </p>
+        <div class="sanstha-trust-badge">
+          🏛️ <strong>A Century of Academic Trust (1919 - 2026)</strong>
+        </div>
+      </div>
+
+      <div class="footer-col">
+        <h4>Direct Navigation</h4>
+        <ul class="footer-links">
+          <li><a href="index.html">← Back to Main Home</a></li>
+          <li><a href="index.html#about">About Sanstha</a></li>
+          <li><a href="index.html#tuition-info">Course Batches & Fees</a></li>
+          <li><a href="index.html#admission-steps">Admission Steps</a></li>
+          <li><a href="index.html#faculty">Expert Faculty</a></li>
+          <li><a href="index.html#contact">Campus Location</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col">
+        <h4>Admission Desk & Timings</h4>
+        <div class="office-timings">
+          <div class="timing-row">
+            <span class="timing-days">Monday – Saturday:</span>
+            <span class="timing-hours">8:00 AM – 8:30 PM</span>
+          </div>
+          <div class="timing-row">
+            <span class="timing-days">Sunday Counseling:</span>
+            <span class="timing-hours">9:00 AM – 2:00 PM</span>
+          </div>
+        </div>
+        <div class="footer-direct-contact">
+          <p>📞 <strong>Phone:</strong> <a href="tel:+917385803641">+91 73858 03641</a></p>
+          <p>💬 <strong>WhatsApp:</strong> <a href="https://wa.me/917385803641" target="_blank" rel="noopener">+91 73858 03641</a></p>
+          <p>📍 <strong>Campus:</strong> Sangli Shikshan Sanstha Campus, Near Ganpati Temple, Sangli - 416416, Maharashtra</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <div class="container footer-bottom-inner">
+        <p>&copy; 2026 Sangli Shikshan Sanstha. All rights reserved. | Official Admission Portal</p>
+        <div class="footer-meta-links">
+          <a href="index.html">Main Website</a>
+          <span>•</span>
+          <a href="#admission">Top of Form</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- NATIVE MODAL 1: OFFICIAL APPLICATION RECEIPT & SLIP -->
+  <dialog id="admissionReceiptModal" class="styled-dialog">
+    <div class="receipt-box" id="printableReceipt">
+      <div class="receipt-header">
+        <div class="receipt-brand">
+          <img src="logo.png" alt="सांगली शिक्षण संस्था Official Seal" class="receipt-logo-img" width="56" height="56" decoding="async">
+          <div>
+            <h3>SANGLI SHIKSHAN SANSTHA</h3>
+            <p>सांगली शिक्षण संस्था • Official Admission Slip • Session 2026-27</p>
+          </div>
+        </div>
+        <div class="receipt-status-pill badge-green">APPLICATION SUBMITTED</div>
+      </div>
+
+      <div class="receipt-alert-banner">
+        <span>🎉 Congratulations! Your admission application has been successfully registered.</span>
+      </div>
+
+      <div class="receipt-id-box">
+        <div class="id-item">
+          <span class="id-label">Application Reference ID:</span>
+          <strong class="id-val" id="receiptAppId">SSS-2026-0000</strong>
+        </div>
+        <div class="id-item">
+          <span class="id-label">Submission Date & Time:</span>
+          <strong class="id-val" id="receiptTimestamp">--</strong>
+        </div>
+      </div>
+
+      <div class="receipt-cloud-badge" id="receiptCloudStatus" style="margin: 0.75rem 0; padding: 0.65rem 0.9rem; border-radius: 8px; font-size: 0.82rem; font-weight: 600; display: flex; align-items: center; gap: 0.5rem; background: #ecfdf5; border: 1px solid #a7f3d0; color: #065f46;">
+        <span style="display:inline-block; width:10px; height:10px; border-radius:50%; background:#10b981; box-shadow:0 0 8px #10b981;"></span>
+        <span>Firebase Status: <strong id="receiptCloudStatusText">Saved to Cloud Firestore (tuition-academy-17e21 / admissions)</strong></span>
+      </div>
+
+      <div class="receipt-details-table">
+        <div class="table-row">
+          <span class="row-label">Student Name:</span>
+          <span class="row-val font-bold" id="receiptStudentName">--</span>
+        </div>
+        <div class="table-row">
+          <span class="row-label">Target Grade & Board:</span>
+          <span class="row-val" id="receiptGradeBoard">--</span>
+        </div>
+        <div class="table-row">
+          <span class="row-label">Selected Batch Timing:</span>
+          <span class="row-val" id="receiptBatchTiming">--</span>
+        </div>
+        <div class="table-row">
+          <span class="row-label">Learning Mode:</span>
+          <span class="row-val" id="receiptMode">--</span>
+        </div>
+        <div class="table-row">
+          <span class="row-label">Parent / Guardian:</span>
+          <span class="row-val" id="receiptParent">--</span>
+        </div>
+        <div class="table-row">
+          <span class="row-label">Registered WhatsApp No:</span>
+          <span class="row-val" id="receiptPhone">--</span>
+        </div>
+        <div class="table-row">
+          <span class="row-label">Fee Policy:</span>
+          <span class="row-val text-success font-bold" id="receiptScholarship">Standard Uniform Academy Fee (Equal for all students)</span>
+        </div>
+        <div class="table-row">
+          <span class="row-label">Free Demo Class Slot:</span>
+          <span class="row-val text-primary font-bold" id="receiptDemoSlot">Booked for Upcoming Saturday 5:00 PM</span>
+        </div>
+        <div class="table-row" id="receiptMessageRow">
+          <span class="row-label">Questions / Concerns:</span>
+          <span class="row-val" id="receiptMessage">None provided</span>
+        </div>
+      </div>
+
+      <div class="receipt-instructions">
+        <h4>Next Steps for Parents:</h4>
+        <ol>
+          <li>Save or print this receipt for your records. Quote your Application ID for any inquiries.</li>
+          <li>Our senior academic counselor will call within 15 minutes to confirm batch timing and trial session.</li>
+          <li>Please carry previous year's marksheet copy during the center orientation visit.</li>
+        </ol>
+      </div>
+
+      <div class="receipt-actions no-print">
+        <button class="btn btn-secondary" id="btnPrintReceipt">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 6 2 18 2 18 9"></polyline><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"></path><rect x="6" y="14" width="12" height="8"></rect></svg>
+          Print Receipt
+        </button>
+        <button class="btn btn-outline" id="btnCopyAppId">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
+          Copy ID
+        </button>
+        <a href="https://wa.me/917385803641" target="_blank" rel="noopener" class="btn btn-outline" style="color:#047857; border-color:#a7f3d0; font-weight:700;" id="btnReceiptWhatsApp">
+          💬 Share with Admin WhatsApp (+91 7385803641)
+        </a>
+        <button class="btn btn-primary" id="btnCloseReceipt">
+          Done & Close
+        </button>
+      </div>
+    </div>
+  </dialog>
+
+  <!-- FLOATING WHATSAPP BUTTON -->
+  <a href="https://wa.me/917385803641?text=Hello%20Sangli%20Shikshan%20Sanstha,%20I%20would%20like%20to%20inquire%20about%20admissions%20and%20batches." target="_blank" rel="noopener" class="floating-whatsapp-btn" id="floatingWhatsAppBtn" aria-label="Chat with admission desk on WhatsApp">
+    <svg width="30" height="30" viewBox="0 0 24 24" fill="currentColor"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.095 3.2 5.076 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414z"/></svg>
+    <span class="whatsapp-badge-pulse" aria-hidden="true"></span>
+  </a>
+
+  <!-- MOBILE STICKY BOTTOM ACTION BAR -->
+  <nav class="mobile-sticky-cta-bar" id="mobileStickyCtaBar" aria-label="Mobile quick actions">
+    <a href="tel:+917385803641" class="mobile-cta-btn phone-btn">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>
+      <span>Call Desk</span>
+    </a>
+    <a href="https://wa.me/917385803641?text=Hello%20Sangli%20Shikshan%20Sanstha,%20I%20want%20to%20know%20more%20about%20admissions." target="_blank" rel="noopener" class="mobile-cta-btn whatsapp-btn">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.095 3.2 5.076 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414z"/></svg>
+      <span>WhatsApp</span>
+    </a>
+    <a href="index.html" class="mobile-cta-btn apply-btn">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>
+      <span>Back to Home</span>
+    </a>
+  </nav>
+
+  <!-- TOAST NOTIFICATION CONTAINER -->
+  <div id="toastContainer" class="toast-container" aria-live="polite"></div>
+
+  <!-- Firebase App & Firestore SDKs (v10 compat) -->
+  <script src="https://www.gstatic.com/firebasejs/10.13.0/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.13.0/firebase-firestore-compat.js"></script>
+  <script src="firebase-config.js?v=11.0"></script>
+  <script src="translations.js?v=7.0"></script>
+  <script src="app.js?v=17.0"></script>
+</body>
+</html>
