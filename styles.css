@@ -113,7 +113,9 @@ body {
   background: var(--primary-gradient);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
-  display: inline-block;
+  display: inline;
+  box-decoration-break: clone;
+  -webkit-box-decoration-break: clone;
 }
 
 /* ==========================================================================
@@ -644,16 +646,23 @@ html[lang="mr"] .hero-title {
 .hero-pill {
   display: inline-flex;
   align-items: center;
-  gap: 0.6rem;
+  gap: 0.5rem;
   background: #ffffff;
   border: 1px solid #dbeafe;
-  padding: 0.35rem 0.9rem;
+  padding: 0.35rem 0.85rem;
   border-radius: var(--radius-full);
-  font-size: 0.85rem;
+  font-size: 0.825rem;
   font-weight: 600;
   color: #1e40af;
   box-shadow: var(--shadow-sm);
-  width: fit-content;
+  max-width: 100%;
+  box-sizing: border-box;
+}
+
+.hero-pill span:last-child {
+  white-space: normal;
+  word-break: break-word;
+  line-height: 1.35;
 }
 
 .dot-green {
@@ -3095,10 +3104,12 @@ html[lang="mr"] .hero-title {
   transition: all var(--transition-base);
 }
 
-.hero-highlight-pill:hover {
-  transform: translateY(-2px);
-  border-color: var(--primary);
-  box-shadow: 0 8px 20px rgba(37, 99, 235, 0.12);
+@media (hover: hover) {
+  .hero-highlight-pill:hover {
+    transform: translateY(-2px);
+    border-color: var(--primary);
+    box-shadow: 0 8px 20px rgba(37, 99, 235, 0.12);
+  }
 }
 
 .highlight-pill-icon {
@@ -4025,68 +4036,131 @@ html[lang="mr"] .hero-title {
     line-height: 1.55;
   }
 
-  /* Hero Section */
+  /* Hero Section Mobile Alignment & Polish */
   .hero-section {
-    padding: 1.5rem 0 2.25rem;
+    padding: 1.25rem 0 2rem;
+    width: 100%;
+    max-width: 100vw;
+    overflow: hidden;
+    box-sizing: border-box;
   }
   .hero-grid {
-    grid-template-columns: 1fr;
-    gap: 1.75rem;
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+    width: 100%;
+    max-width: 100%;
+    gap: 1.5rem;
+    box-sizing: border-box;
+  }
+  .hero-content {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    max-width: 100%;
+    min-width: 0;
+    gap: 1rem;
+    box-sizing: border-box;
+    overflow: hidden;
   }
   .hero-pill {
-    font-size: 0.725rem;
-    padding: 0.35rem 0.7rem;
+    font-size: 0.72rem;
+    padding: 0.4rem 0.75rem;
     max-width: 100%;
+    width: auto;
     white-space: normal;
     text-align: left;
-    line-height: 1.4;
+    line-height: 1.35;
     display: inline-flex;
-    align-items: center;
-    gap: 0.4rem;
+    align-items: flex-start;
+    gap: 0.45rem;
+    border-radius: 12px;
+    box-sizing: border-box;
+  }
+  .hero-pill .dot-green {
+    margin-top: 4px;
+    flex-shrink: 0;
+  }
+  .hero-pill span:last-child {
+    white-space: normal;
+    word-break: break-word;
+    flex: 1 1 auto;
+    line-height: 1.35;
   }
   .hero-title {
-    font-size: clamp(1.6rem, 5.5vw, 2.1rem);
-    line-height: 1.22;
-    letter-spacing: -0.02em;
+    font-size: clamp(1.35rem, 5.2vw, 1.85rem);
+    line-height: 1.32;
+    letter-spacing: normal;
     word-break: break-word;
+    overflow-wrap: break-word;
+    max-width: 100%;
+    box-sizing: border-box;
   }
   .hero-description {
-    font-size: 0.925rem;
-    line-height: 1.55;
-    margin-bottom: 1.25rem;
+    font-size: 0.9rem;
+    line-height: 1.6;
+    margin-bottom: 0.35rem;
+    max-width: 100%;
+    word-break: break-word;
+    overflow-wrap: break-word;
+    box-sizing: border-box;
   }
   .hero-highlights-strip {
     display: flex;
     flex-direction: column;
     gap: 0.65rem;
     width: 100%;
-    margin: 1.25rem 0 1.5rem;
+    max-width: 100%;
+    margin: 0.35rem 0 1.15rem;
+    box-sizing: border-box;
   }
   .hero-highlight-pill {
     width: 100%;
+    max-width: 100%;
     padding: 0.75rem 0.85rem;
     border-radius: var(--radius-md);
     display: flex;
     align-items: center;
     gap: 0.75rem;
+    box-sizing: border-box;
+    min-width: 0;
+    overflow: hidden;
+  }
+  .highlight-pill-text {
+    min-width: 0;
+    flex: 1 1 auto;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    gap: 0.15rem;
   }
   .highlight-pill-text strong {
-    font-size: 0.875rem;
+    font-size: 0.88rem;
+    font-weight: 700;
+    line-height: 1.3;
+    white-space: normal;
+    word-break: break-word;
   }
   .highlight-pill-text span {
     font-size: 0.75rem;
+    line-height: 1.35;
+    white-space: normal;
+    word-break: break-word;
   }
   .hero-cta-group {
     display: flex;
     flex-direction: column;
     width: 100%;
-    gap: 0.75rem;
+    max-width: 100%;
+    gap: 0.65rem;
+    box-sizing: border-box;
   }
   .hero-cta-group .btn {
     width: 100%;
+    max-width: 100%;
     justify-content: center;
-    min-height: 50px;
+    min-height: 48px;
     font-size: 0.95rem;
+    box-sizing: border-box;
   }
 
   /* Mobile Quick Jump Action Bar */
@@ -5016,11 +5090,15 @@ html[lang="mr"] .hero-title {
     height: 2px;
   }
   .container {
-    padding-left: 0.85rem;
-    padding-right: 0.85rem;
+    padding-left: 0.85rem !important;
+    padding-right: 0.85rem !important;
+    box-sizing: border-box;
+    width: 100%;
+    max-width: 100%;
   }
   .hero-title {
-    font-size: 1.65rem;
+    font-size: clamp(1.22rem, 5.5vw, 1.55rem);
+    line-height: 1.32;
   }
   .section-title {
     font-size: 1.5rem;
@@ -5094,11 +5172,14 @@ html[lang="mr"] .hero-title {
     width: 16px;
   }
   .container {
-    padding-left: 0.65rem;
-    padding-right: 0.65rem;
+    padding-left: 0.65rem !important;
+    padding-right: 0.65rem !important;
+    box-sizing: border-box;
+    width: 100%;
+    max-width: 100%;
   }
   .hero-title {
-    font-size: 1.45rem;
+    font-size: 1.25rem;
   }
   .highlights-grid {
     grid-template-columns: 1fr;
