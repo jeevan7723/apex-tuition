@@ -696,6 +696,11 @@ const marathiDictionary = {
   "Top of Form": "अर्जाच्या सुरुवातीस जा",
   "Online Admission Application": "ऑनलाईन प्रवेश अर्ज",
   "Official Admission Portal": "अधिकृत प्रवेश पोर्टल",
+  "Select Target Board / Exam": "लक्ष्य बोर्ड / परीक्षा निवडा",
+  "Select Preferred Shift Timing": "पसंतीची वेळ निवडा",
+  "Select Preferred Study Mode": "अभ्यास पद्धत निवडा",
+  "Please select preferred shift timing slot": "कृपया पसंतीची वेळ निवडा",
+  "Please select preferred study mode": "कृपया पसंतीची अभ्यास पद्धत निवडा",
 };
 
 

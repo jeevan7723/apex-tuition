@@ -558,6 +558,24 @@ document.addEventListener('DOMContentLoaded', () => {
   const receiptMessage = document.getElementById('receiptMessage');
   const btnCopyAppId = document.getElementById('btnCopyAppId');
 
+  ['admissionGrade', 'boardType', 'preferredTiming', 'admissionMode', 'studentName', 'parentPhone'].forEach(id => {
+    const el = document.getElementById(id);
+    if (el) {
+      el.addEventListener('change', () => {
+        const wrap = el.closest('.form-field');
+        if (wrap && el.value && el.value.trim() !== '') {
+          wrap.classList.remove('has-error');
+        }
+      });
+      el.addEventListener('input', () => {
+        const wrap = el.closest('.form-field');
+        if (wrap && el.value && el.value.trim() !== '') {
+          wrap.classList.remove('has-error');
+        }
+      });
+    }
+  });
+
   if (admissionForm) {
     admissionForm.addEventListener('submit', async (e) => {
       e.preventDefault();
@@ -596,26 +614,63 @@ document.addEventListener('DOMContentLoaded', () => {
       const cleanPhone = parentPhone ? parentPhone.value.replace(/[\s\-\+\(\)]/g, '').replace(/^91/, '').replace(/^0/, '').trim() : '';
       const isNameValid = studentName && studentName.value.trim().length >= 2;
       const isPhoneValid = /^[0-9]{10}$/.test(cleanPhone);
+      const isGradeValid = Boolean(admissionGrade && admissionGrade.value && admissionGrade.value.trim() !== '');
+      const isBoardValid = Boolean(boardType && boardType.value && boardType.value.trim() !== '');
+      const isTimingValid = Boolean(preferredTiming && preferredTiming.value && preferredTiming.value.trim() !== '');
+      const isModeValid = Boolean(admissionMode && admissionMode.value && admissionMode.value.trim() !== '');
 
       checkField(studentName, 'errStudentName', isNameValid);
       checkField(parentPhone, 'errParentPhone', isPhoneValid);
+      checkField(admissionGrade, 'errAdmissionGrade', isGradeValid);
+      checkField(boardType, 'errBoardType', isBoardValid);
+      checkField(preferredTiming, 'errPreferredTiming', isTimingValid);
+      checkField(admissionMode, 'errAdmissionMode', isModeValid);
 
-      if (!isNameValid || !isPhoneValid) {
-        showToast('Please enter Student Name and valid 10-digit Phone Number.', 'info');
-        if (!isNameValid && studentName) studentName.focus();
-        else if (parentPhone) parentPhone.focus();
+      if (!isNameValid) {
+        showToast('Please enter Student Full Name.', 'info');
+        if (studentName) studentName.focus();
         return;
       }
 
-      // Safe permissive defaults for secondary fields
+      if (!isGradeValid) {
+        showToast('Please select Current Grade / Class.', 'info');
+        if (admissionGrade) admissionGrade.focus();
+        return;
+      }
+
+      if (!isBoardValid) {
+        showToast('Please select Target Board / Exam.', 'info');
+        if (boardType) boardType.focus();
+        return;
+      }
+
+      if (!isTimingValid) {
+        showToast('Please select Preferred Shift Timing Slot.', 'info');
+        if (preferredTiming) preferredTiming.focus();
+        return;
+      }
+
+      if (!isModeValid) {
+        showToast('Please select Preferred Study Mode.', 'info');
+        if (admissionMode) admissionMode.focus();
+        return;
+      }
+
+      if (!isPhoneValid) {
+        showToast('Please enter a valid 10-digit Mobile Number.', 'info');
+        if (parentPhone) parentPhone.focus();
+        return;
+      }
+
+      // Safe values for submission
       const finalDob = (studentDob && studentDob.value) ? studentDob.value : '2008-01-01';
       const finalSchool = (currentSchool && currentSchool.value.trim()) ? currentSchool.value.trim() : 'Class 11/12 Student';
       const parsedScore = previousScore ? parseFloat(previousScore.value) : 85;
       const finalScore = (!isNaN(parsedScore) && parsedScore >= 35 && parsedScore <= 100) ? parsedScore : 85;
-      const finalGrade = (admissionGrade && admissionGrade.value) ? admissionGrade.value : 'Class 11 Science';
-      const finalBoard = (boardType && boardType.value) ? boardType.value : 'CBSE';
-      const finalTiming = (preferredTiming && preferredTiming.value) ? preferredTiming.value : 'Evening Shift (4:30 PM - 7:30 PM)';
-      const finalMode = (admissionMode && admissionMode.value) ? admissionMode.value : 'Offline Center (Classroom)';
+      const finalGrade = admissionGrade.value;
+      const finalBoard = boardType.value;
+      const finalTiming = preferredTiming.value;
+      const finalMode = admissionMode.value;
       const finalParent = (parentName && parentName.value.trim()) ? parentName.value.trim() : `Parent of ${studentName.value.trim()}`;
       const finalEmail = (parentEmail && parentEmail.value.trim()) ? parentEmail.value.trim() : `${cleanPhone}@applicant.local`;
       const finalLocality = (residentialArea && residentialArea.value.trim()) ? residentialArea.value.trim() : 'City Area';

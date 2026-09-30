@@ -364,7 +364,8 @@
                   <div class="form-field">
                     <label for="boardType">Target Board / Exam <span class="required">*</span></label>
                     <select id="boardType" name="boardType" required>
-                      <option value="CBSE" selected>CBSE Board</option>
+                      <option value="" disabled selected>Select Target Board / Exam</option>
+                      <option value="CBSE">CBSE Board</option>
                       <option value="ICSE">ICSE / ISC Board</option>
                       <option value="State Board">State Board</option>
                       <option value="Competitive (JEE / NEET / Olympiad)">Competitive (JEE / NEET / Olympiad)</option>
@@ -378,18 +379,22 @@
                   <div class="form-field">
                     <label for="preferredTiming">Preferred Shift Timing Slot <span class="required">*</span></label>
                     <select id="preferredTiming" name="preferredTiming" required>
+                      <option value="" disabled selected>Select Preferred Shift Timing</option>
                       <option value="Morning Shift (6:30 AM - 8:30 AM)">Morning Shift (6:30 AM – 8:30 AM)</option>
-                      <option value="Evening Shift (4:30 PM - 7:30 PM)" selected>Evening Shift (4:30 PM – 7:30 PM)</option>
+                      <option value="Evening Shift (4:30 PM - 7:30 PM)">Evening Shift (4:30 PM – 7:30 PM)</option>
                       <option value="Weekend Intensive (Saturday & Sunday)">Weekend Intensive (Saturday & Sunday)</option>
                     </select>
+                    <span class="field-error" id="errPreferredTiming">Please select preferred shift timing slot</span>
                   </div>
 
                   <div class="form-field">
                     <label for="admissionMode">Preferred Study Mode <span class="required">*</span></label>
                     <select id="admissionMode" name="admissionMode" required>
-                      <option value="Offline Center (Classroom)" selected>Offline Center (In-Person Classroom)</option>
+                      <option value="" disabled selected>Select Preferred Study Mode</option>
+                      <option value="Offline Center (Classroom)">Offline Center (In-Person Classroom)</option>
                       <option value="Hybrid (Offline + Live Online)">Hybrid (Offline + Live Online Flexibility)</option>
                     </select>
+                    <span class="field-error" id="errAdmissionMode">Please select preferred study mode</span>
                   </div>
                 </div>
               </fieldset>
