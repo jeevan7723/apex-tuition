@@ -1,5 +1,5 @@
 /**
- * Apex Scholars Academy - Tuition & Admission Web Application
+ * Sangli Shikshan Sanstha - Tuition & Admission Web Application
  * Handles tuition filtering, dynamic fee & scholarship calculation,
  * admission application submissions, receipt printing, and status tracking.
  */
@@ -258,7 +258,7 @@ document.addEventListener('DOMContentLoaded', () => {
         'Formal seat reservation in the capped 15–20 student batch',
         'Orientation session with fellow batchmates and lead faculty'
       ],
-      badge: 'Welcome to Apex',
+      badge: 'Welcome to Sangli Shikshan Sanstha',
       actionTitle: 'Begin Academic Excellence',
       actionDesc: 'Micro-batches fill up quickly. Secure your slot early.',
       btnText: 'Start Your Admission Now',
@@ -292,6 +292,11 @@ document.addEventListener('DOMContentLoaded', () => {
         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"></line><polyline points="19 12 12 19 5 12"></polyline></svg>
       </a>
     `;
+
+    if (window.SansthaI18n && window.SansthaI18n.getLanguage() === 'mr') {
+      window.SansthaI18n.translateElement(stepDetailLeft);
+      window.SansthaI18n.translateElement(stepDetailRight);
+    }
   }
 
   roadmapStepCards.forEach(card => {
@@ -737,7 +742,7 @@ document.addEventListener('DOMContentLoaded', () => {
       const adminWhatsApp = '917385803641';
       const waText = 
 `*🎓 NEW ADMISSION REGISTRATION*
-*Apex Scholars Academy (Session 2026-27)*
+*Sangli Shikshan Sanstha (Session 2026-27)*
 ━━━━━━━━━━━━━━━━━━━━━
 *Application ID:* ${generatedId}
 *Date & Time:* ${formattedDate}
@@ -897,7 +902,7 @@ _Live Synced with Firebase Cloud Database._`;
       // If user checks sample "APEX-2026-1024" or nothing yet saved, provide demo record
       if (!match && query.includes('1024')) {
         match = {
-          appId: 'APEX-2026-1024',
+          appId: 'SSS-2026-1024',
           studentName: 'Ananya Sharma',
           grade: 'Class 12th Science Board Booster',
           board: 'CBSE',
@@ -948,7 +953,7 @@ _Live Synced with Firebase Cloud Database._`;
             <div style="font-size:2rem; margin-bottom:0.5rem;">🔍</div>
             <h4 style="color:var(--secondary); font-weight:700;">No Application Found for "${query}"</h4>
             <p style="font-size:0.85rem; color:var(--text-muted); max-width:450px; margin:0.35rem auto 1rem;">
-              Please verify your Application ID (e.g. <em>APEX-2026-XXXX</em>) or your 10-digit mobile number. You can submit a fresh admission application below.
+              Please verify your Application ID (e.g. <em>SSS-2026-XXXX</em>) or your 10-digit mobile number. You can submit a fresh admission application below.
             </p>
             <a href="#admission" class="btn btn-primary btn-sm">Fill Admission Form</a>
           </div>
@@ -1125,9 +1130,9 @@ _Live Synced with Firebase Cloud Database._`;
   if (btnDownloadProspectus) {
     btnDownloadProspectus.addEventListener('click', (e) => {
       triggerRealDownload('Apex_Scholars_Prospectus_2026-27.pdf', 'Apex_Scholars_Prospectus_2026-27.pdf');
-      showToast('Downloading Apex Academy 2026-27 Prospectus & Fee Structure PDF...', 'info');
+      showToast('Downloading Sangli Shikshan Sanstha 2026-27 Prospectus & Fee Structure PDF...', 'info');
       setTimeout(() => {
-        showToast('Apex Scholars Admission Prospectus PDF downloaded successfully!', 'success');
+        showToast('Sangli Shikshan Sanstha Admission Prospectus PDF downloaded successfully!', 'success');
       }, 800);
     });
   }

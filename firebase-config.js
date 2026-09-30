@@ -72,7 +72,7 @@ try {
 }
 
 // Global Database API
-window.ApexDB = {
+window.SansthaDB = window.ApexDB = {
   projectId: firebaseConfig.projectId,
 
   isAvailable() {

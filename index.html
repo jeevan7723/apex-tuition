@@ -3,16 +3,20 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Apex Scholars Academy | Tuition & Coaching Admissions 2026-27</title>
-  <meta name="description" content="Enroll at Apex Scholars Academy. Premium coaching & tuition exclusively for Classes 11th & 12th (Science & Commerce Wings) and JEE/NEET competitive exams. Small batches, top faculty, high success rates. Apply online today.">
+  <title>Sangli Shikshan Sanstha | Tuition & Coaching Admissions 2026-27</title>
+  <meta name="description" content="Enroll at Sangli Shikshan Sanstha. Premium coaching & tuition exclusively for Classes 11th & 12th (Science & Commerce Wings) and JEE/NEET competitive exams. Small batches, top faculty, high success rates. Apply online today.">
   <meta name="keywords" content="tuition admission, coaching classes, maths tuition, science tuition, CBSE coaching, ICSE tuition, board exam preparation, scholarship admission">
   
   <!-- Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Mukta:wght@400;500;600;700;800&family=Outfit:wght@400;500;600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@600;700&display=swap" rel="stylesheet">
   
-  <link rel="stylesheet" href="styles.css?v=10.0">
+  <!-- Favicon -->
+  <link rel="icon" type="image/png" href="logo.png">
+  <link rel="apple-touch-icon" href="logo.png">
+  
+  <link rel="stylesheet" href="styles.css?v=13.0">
 </head>
 <body>
 
@@ -25,12 +29,12 @@
   <!-- Top Announcement Bar -->
   <div class="top-announcement" role="region" aria-label="Admission Notice">
     <div class="container announcement-content">
-      <span class="badge-pulse">📢 Admissions Open</span>
-      <p class="announcement-text">
+      <span class="badge-pulse" data-i18n="announcement_badge">📢 Admissions Open</span>
+      <p class="announcement-text" data-i18n="announcement_text">
         <strong>Academic Session 2026-27:</strong> Admissions Open for Classes 11th & 12th (Science & Commerce). Transparent Uniform Tuition Fees. Only 15 students per batch!
       </p>
       <div class="announcement-actions">
-        <a href="#admission" class="announcement-link">Apply Online &rarr;</a>
+        <a href="#admission" class="announcement-link" data-i18n="announcement_link">Apply Online &rarr;</a>
         <a href="tel:+917385803641" class="phone-link">
           <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>
           +91 73858 03641
@@ -42,29 +46,26 @@
   <!-- Header Navigation -->
   <header class="site-header" id="siteHeader">
     <div class="container header-container">
-      <a href="#" class="brand-logo" aria-label="Apex Scholars Academy Home">
+      <a href="#" class="brand-logo" aria-label="Sangli Shikshan Sanstha Home">
         <div class="logo-icon">
-          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
-            <path d="M22 10v6M2 10l10-5 10 5-10 5z"></path>
-            <path d="M6 12v5c3 3 9 3 12 0v-5"></path>
-          </svg>
+          <img src="logo.png" alt="सांगली शिक्षण संस्था Logo" class="brand-logo-img" width="48" height="48" fetchpriority="high" decoding="async">
         </div>
         <div class="logo-text">
-          <span class="logo-title">APEX SCHOLARS</span>
-          <span class="logo-subtitle">Academy for Academic Excellence</span>
+          <span class="logo-title" data-i18n="logo_title">SANGLI SHIKSHAN SANSTHA</span>
+          <span class="logo-subtitle" data-i18n="logo_sub">सांगली शिक्षण संस्था • Estd. 1919</span>
         </div>
       </a>
 
       <!-- Desktop Nav -->
       <nav class="main-nav" aria-label="Primary Navigation">
         <ul class="nav-list">
-          <li><a href="#about" class="nav-link">About</a></li>
-          <li><a href="#tuition-info" class="nav-link">Programs</a></li>
-          <li><a href="#admission-steps" class="nav-link">Admission Steps</a></li>
-          <li><a href="#faculty" class="nav-link">Faculty</a></li>
-          <li><a href="#contact" class="nav-link">Contact</a></li>
-          <li><a href="#fee-calculator" class="nav-link">Fee Calculator</a></li>
-          <li><a href="#faqs" class="nav-link">FAQs</a></li>
+          <li><a href="#about" class="nav-link" data-i18n="nav_about">About</a></li>
+          <li><a href="#tuition-info" class="nav-link" data-i18n="nav_programs">Programs</a></li>
+          <li><a href="#admission-steps" class="nav-link" data-i18n="nav_admission_steps">Admission Steps</a></li>
+          <li><a href="#faculty" class="nav-link" data-i18n="nav_faculty">Faculty</a></li>
+          <li><a href="#contact" class="nav-link" data-i18n="nav_contact">Contact</a></li>
+          <li><a href="#fee-calculator" class="nav-link" data-i18n="nav_fee_calc">Fee Calculator</a></li>
+          <li><a href="#faqs" class="nav-link" data-i18n="nav_faqs">FAQs</a></li>
         </ul>
       </nav>
 
@@ -78,6 +79,14 @@
           <span>Apply Now</span>
           <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
         </a>
+
+        <!-- Language Switcher (English & मराठी) -->
+        <div class="lang-switch-wrap" role="group" aria-label="Language Selector">
+          <button type="button" class="lang-btn active" data-lang="en" aria-label="English">EN</button>
+          <span class="lang-divider">|</span>
+          <button type="button" class="lang-btn" data-lang="mr" aria-label="मराठी">मराठी</button>
+        </div>
+
         <button class="mobile-toggle" id="mobileMenuBtn" aria-label="Toggle mobile menu" aria-expanded="false">
           <span></span>
           <span></span>
@@ -88,15 +97,33 @@
 
     <!-- Mobile Navigation Drawer -->
     <div class="mobile-nav-panel" id="mobileNavPanel">
+      <div class="mobile-nav-brand">
+        <img src="logo.png" alt="सांगली शिक्षण संस्था Logo" class="mobile-nav-logo" width="42" height="42" decoding="async">
+        <div>
+          <span class="mobile-nav-title" data-i18n="logo_title">SANGLI SHIKSHAN SANSTHA</span>
+          <span class="mobile-nav-sub" data-i18n="logo_sub">सांगली शिक्षण संस्था • Estd. 1919</span>
+        </div>
+      </div>
+      
+      <!-- Mobile Language Switcher -->
+      <div class="mobile-lang-row">
+        <span>भाषा निवडा (Language):</span>
+        <div class="lang-switch-wrap" role="group" aria-label="Language Selector">
+          <button type="button" class="lang-btn active" data-lang="en">EN</button>
+          <span class="lang-divider">|</span>
+          <button type="button" class="lang-btn" data-lang="mr">मराठी</button>
+        </div>
+      </div>
+
       <ul class="mobile-nav-links">
-        <li><a href="#about" class="mobile-link">About Apex Academy</a></li>
-        <li><a href="#tuition-info" class="mobile-link">Tuition Programs & Courses</a></li>
-        <li><a href="#admission-steps" class="mobile-link">Admission Process Steps</a></li>
-        <li><a href="#faculty" class="mobile-link">Our Faculty</a></li>
-        <li><a href="#contact" class="mobile-link">Contact & Campus Location</a></li>
-        <li><a href="#fee-calculator" class="mobile-link">Tuition Fee Calculator</a></li>
-        <li><a href="#faqs" class="mobile-link">Admission FAQs</a></li>
-        <li><a href="#track-admission" class="mobile-link">Track Application Status</a></li>
+        <li><a href="#about" class="mobile-link" data-i18n="mobile_about">About Sangli Shikshan Sanstha</a></li>
+        <li><a href="#tuition-info" class="mobile-link" data-i18n="mobile_programs">Tuition Programs & Courses</a></li>
+        <li><a href="#admission-steps" class="mobile-link" data-i18n="mobile_steps">Admission Process Steps</a></li>
+        <li><a href="#faculty" class="mobile-link" data-i18n="mobile_faculty">Our Faculty</a></li>
+        <li><a href="#contact" class="mobile-link" data-i18n="mobile_contact">Contact & Campus Location</a></li>
+        <li><a href="#fee-calculator" class="mobile-link" data-i18n="mobile_calculator">Tuition Fee Calculator</a></li>
+        <li><a href="#faqs" class="mobile-link" data-i18n="mobile_faqs">Admission FAQs</a></li>
+        <li><a href="#track-admission" class="mobile-link" data-i18n="mobile_track">Track Application Status</a></li>
       </ul>
       <div class="mobile-nav-cta">
         <button class="btn btn-outline w-100" id="btnOpenDemoMobile">Book Free Demo Class</button>
@@ -112,14 +139,14 @@
         <div class="hero-content">
           <div class="hero-pill">
             <span class="dot-green"></span>
-            <span>Admissions Open 2026-27: Classes 11th & 12th (Science, Commerce & JEE/NEET Wings)</span>
+            <span data-i18n="hero_pill">Admissions Open 2026-27: Classes 11th & 12th (Science, Commerce & JEE/NEET Wings)</span>
           </div>
 
-          <h1 class="hero-title">
+          <h1 class="hero-title" data-i18n="hero_title">
             Unlock High Scores With <span class="gradient-text">Concept Mastery</span> & Proven Exam Readiness
           </h1>
 
-          <p class="hero-description">
+          <p class="hero-description" data-i18n="hero_desc">
             Empowering students across CBSE, ICSE & State Boards with deep conceptual clarity, rigorous practice, and compassionate mentorship. We bridge learning gaps and build confident achievers for board exams, JEE & NEET.
           </p>
 
@@ -128,22 +155,22 @@
             <div class="hero-highlight-pill">
               <div class="highlight-pill-icon">👥</div>
               <div class="highlight-pill-text">
-                <strong>Small Batch Sizes</strong>
-                <span>Strict 15–20 student capping</span>
+                <strong data-i18n="hl_batches">Small Batch Sizes</strong>
+                <span data-i18n="hl_batches_sub">Strict 15–20 student capping</span>
               </div>
             </div>
             <div class="hero-highlight-pill">
               <div class="highlight-pill-icon">💡</div>
               <div class="highlight-pill-text">
-                <strong>1-on-1 Doubt Resolution</strong>
-                <span>Daily dedicated mentor desk</span>
+                <strong data-i18n="hl_doubts">1-on-1 Doubt Resolution</strong>
+                <span data-i18n="hl_doubts_sub">Daily dedicated mentor desk</span>
               </div>
             </div>
             <div class="hero-highlight-pill">
               <div class="highlight-pill-icon">🎓</div>
               <div class="highlight-pill-text">
-                <strong>Experienced Faculty</strong>
-                <span>14+ years proven track record</span>
+                <strong data-i18n="hl_faculty">Experienced Faculty</strong>
+                <span data-i18n="hl_faculty_sub">14+ years proven track record</span>
               </div>
             </div>
           </div>
@@ -151,12 +178,12 @@
           <!-- Dual CTAs: Start Admission Process & Download Syllabus / Fee Guide -->
           <div class="hero-cta-group">
             <a href="#admission" class="btn btn-primary btn-lg">
-              <span>Start Admission Process</span>
+              <span data-i18n="btn_start_admission">Start Admission Process</span>
               <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
             </a>
             <button type="button" class="btn btn-glass btn-lg" id="btnOpenSyllabusGuide">
               <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
-              <span>Download Syllabus / Fee Guide</span>
+              <span data-i18n="btn_download_guide">Download Syllabus / Fee Guide</span>
             </button>
           </div>
 
@@ -263,22 +290,22 @@
       <div class="container highlights-grid">
         <div class="highlight-box">
           <div class="stat-number" data-target="24.6">+24.6%</div>
-          <div class="stat-label">Average Score Improvement</div>
+          <div class="stat-label" data-i18n="stat_score_lbl">Average Score Improvement</div>
           <p class="stat-desc">Measured score growth from diagnostic test to term-end board exams.</p>
         </div>
         <div class="highlight-box">
           <div class="stat-number" data-target="14">14+</div>
-          <div class="stat-label">Years of Mentorship Excellence</div>
+          <div class="stat-label" data-i18n="stat_exp_lbl">Years of Mentorship Excellence</div>
           <p class="stat-desc">Senior educators with IIT, NIT & Master's pedagogy backgrounds.</p>
         </div>
         <div class="highlight-box">
           <div class="stat-number" data-target="1200">1,200+</div>
-          <div class="stat-label">Students Coached Successfully</div>
+          <div class="stat-label" data-i18n="stat_students_lbl">Students Coached Successfully</div>
           <p class="stat-desc">Achieving top ranks and distinctions across CBSE & ICSE boards.</p>
         </div>
         <div class="highlight-box">
           <div class="stat-number" data-target="99.4">99.4%</div>
-          <div class="stat-label">Board & Entrance Pass Rate</div>
+          <div class="stat-label" data-i18n="stat_pass_lbl">Board & Entrance Pass Rate</div>
           <p class="stat-desc">Over 72% students consistently score 90%+ in Maths & Science.</p>
         </div>
       </div>
@@ -288,8 +315,8 @@
     <section class="section-padded bg-light" id="tuition-info">
       <div class="container">
         <div class="section-header text-center">
-          <span class="section-tag">Senior Secondary & Competitive Wings</span>
-          <h2 class="section-title">Classes 11th & 12th Academic Programs</h2>
+          <span class="section-tag" data-i18n="prog_tag">Senior Secondary & Competitive Wings</span>
+          <h2 class="section-title" data-i18n="prog_title">Classes 11th & 12th Academic Programs</h2>
           <p class="section-subtitle">
             Specialized, high-impact tuition batches exclusively for Class 11 and Class 12 (Science, Commerce, JEE & NEET). Strictly capped at 15–18 students with morning & evening shifts.
           </p>
@@ -298,10 +325,10 @@
         <!-- Grade Filter Tabs -->
         <div class="filter-tabs-wrapper">
           <div class="filter-tabs" role="tablist" aria-label="Tuition Grade Categories">
-            <button class="tab-btn active" data-filter="all" role="tab" aria-selected="true">All 11th & 12th Programs</button>
-            <button class="tab-btn" data-filter="class11" role="tab" aria-selected="false">Class 11th Wing</button>
-            <button class="tab-btn" data-filter="class12" role="tab" aria-selected="false">Class 12th Wing</button>
-            <button class="tab-btn" data-filter="competitive" role="tab" aria-selected="false">Competitive Entrance Track (JEE / NEET)</button>
+            <button class="tab-btn active" data-filter="all" role="tab" aria-selected="true" data-i18n="tab_all">All 11th & 12th Programs</button>
+            <button class="tab-btn" data-filter="class11" role="tab" aria-selected="false" data-i18n="tab_c11">Class 11th Wing</button>
+            <button class="tab-btn" data-filter="class12" role="tab" aria-selected="false" data-i18n="tab_c12">Class 12th Wing</button>
+            <button class="tab-btn" data-filter="competitive" role="tab" aria-selected="false" data-i18n="tab_comp">Competitive Entrance Track (JEE / NEET)</button>
           </div>
         </div>
 
@@ -765,7 +792,7 @@
           <div class="calc-panel-quote">
             <div class="quote-header">
               <span class="quote-tag">Estimated Tuition Fee</span>
-              <h4>Apex Academic Fee Quotation</h4>
+              <h4>Sangli Shikshan Sanstha Fee Quotation</h4>
               <p class="quote-date" id="quoteGenDate">Session 2026-27 Admission</p>
             </div>
 
@@ -812,12 +839,12 @@
       </div>
     </section>
 
-    <!-- WHY APEX TUITION / ABOUT SECTION -->
+    <!-- ABOUT SANGLI SHIKSHAN SANSTHA SECTION -->
     <section class="section-padded bg-light" id="about">
       <span id="why-us" style="position:relative; top:-90px; display:block;"></span>
       <div class="container">
         <div class="section-header text-center">
-          <span class="section-tag">The Apex Advantage</span>
+          <span class="section-tag">The Sanstha Advantage</span>
           <h2 class="section-title">Why Parents & Students Choose Us</h2>
           <p class="section-subtitle">
             We don't believe in crowded lecture halls. We provide structured, individualized, result-driven coaching designed to eliminate exam anxiety.
@@ -968,7 +995,7 @@
       <div class="container">
         <div class="admission-wrapper">
           <div class="admission-sidebar">
-            <span class="badge-gold">Admission Portal 2026-27</span>
+            <span class="badge-gold" data-i18n="adm_sidebar_badge">Admission Portal 2026-27</span>
             <h2>End-to-End 4-Step Pathway</h2>
             <p class="sidebar-intro">
               Secure your child's seat in the preferred batch. Batch sizes are strictly capped at 15–20 students on a first-come, first-served basis.
@@ -1154,7 +1181,7 @@
                   <label class="custom-checkbox">
                     <input type="checkbox" id="requestDemo" name="requestDemo" checked>
                     <span class="checkbox-box"></span>
-                    <span class="checkbox-text">Schedule a <strong>Free 2-Day Trial Demo Class</strong> before final fee payment</span>
+                    <span class="checkbox-text">Schedule a Free 2-Day Trial Demo Class before final fee payment</span>
                   </label>
                 </div>
 
@@ -1194,7 +1221,7 @@
               <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
               <input type="text" id="trackQuery" placeholder="Enter Application ID (e.g. Aarav-8403), Student Name or Mobile Number" required>
             </div>
-            <button type="submit" class="btn btn-primary" id="btnTrack">Check Status</button>
+            <button type="submit" class="btn btn-primary" id="btnTrack" data-i18n="btn_track">Check Status</button>
           </form>
 
           <div id="trackResultBox" class="track-result-box" style="display: none;">
@@ -1318,7 +1345,7 @@
               <span>Science: 99/100</span>
             </div>
             <p class="topper-quote">
-              "The daily doubt session at Apex Academy made all the difference. Sir made sure I solved at least 25 standard question papers before the finals."
+              "The daily doubt session at Sangli Shikshan Sanstha made all the difference. Sir made sure I solved at least 25 standard question papers before the finals."
             </p>
           </div>
 
@@ -1359,7 +1386,7 @@
         <div class="parent-reviews-row">
           <div class="review-card">
             <div class="review-stars">★★★★★</div>
-            <p>"My son used to struggle with Class 11 Physics and Calculus derivations. Within 3 months of joining Apex Academy, his unit test marks jumped from 58% to 92%. The small batch size and daily doubt clinic are incredible."</p>
+            <p>"My son used to struggle with Class 11 Physics and Calculus derivations. Within 3 months of joining Sangli Shikshan Sanstha, his unit test marks jumped from 58% to 92%. The small batch size and daily doubt clinic are incredible."</p>
             <div class="reviewer-meta">
               <strong>Mrs. Sunita Mehta</strong>
               <span>Parent of Class 11 Science Student</span>
@@ -1383,7 +1410,7 @@
       <div class="container demo-cta-content">
         <div class="demo-cta-text">
           <span class="badge-white">Try Before You Commit</span>
-          <h2>Experience the Apex Difference with a Free 2-Day Trial</h2>
+          <h2>Experience the Sanstha Difference with a Free 2-Day Trial</h2>
           <p>Attend live classroom lectures, meet the teachers, review our study material, and take a diagnostic test—completely free with zero obligation.</p>
         </div>
         <div class="demo-cta-btn">
@@ -1526,7 +1553,7 @@
                 <div class="c-icon">✉️</div>
                 <div>
                   <h4>Email Inquiries</h4>
-                  <p>admissions@apexscholars.edu.in | info@apexscholars.edu.in</p>
+                  <p>admissions@sanglishikshansanstha.edu.in | info@sanglishikshansanstha.edu.in</p>
                 </div>
               </div>
             </div>
@@ -1535,40 +1562,66 @@
           <!-- Quick Inquiry / Callback Request Form -->
           <div class="inquiry-form-col">
             <div class="inquiry-card">
-              <h3>Request an Instant Callback</h3>
-              <p>Leave your phone number and target class. Our admission counselor will call you back within 15 minutes.</p>
+              <div class="inquiry-card-head">
+                <div class="inquiry-badge">
+                  <span class="pulse-dot"></span>
+                  <span data-i18n="cb_badge">Priority Admission Desk</span>
+                </div>
+                <h3 data-i18n="cb_title">Request an Instant Callback</h3>
+                <p>Leave your phone number and target class. Our senior academic counselor will call you back within 15 minutes.</p>
+              </div>
 
               <form id="inquiryForm" class="inquiry-form">
                 <div class="form-field">
-                  <label for="inqName">Your Name</label>
-                  <input type="text" id="inqName" placeholder="e.g. Meera Joshi" required>
+                  <label for="inqName">Your Name <span class="required">*</span></label>
+                  <div class="inquiry-input-wrap">
+                    <span class="inquiry-input-icon">
+                      <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
+                    </span>
+                    <input type="text" id="inqName" placeholder="e.g. Meera Joshi" required autocomplete="name">
+                  </div>
                 </div>
 
                 <div class="form-field">
-                  <label for="inqPhone">Mobile Number</label>
-                  <input type="tel" id="inqPhone" placeholder="e.g. 9876543210" pattern="[0-9]{10}" required>
+                  <label for="inqPhone">Mobile Number <span class="required">*</span></label>
+                  <div class="inquiry-input-wrap">
+                    <span class="inquiry-input-icon">
+                      <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>
+                    </span>
+                    <input type="tel" id="inqPhone" placeholder="e.g. 98765 43210" pattern="[0-9]{10}" maxlength="10" required autocomplete="tel">
+                  </div>
                 </div>
 
                 <div class="form-field">
-                  <label for="inqGrade">Student's Current Grade</label>
-                  <select id="inqGrade" required>
-                    <option value="Class 11 Science" selected>Class 11th Science (PCM/PCB)</option>
-                    <option value="Class 11 Commerce">Class 11th Commerce</option>
-                    <option value="Class 12 Science">Class 12th Science (Board Booster)</option>
-                    <option value="Class 12 Commerce">Class 12th Commerce</option>
-                    <option value="Competitive JEE/NEET">Competitive (JEE / NEET Track)</option>
-                  </select>
+                  <label for="inqGrade">Student's Current Grade / Stream <span class="required">*</span></label>
+                  <div class="inquiry-input-wrap">
+                    <span class="inquiry-input-icon">
+                      <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path></svg>
+                    </span>
+                    <select id="inqGrade" required>
+                      <option value="Class 11 Science" selected>Class 11th Science (PCM/PCB)</option>
+                      <option value="Class 11 Commerce">Class 11th Commerce</option>
+                      <option value="Class 12 Science">Class 12th Science (Board Booster)</option>
+                      <option value="Class 12 Commerce">Class 12th Commerce</option>
+                      <option value="Competitive JEE/NEET">Competitive (JEE / NEET Track)</option>
+                    </select>
+                  </div>
                 </div>
 
                 <div class="form-field">
-                  <label for="inqQuery">Questions or Specific Subject Needs</label>
-                  <textarea id="inqQuery" rows="3" placeholder="Tell us if you want help with Maths, Physics, Board Exam Crash Course, etc."></textarea>
+                  <label for="inqQuery">Questions or Specific Subject Needs <small style="color:var(--text-muted); font-weight:400;">(Optional)</small></label>
+                  <textarea id="inqQuery" rows="3" placeholder="Tell us if you want help with Maths, Physics derivations, Board Exam Crash Course, etc."></textarea>
                 </div>
 
-                <button type="submit" class="btn btn-primary w-100" id="btnSendInquiry">
+                <button type="submit" class="btn btn-primary w-100 btn-callback-submit" id="btnSendInquiry">
                   <span>Request Free Counselor Callback</span>
-                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="22" y1="2" x2="11" y2="13"></line><polygon points="22 2 15 22 11 13 2 9 22 2"></polygon></svg>
+                  <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="22" y1="2" x2="11" y2="13"></line><polygon points="22 2 15 22 11 13 2 9 22 2"></polygon></svg>
                 </button>
+
+                <div class="callback-trust-footer">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#10b981" stroke-width="2.5"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+                  <span>100% Free Consultation • Zero Obligation • Strictly Confidential</span>
+                </div>
               </form>
             </div>
           </div>
@@ -1582,10 +1635,13 @@
     <div class="container footer-content">
       <div class="footer-col brand-col">
         <div class="footer-logo">
-          <div class="logo-icon-sm">
-            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 10v6M2 10l10-5 10 5-10 5z"></path><path d="M6 12v5c3 3 9 3 12 0v-5"></path></svg>
+          <div class="footer-logo-wrap">
+            <img src="logo.png" alt="सांगली शिक्षण संस्था Logo" class="footer-logo-img" width="44" height="44" loading="lazy" decoding="async">
           </div>
-          <span class="footer-brand-title">Apex Scholars Academy</span>
+          <div class="footer-brand-text">
+            <span class="footer-brand-title">Sangli Shikshan Sanstha</span>
+            <span class="footer-brand-sub">सांगली शिक्षण संस्था • Estd. 1919</span>
+          </div>
         </div>
         <p class="footer-desc">
           Premier coaching and tuition center committed to concept-first education, personalized batch attention, and verified board success since 2012.
@@ -1622,8 +1678,8 @@
         <h4 class="footer-heading">Quick Links</h4>
         <ul class="footer-links">
           <li><a href="#admission">Online Admission Form</a></li>
-          <li><a href="#fee-calculator">Tuition Fee Calculator</a></li>
-          <li><a href="#track-admission">Track Application Status</a></li>
+          <li><a href="#fee-calculator" data-i18n="mobile_calculator">Tuition Fee Calculator</a></li>
+          <li><a href="#track-admission" data-i18n="mobile_track">Track Application Status</a></li>
           <li><a href="#faculty">Experienced Faculty</a></li>
           <li><a href="#results">Toppers & Testimonials</a></li>
           <li><a href="#faqs">Frequently Asked Questions</a></li>
@@ -1634,14 +1690,14 @@
         <h4 class="footer-heading">Admission Office</h4>
         <p class="footer-contact-line">Plot 42, Knowledge Park Arcade, 2nd Flr, Commercial Hub</p>
         <p class="footer-contact-line"><strong>Helpline:</strong> +91 73858 03641</p>
-        <p class="footer-contact-line"><strong>Email:</strong> admissions@apexscholars.edu.in</p>
+        <p class="footer-contact-line"><strong>Email:</strong> admissions@sanglishikshansanstha.edu.in</p>
         <p class="footer-contact-line"><strong>Center Hours:</strong> 8:00 AM – 8:30 PM (Daily)</p>
       </div>
     </div>
 
     <div class="footer-bottom">
       <div class="container footer-bottom-flex">
-        <p>&copy; 2026 Apex Scholars Academy. All Rights Reserved. Designed for Student Excellence.</p>
+        <p>&copy; 2026 Sangli Shikshan Sanstha. All Rights Reserved. Designed for Student Excellence.</p>
         <div class="bottom-links">
           <a href="#">Privacy Policy</a>
           <span>•</span>
@@ -1658,10 +1714,10 @@
     <div class="receipt-box" id="printableReceipt">
       <div class="receipt-header">
         <div class="receipt-brand">
-          <div class="receipt-logo">🎓</div>
+          <img src="logo.png" alt="सांगली शिक्षण संस्था Official Seal" class="receipt-logo-img" width="56" height="56" decoding="async">
           <div>
-            <h3>APEX SCHOLARS ACADEMY</h3>
-            <p>Official Admission Acknowledgment Slip • Session 2026-27</p>
+            <h3>SANGLI SHIKSHAN SANSTHA</h3>
+            <p>सांगली शिक्षण संस्था • Official Admission Slip • Session 2026-27</p>
           </div>
         </div>
         <div class="receipt-status-pill badge-green">APPLICATION SUBMITTED</div>
@@ -1674,7 +1730,7 @@
       <div class="receipt-id-box">
         <div class="id-item">
           <span class="id-label">Application Reference ID:</span>
-          <strong class="id-val" id="receiptAppId">APEX-2026-0000</strong>
+          <strong class="id-val" id="receiptAppId">SSS-2026-0000</strong>
         </div>
         <div class="id-item">
           <span class="id-label">Submission Date & Time:</span>
@@ -1940,7 +1996,7 @@
   </dialog>
 
   <!-- FLOATING WHATSAPP BUTTON -->
-  <a href="https://wa.me/917385803641?text=Hello%20Apex%20Scholars%20Academy,%20I%20would%20like%20to%20inquire%20about%20admissions%20and%20batches." target="_blank" rel="noopener" class="floating-whatsapp-btn" id="floatingWhatsAppBtn" aria-label="Chat with admission desk on WhatsApp">
+  <a href="https://wa.me/917385803641?text=Hello%20Sangli%20Shikshan%20Sanstha,%20I%20would%20like%20to%20inquire%20about%20admissions%20and%20batches." target="_blank" rel="noopener" class="floating-whatsapp-btn" id="floatingWhatsAppBtn" aria-label="Chat with admission desk on WhatsApp">
     <svg width="30" height="30" viewBox="0 0 24 24" fill="currentColor"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.095 3.2 5.076 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414z"/></svg>
     <span class="whatsapp-badge-pulse" aria-hidden="true"></span>
   </a>
@@ -1951,7 +2007,7 @@
       <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>
       <span>Call Desk</span>
     </a>
-    <a href="https://wa.me/917385803641?text=Hello%20Apex%20Academy,%20I%20want%20to%20know%20more%20about%20admissions." target="_blank" rel="noopener" class="mobile-cta-btn whatsapp-btn">
+    <a href="https://wa.me/917385803641?text=Hello%20Sangli%20Shikshan%20Sanstha,%20I%20want%20to%20know%20more%20about%20admissions." target="_blank" rel="noopener" class="mobile-cta-btn whatsapp-btn">
       <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.095 3.2 5.076 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414z"/></svg>
       <span>WhatsApp</span>
     </a>
@@ -1968,6 +2024,7 @@
   <script src="https://www.gstatic.com/firebasejs/10.13.0/firebase-app-compat.js"></script>
   <script src="https://www.gstatic.com/firebasejs/10.13.0/firebase-firestore-compat.js"></script>
   <script src="firebase-config.js?v=11.0"></script>
-  <script src="app.js?v=11.0"></script>
+  <script src="translations.js?v=4.0"></script>
+  <script src="app.js?v=14.0"></script>
 </body>
 </html>
