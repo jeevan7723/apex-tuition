@@ -751,10 +751,10 @@ let currentLanguage = getSavedLanguage();
 function normalizeText(str) {
   if (!str) return '';
   return str
-    .replace(/[\\u2010\\u2011\\u2012\\u2013\\u2014\\u2015]/g, '-')
-    .replace(/[\\u2018\\u2019]/g, "'")
-    .replace(/[\\u201C\\u201D]/g, '"')
-    .replace(/\\s+/g, ' ')
+    .replace(/[\u2010\u2011\u2012\u2013\u2014\u2015]/g, '-')
+    .replace(/[\u2018\u2019]/g, "'")
+    .replace(/[\u201C\u201D]/g, '"')
+    .replace(/\s+/g, ' ')
     .trim();
 }
 
@@ -789,9 +789,12 @@ function translateNode(node, lang) {
     if (lang === 'mr') {
       const mr = lookupTranslation(clean);
       if (mr) {
-        const m = val.match(/^(\\s*)([\\s\\S]*?)(\\s*)$/);
-        const pre = m ? m[1] : '';
+        const m = val.match(/^(\s*)([\s\S]*?)(\s*)$/);
+        let pre = m ? m[1] : '';
         const post = m ? m[3] : '';
+        if (!pre && (clean.startsWith('&') || clean.startsWith('and ') || (node.previousSibling && node.previousSibling.nodeType === Node.ELEMENT_NODE))) {
+          pre = ' ';
+        }
         node.nodeValue = pre + mr + post;
       }
     } else {

@@ -116,6 +116,7 @@ body {
   display: inline;
   box-decoration-break: clone;
   -webkit-box-decoration-break: clone;
+  margin-right: 0.3rem;
 }
 
 /* ==========================================================================
