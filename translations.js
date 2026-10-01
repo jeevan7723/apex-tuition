@@ -539,6 +539,7 @@ const marathiDictionary = {
   "Special CA Foundation entrance orientation modules & business law insights": "विशेष CA फाउंडेशन प्रवेश परीक्षा मार्गदर्शन व व्यावसायिक कायदा ओळख",
   "Specialist in breaking down complex Calculus, Trigonometry & Geometry into intuitive visual puzzles. Produced 140+ centum (100/100) scorers in CBSE/ICSE board exams.": "कॅल्क्युलस, त्रिकोणमिती व भूमिती सोप्या भाषेत शिकवण्यात तज्ज्ञ. बोर्ड परीक्षेत १००/१०० गुण मिळवणारे १४०+ विद्यार्थी घडवले.",
   "Specialized, high-impact tuition batches exclusively for Class 11 and Class 12 (Science, Commerce, JEE & NEET). Strictly capped at 15–18 students with morning & evening shifts.": "इयत्ता ११ वी आणि १२ वी साठी (विज्ञान, वाणिज्य, JEE व NEET) विशेष वर्ग. सकाळ व संध्याकाळ सत्रांमध्ये मर्यादित प्रवेश.",
+  "Specialized, high-impact tuition batches exclusively for Class 11 and Class 12 (Science, JEE & NEET). Strictly capped at 15–18 students with morning & evening shifts.": "इयत्ता ११ वी आणि १२ वी साठी (विज्ञान, JEE व NEET) विशेष वर्ग. सकाळ व संध्याकाळ सत्रांमध्ये मर्यादित प्रवेश.",
   "Quick Menu / थेट पर्याय:": "त्वरित मेनू / थेट पर्याय:",
   "Quick Menu": "त्वरित मेनू",
   "Contact Desk": "संपर्क कक्ष",
