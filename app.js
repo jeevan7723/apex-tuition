@@ -63,6 +63,7 @@ document.addEventListener('DOMContentLoaded', () => {
       select.parentNode.insertBefore(wrapper, select);
       wrapper.appendChild(select);
       select.classList.add('custom-select-native');
+      select.style.cssText = "position:absolute!important;width:1px!important;height:1px!important;padding:0!important;margin:-1px!important;overflow:hidden!important;clip:rect(0,0,0,0)!important;border:0!important;opacity:0!important;pointer-events:none!important;visibility:hidden!important;";
 
       // Create Trigger Button
       const trigger = document.createElement('button');
@@ -86,10 +87,10 @@ document.addEventListener('DOMContentLoaded', () => {
       trigger.appendChild(arrowSpan);
       wrapper.appendChild(trigger);
 
-      // Create Dropdown Menu
       const dropdown = document.createElement('div');
       dropdown.className = 'custom-select-dropdown';
       dropdown.setAttribute('role', 'listbox');
+      dropdown.style.display = 'none';
       wrapper.appendChild(dropdown);
 
       function buildDropdownOptions() {
@@ -181,6 +182,7 @@ document.addEventListener('DOMContentLoaded', () => {
         wrapper.classList.remove('is-drop-up');
 
         wrapper.classList.add('is-open');
+        dropdown.style.display = 'block';
         trigger.setAttribute('aria-expanded', 'true');
 
         const selected = dropdown.querySelector('.custom-select-option.is-selected');
@@ -194,6 +196,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
       function closeDropdown() {
         wrapper.classList.remove('is-open');
+        dropdown.style.display = 'none';
         trigger.setAttribute('aria-expanded', 'false');
         if (window.scrollX > 0) {
           window.scrollTo(0, window.scrollY);

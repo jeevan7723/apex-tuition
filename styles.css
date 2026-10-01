@@ -5441,24 +5441,13 @@ html[lang="mr"] .hero-title {
    THEMED SELECT DROPDOWNS (NATIVE BASE-SELECT + CUSTOM ACCESSIBLE SELECT UI)
    ========================================================================== */
 
-/* 1. Base Select Enhancement for modern supporting browsers */
-select,
-::picker(select) {
-  appearance: base-select;
-}
-
+/* 1. Base Select Styling */
 select {
   font-family: var(--font-body, 'Outfit', 'Plus Jakarta Sans', sans-serif);
   cursor: pointer;
-}
-
-::picker(select) {
-  background-color: #ffffff;
-  border: 1.5px solid #cbd5e1;
-  border-radius: 12px;
-  padding: 6px;
-  box-shadow: 0 16px 36px -4px rgba(15, 23, 42, 0.18), 0 4px 12px -2px rgba(15, 23, 42, 0.08);
-  font-family: var(--font-body, 'Outfit', 'Plus Jakarta Sans', sans-serif);
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
 }
 
 select option {
@@ -5497,16 +5486,22 @@ select optgroup {
 }
 
 /* Native select is preserved invisibly for native form submission & screen readers */
+.custom-select-native,
+.custom-select-wrapper select,
 .custom-select-wrapper select.custom-select-native {
   position: absolute !important;
-  width: 100% !important;
-  height: 100% !important;
+  width: 1px !important;
+  height: 1px !important;
+  padding: 0 !important;
+  margin: -1px !important;
+  overflow: hidden !important;
+  clip: rect(0, 0, 0, 0) !important;
+  white-space: nowrap !important;
+  border: 0 !important;
   opacity: 0 !important;
   pointer-events: none !important;
-  top: 0 !important;
-  left: 0 !important;
-  z-index: -1 !important;
-  margin: 0 !important;
+  visibility: hidden !important;
+  z-index: -10 !important;
 }
 
 /* Custom Select Trigger Button */
