@@ -393,21 +393,204 @@ def generate_prospectus_mr(filepath):
     print(f"Generated Marathi Prospectus: {filepath}")
 
 
+# =============================================================================
+# 4. INDIVIDUAL COURSE SYLLABUS PDFS (ENGLISH & MARATHI)
+# =============================================================================
+
+# --- A. CLASS 11TH SCIENCE ---
+def generate_course_11sci_en(filepath):
+    pdf = SansthaPDF("Class 11th Science Syllabus & Academic Roadmap", "SANGLI SHIKSHAN SANSTHA", is_marathi=False)
+    pdf.add_page()
+    pdf.add_section_title("CLASS 11TH SCIENCE FOUNDATION (PCM / PCB) - 2026-27")
+    pdf.add_paragraph("Target: Complete mastery of Class 11th State Board, CBSE, and ICSE syllabus with solid conceptual grounding for JEE and NEET competitive entrance examinations.")
+    
+    pdf.add_section_title("DETAILED SUBJECT SYLLABUS BREAKDOWN")
+    pdf.add_bullet_point("Physics (Core):", "Units & Measurements, Motion in a Straight Line & Plane, Laws of Motion, Work, Energy & Power, System of Particles & Rotational Motion, Gravitation, Mechanical Properties of Solids & Fluids, Thermal Properties, Thermodynamics, Kinetic Theory, Oscillations and Waves.")
+    pdf.add_bullet_point("Chemistry (Core):", "Some Basic Concepts of Chemistry, Structure of Atom, Classification of Elements & Periodicity, Chemical Bonding & Molecular Structure, Chemical Thermodynamics, Equilibrium (Physical & Chemical), Redox Reactions, Organic Chemistry Fundamentals, Hydrocarbons.")
+    pdf.add_bullet_point("Mathematics (PCM):", "Sets, Relations & Functions, Trigonometric Functions, Complex Numbers & Quadratic Equations, Linear Inequalities, Permutations & Combinations, Binomial Theorem, Sequences & Series, Straight Lines, Conic Sections, Limits & Derivatives, Statistics, Probability.")
+    pdf.add_bullet_point("Biology (PCB):", "The Living World, Biological Classification, Plant Kingdom, Animal Kingdom, Morphology & Anatomy of Flowering Plants, Cell: The Unit of Life, Biomolecules, Cell Cycle & Division, Photosynthesis, Respiration, Plant Growth, Breathing, Body Fluids, Excretion, Locomotion, Neural & Chemical Control.")
+    
+    pdf.add_section_title("BATCH SCHEDULES & TUITION FEES")
+    pdf.add_bullet_point("Morning Micro-Batch:", "6:30 AM – 8:30 AM (Strictly capped at 15 students)")
+    pdf.add_bullet_point("Evening Micro-Batch:", "4:30 PM – 7:30 PM (Daily doubt clearing clinic 6:30 PM – 7:30 PM)")
+    pdf.add_bullet_point("Tuition Fee:", "Rs. 4,600 / month | Quarterly (8% OFF): Rs. 12,696 | Annual (20% OFF): Rs. 44,160")
+    pdf.add_bullet_point("Admissions Desk:", "Sangli Shikshan Sanstha Campus, Near Ganpati Temple, Sangli | Helpline: +91 73858 03641")
+    pdf.output(filepath)
+    print(f"Generated: {filepath}")
+
+def generate_course_11sci_mr(filepath):
+    pdf = SansthaPDF("इयत्ता ११ वी सायन्स सविस्तर अभ्यासक्रम", "सांगली शिक्षण संस्था", is_marathi=True)
+    pdf.add_page()
+    pdf.add_section_title("इयत्ता ११ वी सायन्स फाउंडेशन (PCM / PCB) - शैक्षणिक वर्ष २०२६-२७")
+    pdf.add_paragraph("उद्दिष्ट: महाराष्ट्र राज्य मंडळ, CBSE व ICSE बोर्डाच्या अभ्यासक्रमावर परिपूर्ण प्रभुत्व मिळवून JEE व NEET प्रवेश परीक्षांचा भक्कम पाया तयार करणे.")
+    
+    pdf.add_section_title("विषयनिहाय सविस्तर अभ्यासक्रम")
+    pdf.add_bullet_point("भौतिकशास्त्र (Physics):", "एकके व मापन, सरळ रेषेतील व प्रतलातील गती, गतीचे नियम, कार्य, ऊर्जा व शक्ती, कण प्रणाली व परिभ्रमण गती, गुरुत्वाकर्षण, द्रव्यांचे यांत्रिक व औष्णिक गुणधर्म, थर्मोडायनॅमिक्स, वायूंचा गतिज सिद्धांत, दोलने व तरंग.")
+    pdf.add_bullet_point("रसायनशास्त्र (Chemistry):", "रसायनशास्त्राच्या मूलभूत संकल्पना, अणू रचना, मूलद्रव्यांचे आवर्ती वर्गीकरण, रासायनिक बंध, थर्मोडायनॅमिक्स, रासायनिक समतोल (इक्विलिब्रियम), रेडॉक्स अभिक्रिया, सेंद्रिय रसायनशास्त्राची मूलतत्त्वे, हायड्रोकार्बन्स.")
+    pdf.add_bullet_point("गणित (Mathematics):", "संच, संबंध व फलने, त्रिकोणमितीय फलने, संमिश्र संख्या, क्रमचय व संचय, द्विपद सिद्धांत, अंकगणिती व भूमितीय श्रेणी, सरळ रेषा, शंकू छेद, कलनशास्त्र (Limits & Derivatives), सांख्यिकी, संभाव्यता.")
+    pdf.add_bullet_point("जीवशास्त्र (Biology):", "सजीव सृष्टी, जैविक वर्गीकरण, वनस्पती व प्राणी सृष्टी, वनस्पतींची शरीररचना, पेशी रचना व विभाजन, जैवरेणू, प्रकाशसंश्लेषण, वनस्पती वाढ, मानवी शरीरक्रियाशास्त्र (श्वसन, रक्ताभिसरण, उत्सर्जन, मज्जासंस्था).")
+    
+    pdf.add_section_title("बॅच वेळा व फी रचना")
+    pdf.add_bullet_point("सकाळ मायक्रो-बॅच:", "सकाळी ६:३० ते ८:३० (कमाल १५ विद्यार्थी मर्यादा)")
+    pdf.add_bullet_point("संध्याकाळ मायक्रो-बॅच:", "संध्याकाळी ४:३० ते ७:३० (दररोज वैयक्तिक शंका समाधान)")
+    pdf.add_bullet_point("फी रचना:", "रु. ४,६०० / महिना | त्रैमासिक (८% सवलत): रु. १२,६९६ | वार्षिक (२०% सवलत): रु. ४४,१६०")
+    pdf.add_bullet_point("प्रवेश चौकशी:", "सांगली शिक्षण संस्था संकुल, गणपती मंदिरा जवळ, सांगली | दूरध्वनी: +९१ ७३८५८ ०३६४१")
+    pdf.output(filepath)
+    print(f"Generated: {filepath}")
+
+# --- B. CLASS 12TH SCIENCE ---
+def generate_course_12sci_en(filepath):
+    pdf = SansthaPDF("Class 12th Science Board Booster & 15-Mock Calendar", "SANGLI SHIKSHAN SANSTHA", is_marathi=False)
+    pdf.add_page()
+    pdf.add_section_title("CLASS 12TH SCIENCE BOARD BOOSTER + CUET PREP (2026-27)")
+    pdf.add_paragraph("Target: 95%+ Distinction in Senior Secondary Board Examination (State Board / CBSE / ISC) with syllabus completion by October and 15 simulated pre-board examinations.")
+    
+    pdf.add_section_title("CORE SUBJECT SYLLABUS BLUEPRINT")
+    pdf.add_bullet_point("Physics (12th):", "Rotational Dynamics, Mechanical Properties of Fluids, Kinetic Theory of Gases & Radiation, Thermodynamics, Wave Optics, Electrostatics, Current Electricity, Magnetic Effects of Electric Current, Magnetism, Electromagnetic Induction, AC Circuits, Dual Nature of Radiation & Matter, Structure of Atoms & Nuclei, Semiconductor Devices.")
+    pdf.add_bullet_point("Chemistry (12th):", "Solid State, Solutions, Ionic Equilibria, Chemical Thermodynamics, Electrochemistry, Chemical Kinetics, Elements of Groups 16, 17 & 18, Transition & Inner Transition Elements, Coordination Compounds, Halogen Derivatives, Alcohols, Phenols & Ethers, Aldehydes, Ketones & Carboxylic Acids, Amines, Biomolecules.")
+    pdf.add_bullet_point("Mathematics (12th):", "Mathematical Logic, Matrices, Trigonometric Functions, Pair of Straight Lines, Vectors, 3D Geometry, Linear Programming, Differentiation, Applications of Derivatives, Indefinite & Definite Integration, Applications of Definite Integrals, Differential Equations, Probability Distributions, Binomial Distribution.")
+    pdf.add_bullet_point("Biology (12th):", "Reproduction in Lower & Higher Plants, Reproduction in Animals, Inheritance & Variation, Molecular Basis of Inheritance, Origin & Evolution of Life, Plant Water Relations, Plant Growth & Mineral Nutrition, Respiration & Circulation, Control & Co-ordination, Human Health & Diseases, Biotechnology, Ecosystems.")
+    
+    pdf.add_section_title("15-MOCK EXAMINATION TIMETABLE & FEES")
+    pdf.add_bullet_point("Phase 1 (Unit Mocks):", "October 15 – November 20 (Individual chapter-weightage papers)")
+    pdf.add_bullet_point("Phase 2 (Half-Syllabus):", "December 1 – December 24 (Board pattern 50% benchmarks)")
+    pdf.add_bullet_point("Phase 3 (Full Pre-Boards):", "January 5 – January 28 (100% Board simulation with examiner step-marking audit)")
+    pdf.add_bullet_point("Tuition Fee:", "Rs. 5,200 / month | Quarterly (8% OFF): Rs. 14,352 | Annual (20% OFF): Rs. 49,920")
+    pdf.add_bullet_point("Inquiries:", "Sangli Shikshan Sanstha Campus, Near Ganpati Temple, Sangli | Helpline: +91 73858 03641")
+    pdf.output(filepath)
+    print(f"Generated: {filepath}")
+
+def generate_course_12sci_mr(filepath):
+    pdf = SansthaPDF("इयत्ता १२ वी सायन्स बोर्ड बूस्टर वेळापत्रक", "सांगली शिक्षण संस्था", is_marathi=True)
+    pdf.add_page()
+    pdf.add_section_title("इयत्ता १२ वी सायन्स बोर्ड बूस्टर व १५ सराव परीक्षा वेळापत्रक")
+    pdf.add_paragraph("उद्दिष्ट: बोर्ड परीक्षेत ९५%+ गुण मिळवण्यासाठी ऑक्टोबरअखेर संपूर्ण अभ्यासक्रम संपवून १५ दर्जेदार सराव परीक्षांद्वारे उत्तरपत्रिका सादरीकरणाचा सराव.")
+    
+    pdf.add_section_title("विषयनिहाय सविस्तर अभ्यासक्रम")
+    pdf.add_bullet_point("भौतिकशास्त्र (Physics):", "रोटेशनल डायनॅमिक्स, द्रव्यांचे यांत्रिक गुणधर्म, वायूंचा गतिज सिद्धांत व किरणोत्सार, थर्मोडायनॅमिक्स, वेव्ह ऑप्टिक्स, इलेक्ट्रोस्टॅटिक्स, करंट इलेक्ट्रिसिटी, चुंबकीय परिणाम, ईएमआय व एसी सर्किट्स, अणू रचना व न्यूक्लीयस, सेमीकंडक्टर.")
+    pdf.add_bullet_point("रसायनशास्त्र (Chemistry):", "सोल्युशन्स, आयनिक इक्विलिब्रियम, थर्मोडायनॅमिक्स, इलेक्ट्रोकेमिस्ट्री, केमिकल कायनेटिक्स, संक्रमण मूलद्रव्ये, कोऑर्डिनेशन कंपाउंड्स, हॅलोजन डेरिव्हेटिव्ह्ज, अल्कोहोल, फिनोल, अल्डीहाईड्स व बायोमॉलिक्युल्स.")
+    pdf.add_bullet_point("गणित (Mathematics):", "मॅथेमॅटिकल लॉजिक, मॅट्रायसेस, वेक्टर्स, ३D भूमिती, लिनियर प्रोग्रामिंग, डेरिव्हेटिव्ह्ज व त्याचे उपयोजन, इंटिग्रेशन (निश्चित व अनिश्चित), डिफरेंशियल इक्वेशन्स, संभाव्यता वितरण.")
+    pdf.add_bullet_point("जीवशास्त्र (Biology):", "वनस्पती व प्राण्यांमधील प्रजनन, जनुकीय वारसा व विविधता, डीएनए व आरएनए आण्विक रचना, उत्क्रांती, श्वसन व रक्ताभिसरण, मानवी आरोग्य व रोग, बायोटेक्नॉलॉजी व पर्यावरण.")
+    
+    pdf.add_section_title("१५ बोर्ड सराव परीक्षा वेळापत्रक व फी")
+    pdf.add_bullet_point("टप्पा १ (घटक चाचण्या):", "१५ ऑक्टोबर ते २० नोव्हेंबर (घटकनिहाय गुणदान सराव)")
+    pdf.add_bullet_point("टप्पा २ (अर्ध अभ्यासक्रम):", "१ डिसेंबर ते २४ डिसेंबर (बोर्ड नमुना प्रश्नपत्रिका)")
+    pdf.add_bullet_point("टप्पा ३ (संपूर्ण बोर्ड मॉक):", "५ जानेवारी ते २८ जानेवारी (१००% प्रत्यक्ष बोर्ड परीक्षा अनुभव व गुण तपासणी)")
+    pdf.add_bullet_point("फी रचना:", "रु. ५,२०० / महिना | त्रैमासिक (८% सवलत): रु. १४,३५२ | वार्षिक (२०% सवलत): रु. ४९,९२०")
+    pdf.add_bullet_point("संपर्क:", "सांगली शिक्षण संस्था संकुल, गणपती मंदिरा जवळ, सांगली | दूरध्वनी: +९१ ७३८५८ ०३६४१")
+    pdf.output(filepath)
+    print(f"Generated: {filepath}")
+
+# --- C. INTEGRATED JEE ---
+def generate_course_jee_en(filepath):
+    pdf = SansthaPDF("Integrated JEE Main & Advanced 2-Year Syllabus Roadmap", "SANGLI SHIKSHAN SANSTHA", is_marathi=False)
+    pdf.add_page()
+    pdf.add_section_title("INTEGRATED JEE (MAIN + ADVANCED) 2-YEAR ENGINEERING ROADMAP")
+    pdf.add_paragraph("Target: Securing top percentiles in JEE Main & qualifying for IIT JEE Advanced through rigorous conceptual clarity, daily problem solving, and NTA Computer-Based Testing simulations.")
+    
+    pdf.add_section_title("SUBJECT-WISE HIGH-WEIGHTAGE BLUEPRINT")
+    pdf.add_bullet_point("JEE Physics:", "Kinematics, Newton's Laws, Rotational Motion, Simple Harmonic Motion, Fluid Mechanics, Heat & Thermodynamics, Electrostatics & Capacitance, Current Electricity, Magnetic Effects & EMI, Optics, Modern Physics (Photoelectric, Atoms, Nuclear).")
+    pdf.add_bullet_point("JEE Chemistry:", "Mole Concept, Atomic Structure, Chemical Bonding & Molecular Geometry, Thermodynamics & Thermochemistry, Chemical & Ionic Equilibrium, Electrochemistry, Kinetics, Coordination Chemistry, Organic Mechanisms (GOC, Isomerism, Hydrocarbons, Aldehydes, Ketones).")
+    pdf.add_bullet_point("JEE Mathematics:", "Quadratic Equations, Complex Numbers, Sequences & Series, Permutations & Combinations, Binomial Theorem, Coordinate Geometry (Circles, Parabola, Ellipse, Hyperbola), Differential Calculus, Integral Calculus, Vectors & 3D Geometry, Matrices & Determinants.")
+    
+    pdf.add_section_title("TESTING ENGINE & PROGRAM DETAILS")
+    pdf.add_bullet_point("Weekly CBT Simulation:", "Full NTA CBT portal simulation every Sunday with All-India percentile tracking and accuracy metrics.")
+    pdf.add_bullet_point("Problem Bank:", "15,000+ curated multi-level problems (Level 1 Foundation, Level 2 JEE Main, Level 3 JEE Advanced).")
+    pdf.add_bullet_point("Batch Size & Mentorship:", "Strict micro-batch capped at 15–18 students with daily 1-on-1 doubt clearing.")
+    pdf.add_bullet_point("Tuition Fee:", "Rs. 6,500 / month | Quarterly (8% OFF): Rs. 17,940 | Annual (20% OFF): Rs. 62,400")
+    pdf.add_bullet_point("Helpline:", "Sangli Shikshan Sanstha Campus, Sangli | Tel: +91 73858 03641")
+    pdf.output(filepath)
+    print(f"Generated: {filepath}")
+
+def generate_course_jee_mr(filepath):
+    pdf = SansthaPDF("एकात्मिक JEE (मेन + ॲडव्हान्स) २-वर्षीय अभ्यासक्रम", "सांगली शिक्षण संस्था", is_marathi=True)
+    pdf.add_page()
+    pdf.add_section_title("एकात्मिक JEE (मेन + ॲडव्हान्स) २-वर्षीय अभियांत्रिकी अभ्यासक्रम")
+    pdf.add_paragraph("उद्दिष्ट: IIT, NIT व IIIT मध्ये प्रवेश मिळवण्यासाठी NTA कॉम्प्युटर आधारित परीक्षा (CBT) सराव व १५,००० हून अधिक प्रश्नांचा सखोल सराव.")
+    
+    pdf.add_section_title("विषयनिहाय उच्च-गुणांकन अभ्यासक्रम")
+    pdf.add_bullet_point("JEE भौतिकशास्त्र:", "कायनेमॅटिक्स, न्यूटनचे नियम, परिभ्रमण गती, दोलने, द्रायू यांत्रिकी, थर्मोडायनॅमिक्स, इलेक्ट्रोस्टॅटिक्स, करंट इलेक्ट्रिसिटी, चुंबकीय परिणाम व ईएमआय, ऑप्टिक्स, मॉडर्न फिजिक्स.")
+    pdf.add_bullet_point("JEE रसायनशास्त्र:", "मोल संकल्पना, अणू रचना, रासायनिक बंध, थर्मोडायनॅमिक्स, रासायनिक व आयनिक समतोल, इलेक्ट्रोकेमिस्ट्री, केमिकल कायनेटिक्स, कोऑर्डिनेशन केमिस्ट्री, सेंद्रिय रासायनिक अभिक्रिया यंत्रणा.")
+    pdf.add_bullet_point("JEE गणित:", "वर्गसमीकरणे, संमिश्र संख्या, क्रमचय व संचय, द्विपद सिद्धांत, निर्देशक भूमिती (वर्तुळ, पॅराबोला, इलिप्स, हायपरबोला), डिफरेंशियल व इंटिग्रल कॅल्क्युलस, वेक्टर्स व ३D भूमिती, मॅट्रायसेस.")
+    
+    pdf.add_section_title("परीक्षा पद्धती व फी तपशील")
+    pdf.add_bullet_point("साप्ताहिक CBT टेस्ट:", "NTA च्या धर्तीवर दर रविवारी संगणक आधारित परीक्षा व अखिल भारतीय रँक विश्लेषण.")
+    pdf.add_bullet_point("प्रश्न संच:", "१५,०००+ बहुपर्यायी प्रश्नांचा सराव आणि दररोज वैयक्तिक शंका समाधान.")
+    pdf.add_bullet_point("बॅच क्षमता:", "प्रत्येक बॅचमध्ये फक्त १५ ते १८ विद्यार्थी.")
+    pdf.add_bullet_point("फी रचना:", "रु. ६,५०० / महिना | त्रैमासिक (८% सवलत): रु. १७,९४० | वार्षिक (२०% सवलत): रु. ६२,४००")
+    pdf.add_bullet_point("संपर्क:", "सांगली शिक्षण संस्था संकुल, गणपती मंदिरा जवळ, सांगली | दूरध्वनी: +९१ ७३८५८ ०३६४१")
+    pdf.output(filepath)
+    print(f"Generated: {filepath}")
+
+# --- D. INTEGRATED NEET-UG ---
+def generate_course_neet_en(filepath):
+    pdf = SansthaPDF("Integrated NEET-UG Medical Super-20 Syllabus Roadmap", "SANGLI SHIKSHAN SANSTHA", is_marathi=False)
+    pdf.add_page()
+    pdf.add_section_title("INTEGRATED NEET-UG MEDICAL SUPER-20 ROADMAP (2026-27)")
+    pdf.add_paragraph("Target: Target 680+ Score in NEET-UG for admission to AIIMS, JIPMER, and top Government Medical Colleges (GMC) with NCERT line-by-line decoding and negative marking elimination.")
+    
+    pdf.add_section_title("SUBJECT-WISE WEIGHTAGE & SYLLABUS")
+    pdf.add_bullet_point("NEET Biology (360 Marks):", "Diversity in Living World, Cell Biology & Division, Genetics & Evolution (Mendelian Genetics, DNA Replication, Transcription, Translation), Human Physiology (Endocrine, Nervous, Excretory, Circulatory), Plant Physiology (Photosynthesis, Respiration), Biotechnology Principles & Processes, Ecology & Environment.")
+    pdf.add_bullet_point("NEET Physics (180 Marks):", "Physical World & Measurement, Laws of Motion, Work Energy Power, Mechanics of Fluids, Thermal Physics, Electrostatics, Current Electricity, Magnetic Effects, Ray & Wave Optics, Atoms & Nuclei, Electronic Devices. Special emphasis on formula derivation speed and numerical shortcuts.")
+    pdf.add_bullet_point("NEET Chemistry (180 Marks):", "Physical Chemistry: Mole Concept, Atomic Structure, Equilibrium, Thermodynamics, Electrochemistry, Kinetics, Solutions. Inorganic Chemistry: Periodic Trends, p-Block, d & f Block, Coordination Compounds. Organic Chemistry: IUPAC, Hydrocarbons, Oxygen & Nitrogen Functional Groups, Biomolecules.")
+    
+    pdf.add_section_title("OMR TESTING & SPECIAL TRAINING")
+    pdf.add_bullet_point("200-Question OMR Series:", "Real exam conditions with 3-hour 20-minute timed drills on authentic OMR sheets.")
+    pdf.add_bullet_point("Mistake Register Audit:", "Individual error pattern analysis to systematically eliminate negative marking.")
+    pdf.add_bullet_point("Strict Super-20 Batch:", "Strictly limited to 20 highly motivated medical aspirants.")
+    pdf.add_bullet_point("Tuition Fee:", "Rs. 6,500 / month | Quarterly (8% OFF): Rs. 17,940 | Annual (20% OFF): Rs. 62,400")
+    pdf.add_bullet_point("Admissions Desk:", "Sangli Shikshan Sanstha Campus, Sangli | Helpline: +91 73858 03641")
+    pdf.output(filepath)
+    print(f"Generated: {filepath}")
+
+def generate_course_neet_mr(filepath):
+    pdf = SansthaPDF("एकात्मिक NEET-UG मेडिकल सुपर-२० सविस्तर अभ्यासक्रम", "सांगली शिक्षण संस्था", is_marathi=True)
+    pdf.add_page()
+    pdf.add_section_title("एकात्मिक NEET-UG मेडिकल सुपर-२० अभ्यासक्रम व परीक्षा मार्गदर्शक")
+    pdf.add_paragraph("उद्दिष्ट: AIIMS आणि सरकारी मेडिकल कॉलेजमध्ये MBBS प्रवेश मिळवण्यासाठी NEET-UG परीक्षेत ६८०+ गुणांचे लक्ष्य, NCERT चे ओळ-न्-ओळ वाचन व निगेटिव्ह मार्किंग नियंत्रण.")
+    
+    pdf.add_section_title("विषयनिहाय सविस्तर अभ्यासक्रम")
+    pdf.add_bullet_point("NEET जीवशास्त्र (३६० गुण):", "सजीव सृष्टी, पेशी विज्ञान, जनुकशास्त्र व उत्क्रांती (डीएनए रेप्लिकेशन, ट्रान्सक्रिप्शन), मानवी शरीरक्रियाशास्त्र (पचन, रक्ताभिसरण, उत्सर्जन, मज्जासंस्था), वनस्पती शरीरक्रियाशास्त्र, बायोटेक्नॉलॉजी व पर्यावरण.")
+    pdf.add_bullet_point("NEET भौतिकशास्त्र (१८० गुण):", "मापन पद्धती, गतीचे नियम, कार्य ऊर्जा शक्ती, उष्णता व थर्मोडायनॅमिक्स, इलेक्ट्रोस्टॅटिक्स, करंट इलेक्ट्रिसिटी, चुंबकीय परिणाम, प्रकाशशास्त्र (Ray & Wave Optics), मॉडर्न फिजिक्स व सेमीकंडक्टर.")
+    pdf.add_bullet_point("NEET रसायनशास्त्र (१८० गुण):", "भौतिक रसायनशास्त्र (मोल, थर्मोडायनॅमिक्स, इक्विलिब्रियम, इलेक्ट्रोकेमिस्ट्री), अजैविक रसायनशास्त्र (आवर्तसारणी, p, d, f ब्लॉक, कोऑर्डिनेशन), सेंद्रिय रसायनशास्त्र (हायड्रोकार्बन्स, ऑक्सिजन व नायट्रोजन संयुगे, बायोमॉलिक्युल्स).")
+    
+    pdf.add_section_title("OMR सराव व बॅच माहिती")
+    pdf.add_bullet_point("२०० प्रश्नांच्या OMR चाचण्या:", "प्रत्यक्ष परीक्षेच्या धर्तीवर ३ तास २० मिनिटांचे OMR शीट सराव सत्र.")
+    pdf.add_bullet_point("निगेटिव्ह मार्किंग नियंत्रण:", "विद्यार्थ्यांच्या चुकांचे वैयक्तिक विश्लेषण करून अचूकता वाढवणे.")
+    pdf.add_bullet_point("सुपर-२० मायक्रो-बॅच:", "एका बॅचमध्ये फक्त २० मर्यादित विद्यार्थी.")
+    pdf.add_bullet_point("फी रचना:", "रु. ६,५०० / महिना | त्रैमासिक (८% सवलत): रु. १७,९४० | वार्षिक (२०% सवलत): रु. ६२,४००")
+    pdf.add_bullet_point("संपर्क:", "सांगली शिक्षण संस्था संकुल, गणपती मंदिरा जवळ, सांगली | दूरध्वनी: +९१ ७३८५८ ०३६४१")
+    pdf.output(filepath)
+    print(f"Generated: {filepath}")
+
+
 if __name__ == '__main__':
-    # 1. Syllabus & Fee Guide
+    # 1. Combined Syllabus & Fee Guide
     generate_syllabus_en("Sangli_Shikshan_Sanstha_Class11_12_Syllabus_Guide.pdf")
     generate_syllabus_mr("Sangli_Shikshan_Sanstha_Syllabus_Guide_Marathi.pdf")
-    # Also maintain old filename for legacy link compatibility
     shutil.copy("Sangli_Shikshan_Sanstha_Class11_12_Syllabus_Guide.pdf", "Apex_Scholars_Class11_12_Syllabus_Guide.pdf")
 
-    # 2. Fee Sheet
+    # 2. Individual Course Syllabus PDFs
+    generate_course_11sci_en("Sangli_Shikshan_Sanstha_Class11_Science_Syllabus.pdf")
+    generate_course_11sci_mr("Sangli_Shikshan_Sanstha_Class11_Science_Syllabus_Marathi.pdf")
+
+    generate_course_12sci_en("Sangli_Shikshan_Sanstha_Class12_Science_Syllabus.pdf")
+    generate_course_12sci_mr("Sangli_Shikshan_Sanstha_Class12_Science_Syllabus_Marathi.pdf")
+
+    generate_course_jee_en("Sangli_Shikshan_Sanstha_JEE_Integrated_Syllabus.pdf")
+    generate_course_jee_mr("Sangli_Shikshan_Sanstha_JEE_Integrated_Syllabus_Marathi.pdf")
+
+    generate_course_neet_en("Sangli_Shikshan_Sanstha_NEET_Medical_Syllabus.pdf")
+    generate_course_neet_mr("Sangli_Shikshan_Sanstha_NEET_Medical_Syllabus_Marathi.pdf")
+
+    # 3. Fee Sheet
     generate_feesheet_en("Sangli_Shikshan_Sanstha_Official_Fee_Sheet.pdf")
     generate_feesheet_mr("Sangli_Shikshan_Sanstha_Fee_Sheet_Marathi.pdf")
     shutil.copy("Sangli_Shikshan_Sanstha_Official_Fee_Sheet.pdf", "Apex_Scholars_Official_Fee_Sheet.pdf")
 
-    # 3. Prospectus
+    # 4. Prospectus
     generate_prospectus_en("Sangli_Shikshan_Sanstha_Prospectus_2026-27.pdf")
     generate_prospectus_mr("Sangli_Shikshan_Sanstha_Prospectus_Marathi.pdf")
     shutil.copy("Sangli_Shikshan_Sanstha_Prospectus_2026-27.pdf", "Apex_Scholars_Prospectus_2026-27.pdf")
 
-    print("\nAll 6 bilingual PDFs generated successfully!")
+    print("\nAll 14 bilingual PDFs generated successfully!")

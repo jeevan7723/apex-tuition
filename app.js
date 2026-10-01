@@ -601,6 +601,34 @@ document.addEventListener('DOMContentLoaded', () => {
     }, 200);
   }
 
+  // Per-course PDF mapping
+  const coursePdfMap = {
+    '11sci': {
+      en: 'Sangli_Shikshan_Sanstha_Class11_Science_Syllabus.pdf',
+      mr: 'Sangli_Shikshan_Sanstha_Class11_Science_Syllabus_Marathi.pdf',
+      nameEn: 'Class 11th Science',
+      nameMr: 'इयत्ता ११ वी सायन्स'
+    },
+    '12sci': {
+      en: 'Sangli_Shikshan_Sanstha_Class12_Science_Syllabus.pdf',
+      mr: 'Sangli_Shikshan_Sanstha_Class12_Science_Syllabus_Marathi.pdf',
+      nameEn: 'Class 12th Science Board Booster',
+      nameMr: 'इयत्ता १२ वी सायन्स बोर्ड बूस्टर'
+    },
+    'jee': {
+      en: 'Sangli_Shikshan_Sanstha_JEE_Integrated_Syllabus.pdf',
+      mr: 'Sangli_Shikshan_Sanstha_JEE_Integrated_Syllabus_Marathi.pdf',
+      nameEn: 'Integrated JEE (Main + Advanced)',
+      nameMr: 'एकात्मिक JEE (मेन + ॲडव्हान्स)'
+    },
+    'neet': {
+      en: 'Sangli_Shikshan_Sanstha_NEET_Medical_Syllabus.pdf',
+      mr: 'Sangli_Shikshan_Sanstha_NEET_Medical_Syllabus_Marathi.pdf',
+      nameEn: 'Integrated NEET-UG Medical Super-20',
+      nameMr: 'एकात्मिक NEET-UG मेडिकल सुपर-२०'
+    }
+  };
+
   // Bilingual PDF Download Link Synchronizer
   function updateBilingualDownloadLinks(lang) {
     const isMr = lang === 'mr' || (window.SansthaI18n && window.SansthaI18n.getLanguage() === 'mr');
@@ -623,7 +651,36 @@ document.addEventListener('DOMContentLoaded', () => {
       btnPros.setAttribute('href', prospectusFile);
       btnPros.setAttribute('download', prospectusFile);
     }
+
+    // Update each individual course download link
+    document.querySelectorAll('.btn-download-course').forEach(btn => {
+      const code = btn.dataset.coursePdf;
+      const c = coursePdfMap[code];
+      if (c) {
+        const file = isMr ? c.mr : c.en;
+        btn.setAttribute('href', file);
+        btn.setAttribute('download', file);
+      }
+    });
   }
+
+  // Handle click on per-course download button
+  document.querySelectorAll('.btn-download-course').forEach(btn => {
+    btn.addEventListener('click', (e) => {
+      e.preventDefault();
+      e.stopPropagation();
+      const code = btn.dataset.coursePdf;
+      const c = coursePdfMap[code];
+      if (!c) return;
+      const isMr = window.SansthaI18n && window.SansthaI18n.getLanguage() === 'mr';
+      const file = isMr ? c.mr : c.en;
+      triggerRealDownload(file, file);
+      showToast(isMr ? `${c.nameMr} अभ्यासक्रम PDF डाउनलोड होत आहे...` : `Downloading ${c.nameEn} Syllabus PDF...`, 'info');
+      setTimeout(() => {
+        showToast(isMr ? `${c.nameMr} अभ्यासक्रम PDF यशस्वीरीत्या डाउनलोड झाली!` : `${c.nameEn} Syllabus PDF downloaded successfully!`, 'success');
+      }, 700);
+    });
+  });
 
   window.addEventListener('languageChanged', (e) => {
     const lang = (e && e.detail && e.detail.lang) || (window.SansthaI18n ? window.SansthaI18n.getLanguage() : 'en');
