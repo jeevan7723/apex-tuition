@@ -4767,23 +4767,42 @@ html[lang="mr"] .hero-title {
   }
   textarea {
     min-height: 80px;
-  }
   .form-row.two-cols {
-    grid-template-columns: 1fr;
+    grid-template-columns: minmax(0, 1fr) !important;
     gap: 1rem;
+    width: 100% !important;
+    max-width: 100% !important;
+    box-sizing: border-box !important;
   }
   .form-group label,
   .form-field label {
     font-size: 0.85rem;
+    width: 100% !important;
+    max-width: 100% !important;
+    box-sizing: border-box !important;
+    word-break: break-word;
+  }
+  .form-field {
+    width: 100% !important;
+    max-width: 100% !important;
+    min-width: 0 !important;
+    box-sizing: border-box !important;
   }
   .admission-wrapper {
-    grid-template-columns: 1fr;
+    grid-template-columns: minmax(0, 1fr) !important;
     gap: 1.5rem;
+    width: 100% !important;
+    max-width: 100% !important;
+    box-sizing: border-box !important;
+    overflow-x: clip !important;
   }
   .admission-sidebar {
     position: static !important;
     top: auto !important;
     gap: 1.25rem;
+    width: 100% !important;
+    max-width: 100% !important;
+    box-sizing: border-box !important;
   }
   .admission-sidebar h2 {
     font-size: 1.55rem;
@@ -4805,8 +4824,12 @@ html[lang="mr"] .hero-title {
     border-radius: var(--radius-md);
   }
   .admission-form-card {
-    padding: 1.25rem 1rem;
+    padding: 1.25rem 0.85rem !important;
     border-radius: var(--radius-lg);
+    width: 100% !important;
+    max-width: 100% !important;
+    box-sizing: border-box !important;
+    overflow-x: clip !important;
   }
   .form-header h3 {
     font-size: 1.25rem;
@@ -4820,8 +4843,12 @@ html[lang="mr"] .hero-title {
     margin-bottom: 1rem;
   }
   .form-row {
+    grid-template-columns: minmax(0, 1fr) !important;
     gap: 1rem;
     margin-bottom: 1rem;
+    width: 100% !important;
+    max-width: 100% !important;
+    box-sizing: border-box !important;
   }
   .study-mode-options {
     grid-template-columns: 1fr !important;
@@ -5484,6 +5511,9 @@ select optgroup {
 /* Custom Select Trigger Button */
 .custom-select-trigger {
   width: 100%;
+  max-width: 100%;
+  min-width: 0;
+  box-sizing: border-box;
   min-height: 46px;
   padding: 0.72rem 1rem;
   background: #ffffff;
@@ -5502,6 +5532,7 @@ select optgroup {
   transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
   box-shadow: 0 1px 2px rgba(15, 23, 42, 0.03);
   text-align: left;
+  overflow: hidden;
 }
 
 /* In inquiry form wrap */
@@ -5535,7 +5566,9 @@ select optgroup {
 }
 
 .custom-select-value {
-  flex: 1;
+  flex: 1 1 0%;
+  min-width: 0 !important;
+  max-width: 100%;
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
@@ -5568,12 +5601,16 @@ select optgroup {
   top: calc(100% + 6px);
   left: 0;
   right: 0;
+  width: 100%;
+  max-width: 100%;
+  box-sizing: border-box;
   background: #ffffff;
   border: 1.5px solid #cbd5e1;
   border-radius: 12px;
   box-shadow: 0 16px 36px -4px rgba(15, 23, 42, 0.18), 0 6px 14px -2px rgba(15, 23, 42, 0.08);
   max-height: 280px;
   overflow-y: auto;
+  overflow-x: hidden !important;
   z-index: 1050;
   padding: 6px;
   display: none;
@@ -5626,6 +5663,11 @@ select optgroup {
   display: flex;
   align-items: center;
   gap: 0.4rem;
+  width: 100%;
+  max-width: 100%;
+  box-sizing: border-box;
+  white-space: normal !important;
+  word-break: break-word !important;
 }
 
 .custom-select-optgroup::before {
@@ -5652,6 +5694,12 @@ select optgroup {
   transition: all 0.15s ease;
   margin: 1px 0;
   line-height: 1.35;
+  width: 100%;
+  max-width: 100%;
+  box-sizing: border-box;
+  white-space: normal !important;
+  word-break: break-word !important;
+  overflow-wrap: break-word !important;
 }
 
 .custom-select-option:hover,

@@ -156,7 +156,10 @@ document.addEventListener('DOMContentLoaded', () => {
             select.dispatchEvent(new Event('change', { bubbles: true }));
             select.dispatchEvent(new Event('input', { bubbles: true }));
             closeDropdown();
-            trigger.focus();
+            trigger.focus({ preventScroll: true });
+            if (window.scrollX > 0) {
+              window.scrollTo(0, window.scrollY);
+            }
           });
 
           dropdown.appendChild(item);
@@ -182,13 +185,19 @@ document.addEventListener('DOMContentLoaded', () => {
 
         const selected = dropdown.querySelector('.custom-select-option.is-selected');
         if (selected) {
-          selected.scrollIntoView({ block: 'nearest' });
+          dropdown.scrollTop = selected.offsetTop - dropdown.offsetTop;
+        }
+        if (window.scrollX > 0) {
+          window.scrollTo(0, window.scrollY);
         }
       }
 
       function closeDropdown() {
         wrapper.classList.remove('is-open');
         trigger.setAttribute('aria-expanded', 'false');
+        if (window.scrollX > 0) {
+          window.scrollTo(0, window.scrollY);
+        }
       }
 
       function toggleDropdown() {
@@ -202,6 +211,9 @@ document.addEventListener('DOMContentLoaded', () => {
       trigger.addEventListener('click', (e) => {
         e.stopPropagation();
         toggleDropdown();
+        if (window.scrollX > 0) {
+          window.scrollTo(0, window.scrollY);
+        }
       });
 
       trigger.addEventListener('keydown', (e) => {
@@ -226,7 +238,7 @@ document.addEventListener('DOMContentLoaded', () => {
             }
             options.forEach((o, i) => o.classList.toggle('is-focused', i === currentFocusIdx));
             if (options[currentFocusIdx]) {
-              options[currentFocusIdx].scrollIntoView({ block: 'nearest' });
+              dropdown.scrollTop = options[currentFocusIdx].offsetTop - dropdown.offsetTop;
             }
           }
         } else if (e.key === 'Escape') {
