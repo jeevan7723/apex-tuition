@@ -1641,25 +1641,25 @@ _Live Synced with Firebase Cloud Database._`;
       return;
     }
 
-    // CSV Headers
+    // CSV Headers matching Google Sheet neat order
     const headers = [
-      "Submission Date & Time",
+      "Sr. No.",
       "Application ID",
+      "Submission Date & Time",
       "Student Full Name",
-      "Date of Birth",
-      "School / College",
-      "Previous Score (%)",
-      "Academic Program",
-      "Target Board / Exam",
+      "Academic Program / Course",
+      "Target Board",
+      "Previous Score",
       "Shift Timing",
       "Study Mode",
-      "Parent Name",
-      "Parent Phone",
-      "Parent Email",
-      "Residential Locality",
+      "Parent / Guardian Name",
+      "Parent Mobile Number",
+      "Parent Email Address",
+      "Current School / College",
+      "City / Locality",
       "Student Notes / Questions",
-      "Demo Slot",
-      "Status"
+      "Trial Demo Slot",
+      "Admission Status"
     ];
 
     // CSV row formatter (escapes commas, quotes, and newlines)
@@ -1671,25 +1671,26 @@ _Live Synced with Firebase Cloud Database._`;
 
     const rows = [headers.map(escapeCsvCell).join(',')];
 
-    records.forEach(r => {
+    records.forEach((r, idx) => {
+      const cleanPhone = String(r.phone || r.parentPhone || '').replace(/[^0-9]/g, '');
       const row = [
-        r.timestamp || r.formattedDate || r.submittedAt || '',
+        idx + 1,
         r.appId || '',
+        r.timestamp || r.formattedDate || r.submittedAt || '',
         r.studentName || `${r.firstName || ''} ${r.lastName || ''}`.trim(),
-        r.dob || '',
-        r.school || '',
-        r.score ? `${r.score}%` : '',
         r.grade || '',
         r.board || '',
+        r.score ? `${r.score}%` : '',
         r.timing || '',
         r.mode || '',
         r.parent || r.parentName || '',
-        r.phone || r.parentPhone ? `\t${r.phone || r.parentPhone}` : '', // Tab prefix prevents Excel scientific notation
+        cleanPhone ? `\t${cleanPhone}` : '', // Tab prefix prevents Excel scientific notation
         r.email || r.parentEmail || '',
+        r.school || '',
         r.locality || '',
         r.message || '',
         r.demoSlot || '',
-        r.status || 'Verified'
+        r.status || 'Verified • Provisionally Held'
       ];
       rows.push(row.map(escapeCsvCell).join(','));
     });
