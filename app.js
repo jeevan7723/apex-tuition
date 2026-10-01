@@ -1198,58 +1198,6 @@ document.addEventListener('DOMContentLoaded', () => {
       if (receiptDemoSlot) receiptDemoSlot.textContent = demoStatus;
       if (receiptMessage) receiptMessage.textContent = applicationRecord.message || 'No specific questions recorded';
 
-      // ======================================================================
-      // ADMIN WHATSAPP NOTIFICATION DISPATCH (Admin No: 7385803641)
-      // ======================================================================
-      const adminWhatsApp = '917385803641';
-      const waText = 
-`*🎓 NEW ADMISSION REGISTRATION*
-*Sangli Shikshan Sanstha (Session 2026-27)*
-━━━━━━━━━━━━━━━━━━━━━
-*Application ID:* ${generatedId}
-*Date & Time:* ${formattedDate}
-
-*👤 Student Details:*
-• *Name:* ${applicationRecord.studentName}
-• *Target Grade:* ${applicationRecord.grade}
-• *Board:* ${applicationRecord.board}
-• *Previous Score:* ${applicationRecord.score}%
-• *School:* ${applicationRecord.school}
-
-*📚 Batch & Learning Mode:*
-• *Shift Timing:* ${applicationRecord.timing}
-• *Study Mode:* ${applicationRecord.mode}
-• *Fee Policy:* Standard Uniform Academy Fee (Equal for all students)
-• *Demo Class:* ${applicationRecord.demoSlot}
-
-*👨‍👩‍👧 Parent Contact:*
-• *Parent Name:* ${applicationRecord.parent}
-• *WhatsApp Number:* +91 ${applicationRecord.phone}
-• *Email:* ${applicationRecord.email}
-• *Locality:* ${applicationRecord.locality}
-
-*📝 Notes/Message:*
-${applicationRecord.message || 'No additional note'}
-━━━━━━━━━━━━━━━━━━━━━
-_Live Synced with Firebase Cloud Database._`;
-
-      const adminWaUrl = `https://wa.me/${adminWhatsApp}?text=${encodeURIComponent(waText)}`;
-
-      // Update Receipt Modal WhatsApp CTA
-      const btnReceiptWhatsApp = document.getElementById('btnReceiptWhatsApp');
-      if (btnReceiptWhatsApp) {
-        btnReceiptWhatsApp.href = adminWaUrl;
-        btnReceiptWhatsApp.target = '_blank';
-        btnReceiptWhatsApp.innerHTML = `💬 Share with Admin WhatsApp (+91 7385803641)`;
-      }
-
-      // Automatically trigger WhatsApp share to admin
-      try {
-        window.open(adminWaUrl, '_blank');
-      } catch (waErr) {
-        console.warn('Popup blocked, WhatsApp link is available on the receipt:', waErr);
-      }
-
       // Update Live Firebase & Excel Status Pill in Receipt
       const receiptCloudStatusText = document.getElementById('receiptCloudStatusText');
       const receiptCloudStatus = document.getElementById('receiptCloudStatus');

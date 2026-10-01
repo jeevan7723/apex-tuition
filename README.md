@@ -8,9 +8,9 @@ A modern, responsive web application for **Apex Scholars Academy**, an academic 
   - Live data synchronization with **Firebase Cloud Firestore** (`admissions` collection).
   - Permissive client-side validation with real-time feedback.
   - Printable official admission acknowledgment receipt with reference ID.
-- **Admin WhatsApp Notifications**:
-  - Automatic dispatch of complete student admission summaries to the Admin WhatsApp number (`+91 7385803641`).
-  - 1-click WhatsApp forward button on the admission receipt modal.
+- **Google Sheets & Excel Cloud Sync**:
+  - Automatic live synchronization of all student admission records to Google Sheets and Excel.
+  - One-click parent contact buttons and clean automated tracking.
 - **Interactive Tuition Fee Calculator**:
   - Configurable by Grade (Class 11/12), Stream (Science/Commerce), Subject package, and Billing cycle (Monthly, Quarterly, Annual).
   - Strict uniform fee policy — equal pricing for all students.
