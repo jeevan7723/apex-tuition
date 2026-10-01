@@ -500,7 +500,11 @@ const marathiDictionary = {
   "Reset Form": "अर्ज पूर्ववत करा",
   "Residential Area / City Locality": "रहिवासी पत्ता / परिसर / शहर",
   "Rohan K. Verma": "रोहन के. वर्मा",
+  "SANGLI SHIKSHAN SANSTHA": "सांगली शिक्षण संस्था",
   "Sangli Shikshan Sanstha": "सांगली शिक्षण संस्था",
+  "Estd. 1919 • Junior College & Tuition": "स्थापना १९१९ • कनिष्ठ महाविद्यालय व ट्युशन",
+  "सांगली शिक्षण संस्था • Estd. 1919": "स्थापना १९१९ • कनिष्ठ महाविद्यालय व ट्युशन",
+  "Estd. 1919": "स्थापना १९१९",
   "Sangli Shikshan Sanstha Fee Quotation": "सांगली शिक्षण संस्था फी अंदाजपत्रक",
   "Sangli Shikshan Sanstha | Tuition & Coaching Admissions 2026-27": "सांगली शिक्षण संस्था | ट्युशन व कोचिंग प्रवेश २०२६-२७",
   "Save or print this receipt for your records. Quote your Application ID for any inquiries.": "ही पावती जतन करा किंवा प्रिंट काढा. चौकशीसाठी तुमचा अर्ज क्रमांक नमूद करा.",
@@ -605,7 +609,6 @@ const marathiDictionary = {
   "Tuition Programs": "ट्युशन अभ्यासक्रम",
   "Tuition Programs & Courses": "अभ्यासक्रम व कोर्सेस",
   "Tuition Subject Package:": "विषय पॅकेज निवडा:",
-  "Tuition Tuition Fee Calculator": "ट्युशन फी कॅल्क्युलेटर",
   "Unlock High Scores With": "मिळवा सर्वोच्च गुण ",
   "Visit Our Learning Center": "आमच्या शिक्षण केंद्राला भेट द्या",
   "We conduct a complimentary, low-pressure 45-minute diagnostic evaluation test. Rather than ranking students, this test identifies root conceptual gaps in Mathematics, Science, and analytical reasoning from previous academic years.": "आम्ही ४५ मिनिटांची विनामूल्य पूर्वचाचणी घेतो. विद्यार्थ्यांना रँक देण्याऐवजी, गणित, विज्ञान आणि तर्कशुद्ध विचारांमधील मूलभूत त्रुटी शोधणे हा या चाचणीचा मुख्य उद्देश आहे.",
@@ -760,8 +763,11 @@ function normalizeText(str) {
 
 // Build pre-normalized lookup map for fast, infallible matching
 const normalizedDict = {};
+const lowerDict = {};
 for (const [k, v] of Object.entries(marathiDictionary)) {
-  normalizedDict[normalizeText(k)] = v;
+  const norm = normalizeText(k);
+  normalizedDict[norm] = v;
+  lowerDict[norm.toLowerCase()] = v;
 }
 
 function lookupTranslation(text) {
@@ -769,6 +775,8 @@ function lookupTranslation(text) {
   if (marathiDictionary[text]) return marathiDictionary[text];
   const norm = normalizeText(text);
   if (normalizedDict[norm]) return normalizedDict[norm];
+  const lower = norm.toLowerCase();
+  if (lowerDict[lower]) return lowerDict[lower];
   return null;
 }
 
