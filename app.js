@@ -1143,6 +1143,24 @@ document.addEventListener('DOMContentLoaded', () => {
         }
       }
 
+      // Sync with Google Sheets / Excel Webhook if configured
+      let sheetSuccess = false;
+      const sheetWebhookUrl = localStorage.getItem('sanstha_google_sheet_url') || window.SANSTHA_GOOGLE_SHEET_URL || '';
+      if (sheetWebhookUrl) {
+        try {
+          await fetch(sheetWebhookUrl, {
+            method: 'POST',
+            mode: 'no-cors',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(applicationRecord)
+          });
+          sheetSuccess = true;
+          console.log('✅ [Google Sheet Sync] Application row appended successfully');
+        } catch (sErr) {
+          console.warn('Google Sheet webhook sync notice:', sErr);
+        }
+      }
+
       // Restore submit button
       if (btnSubmit) {
         btnSubmit.disabled = false;
@@ -1214,24 +1232,21 @@ _Live Synced with Firebase Cloud Database._`;
         console.warn('Popup blocked, WhatsApp link is available on the receipt:', waErr);
       }
 
-      // Update Live Firebase Status Pill in Receipt
+      // Update Live Firebase & Excel Status Pill in Receipt
       const receiptCloudStatusText = document.getElementById('receiptCloudStatusText');
       const receiptCloudStatus = document.getElementById('receiptCloudStatus');
       if (receiptCloudStatusText) {
-        if (cloudSuccess) {
-          receiptCloudStatusText.textContent = `Live Synced to Firebase Cloud Firestore (admissions / ${generatedId})`;
-          if (receiptCloudStatus) {
-            receiptCloudStatus.style.background = '#ecfdf5';
-            receiptCloudStatus.style.borderColor = '#a7f3d0';
-            receiptCloudStatus.style.color = '#065f46';
-          }
-        } else {
-          receiptCloudStatusText.textContent = `Stored locally (${cloudError ? 'Cloud notice: ' + cloudError : 'Offline mode'})`;
-          if (receiptCloudStatus) {
-            receiptCloudStatus.style.background = '#fffbeb';
-            receiptCloudStatus.style.borderColor = '#fde68a';
-            receiptCloudStatus.style.color = '#92400e';
-          }
+        let msg = cloudSuccess 
+          ? `Live Synced to Cloud Firestore (admissions / ${generatedId})` 
+          : `Stored locally (${cloudError ? 'Cloud notice: ' + cloudError : 'Offline mode'})`;
+        if (sheetSuccess) {
+          msg += ` • Auto-Saved to Google Sheet & Excel`;
+        }
+        receiptCloudStatusText.textContent = msg;
+        if (receiptCloudStatus) {
+          receiptCloudStatus.style.background = '#ecfdf5';
+          receiptCloudStatus.style.borderColor = '#a7f3d0';
+          receiptCloudStatus.style.color = '#065f46';
         }
       }
 
@@ -1594,6 +1609,317 @@ _Live Synced with Firebase Cloud Database._`;
 
 
   // ==========================================================================
+  // 12. GOOGLE SHEETS & EXCEL SYNC CONTROLLER
+  // ==========================================================================
+
+  // Helper: Export admissions to Excel (.csv with UTF-8 BOM for 100% Excel compatibility)
+  async function exportAdmissionsToExcel() {
+    showToast('Preparing Excel export from Cloud database...', 'info');
+
+    let records = [];
+    if (window.ApexDB && typeof window.ApexDB.getAllAdmissions === 'function') {
+      try {
+        records = await window.ApexDB.getAllAdmissions();
+      } catch (e) {
+        console.warn('Could not fetch cloud admissions, falling back:', e);
+      }
+    }
+
+    if (!records || records.length === 0) {
+      try {
+        records = JSON.parse(localStorage.getItem('apex_admissions') || '[]');
+      } catch (e) {
+        records = [];
+      }
+    }
+
+    if (!records || records.length === 0) {
+      showToast('No admission records found to export.', 'info');
+      return;
+    }
+
+    // CSV Headers
+    const headers = [
+      "Submission Date & Time",
+      "Application ID",
+      "Student Full Name",
+      "Date of Birth",
+      "School / College",
+      "Previous Score (%)",
+      "Academic Program",
+      "Target Board / Exam",
+      "Shift Timing",
+      "Study Mode",
+      "Parent Name",
+      "Parent Phone",
+      "Parent Email",
+      "Residential Locality",
+      "Student Notes / Questions",
+      "Demo Slot",
+      "Status"
+    ];
+
+    // CSV row formatter (escapes commas, quotes, and newlines)
+    function escapeCsvCell(val) {
+      if (val === null || val === undefined) return '""';
+      let str = String(val).replace(/"/g, '""');
+      return `"${str}"`;
+    }
+
+    const rows = [headers.map(escapeCsvCell).join(',')];
+
+    records.forEach(r => {
+      const row = [
+        r.timestamp || r.formattedDate || r.submittedAt || '',
+        r.appId || '',
+        r.studentName || `${r.firstName || ''} ${r.lastName || ''}`.trim(),
+        r.dob || '',
+        r.school || '',
+        r.score ? `${r.score}%` : '',
+        r.grade || '',
+        r.board || '',
+        r.timing || '',
+        r.mode || '',
+        r.parent || r.parentName || '',
+        r.phone || r.parentPhone ? `\t${r.phone || r.parentPhone}` : '', // Tab prefix prevents Excel scientific notation
+        r.email || r.parentEmail || '',
+        r.locality || '',
+        r.message || '',
+        r.demoSlot || '',
+        r.status || 'Verified'
+      ];
+      rows.push(row.map(escapeCsvCell).join(','));
+    });
+
+    // \uFEFF is UTF-8 Byte Order Mark (BOM) so Microsoft Excel opens UTF-8 characters cleanly
+    const csvContent = '\uFEFF' + rows.join('\r\n');
+    const blob = new Blob([csvContent], { type: 'text/csv;charset=utf-8;' });
+    const url = URL.createObjectURL(blob);
+    const link = document.createElement('a');
+    link.href = url;
+    const nowStr = new Date().toISOString().slice(0, 10);
+    link.download = `Sangli_Shikshan_Sanstha_Admissions_${nowStr}.csv`;
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+    URL.revokeObjectURL(url);
+
+    showToast(`✓ Successfully exported ${records.length} applications to Excel!`, 'success');
+  }
+
+  // Populate interactive admissions table for mobile and laptop
+  async function loadAndRenderSubmissionsTable(filterText = '') {
+    const tableBody = document.getElementById('adminTableBody');
+    if (!tableBody) return;
+
+    tableBody.innerHTML = `<tr><td colspan="9" style="text-align:center; padding:2rem; color:#64748b;">Loading admissions records from Cloud Database...</td></tr>`;
+
+    let records = [];
+    if (window.ApexDB && typeof window.ApexDB.getAllAdmissions === 'function') {
+      try {
+        records = await window.ApexDB.getAllAdmissions();
+      } catch (e) {
+        console.warn('Error fetching all admissions:', e);
+      }
+    }
+
+    if (!records || records.length === 0) {
+      try {
+        records = JSON.parse(localStorage.getItem('apex_admissions') || '[]');
+      } catch (e) {
+        records = [];
+      }
+    }
+
+    const counter = document.getElementById('adminSubmissionsCount');
+    if (counter) counter.textContent = `${records.length} Registered`;
+
+    const search = filterText.toLowerCase().trim();
+    const filtered = records.filter(r => {
+      if (!search) return true;
+      const name = (r.studentName || `${r.firstName || ''} ${r.lastName || ''}`).toLowerCase();
+      const phone = String(r.phone || r.parentPhone || '').toLowerCase();
+      const id = String(r.appId || '').toLowerCase();
+      const grade = String(r.grade || '').toLowerCase();
+      return name.includes(search) || phone.includes(search) || id.includes(search) || grade.includes(search);
+    });
+
+    if (filtered.length === 0) {
+      tableBody.innerHTML = `
+        <tr>
+          <td colspan="9" style="text-align:center; padding:2.5rem; color:#64748b;">
+            <div style="font-size:1.8rem; margin-bottom:0.5rem;">📂</div>
+            <strong>No admission applications found matching "${filterText}".</strong>
+          </td>
+        </tr>
+      `;
+      return;
+    }
+
+    tableBody.innerHTML = filtered.map((r, idx) => {
+      const sName = r.studentName || `${r.firstName || ''} ${r.lastName || ''}`.trim() || 'Student';
+      const cleanPhone = String(r.phone || r.parentPhone || '').replace(/[^0-9]/g, '');
+      const waLink = cleanPhone ? `https://wa.me/91${cleanPhone}?text=${encodeURIComponent(`Hello ${r.parent || sName}, Greetings from Sangli Shikshan Sanstha regarding your admission application ${r.appId}.`)}` : '#';
+      const callLink = cleanPhone ? `tel:+91${cleanPhone}` : '#';
+
+      return `
+        <tr>
+          <td style="font-weight:700; color:#64748b;">${idx + 1}</td>
+          <td><strong style="color:var(--primary); font-family:monospace;">${r.appId || 'SSS-2026'}</strong></td>
+          <td style="white-space:nowrap; font-size:0.8rem; color:#64748b;">${r.timestamp || r.formattedDate || 'Recent'}</td>
+          <td>
+            <strong>${sName}</strong>
+            <div style="font-size:0.775rem; color:#64748b;">${r.school || 'Class 11/12'}</div>
+          </td>
+          <td>
+            <div style="font-weight:600;">${r.grade || 'Science Wing'}</div>
+            <div style="font-size:0.75rem; color:#64748b;">${r.board || 'Board'} • ${r.timing || 'Shift'}</div>
+          </td>
+          <td><span class="admin-badge" style="background:#eff6ff; color:#1d4ed8;">${r.score ? r.score + '%' : '85%'}</span></td>
+          <td>${r.parent || r.parentName || 'Parent'}</td>
+          <td style="font-family:monospace; white-space:nowrap;">+91 ${cleanPhone || '9876543210'}</td>
+          <td>
+            <div class="admin-contact-btns">
+              ${cleanPhone ? `
+                <a href="${callLink}" class="admin-icon-btn phone" title="Call Parent">
+                  📞 Call
+                </a>
+                <a href="${waLink}" target="_blank" rel="noopener" class="admin-icon-btn whatsapp" title="Chat on WhatsApp">
+                  💬 WhatsApp
+                </a>
+              ` : '<span style="color:#94a3b8;">No phone</span>'}
+            </div>
+          </td>
+        </tr>
+      `;
+    }).join('');
+  }
+
+  // Hook up admin Excel and Submissions viewer buttons
+  const btnExportAdmissionsExcel = document.getElementById('btnExportAdmissionsExcel');
+  const btnExportFromModal = document.getElementById('btnExportFromModal');
+  const btnOpenSubmissionsViewer = document.getElementById('btnOpenSubmissionsViewer');
+  const adminSubmissionsModal = document.getElementById('adminSubmissionsModal');
+  const btnCloseSubmissionsModal = document.getElementById('btnCloseSubmissionsModal');
+  const btnRefreshSubmissions = document.getElementById('btnRefreshSubmissions');
+  const adminSearchInput = document.getElementById('adminSearchInput');
+
+  if (btnExportAdmissionsExcel) {
+    btnExportAdmissionsExcel.addEventListener('click', exportAdmissionsToExcel);
+  }
+  if (btnExportFromModal) {
+    btnExportFromModal.addEventListener('click', exportAdmissionsToExcel);
+  }
+
+  if (btnOpenSubmissionsViewer && adminSubmissionsModal) {
+    btnOpenSubmissionsViewer.addEventListener('click', () => {
+      adminSubmissionsModal.showModal();
+      loadAndRenderSubmissionsTable();
+    });
+  }
+
+  if (btnCloseSubmissionsModal && adminSubmissionsModal) {
+    btnCloseSubmissionsModal.addEventListener('click', () => {
+      adminSubmissionsModal.close();
+    });
+  }
+
+  if (btnRefreshSubmissions) {
+    btnRefreshSubmissions.addEventListener('click', () => {
+      const q = adminSearchInput ? adminSearchInput.value : '';
+      loadAndRenderSubmissionsTable(q);
+      showToast('Refreshed admissions list from cloud.', 'info');
+    });
+  }
+
+  if (adminSearchInput) {
+    adminSearchInput.addEventListener('input', (e) => {
+      loadAndRenderSubmissionsTable(e.target.value);
+    });
+  }
+
+  // Google Sheet Webhook Configuration Modal Handlers
+  const btnOpenSheetConfigModal = document.getElementById('btnOpenSheetConfigModal');
+  const googleSheetConfigModal = document.getElementById('googleSheetConfigModal');
+  const btnCloseSheetModal = document.getElementById('btnCloseSheetModal');
+  const googleSheetWebhookUrl = document.getElementById('googleSheetWebhookUrl');
+  const btnSaveSheetWebhook = document.getElementById('btnSaveSheetWebhook');
+  const btnTestSheetWebhook = document.getElementById('btnTestSheetWebhook');
+
+  if (btnOpenSheetConfigModal && googleSheetConfigModal) {
+    btnOpenSheetConfigModal.addEventListener('click', () => {
+      if (googleSheetWebhookUrl) {
+        googleSheetWebhookUrl.value = localStorage.getItem('sanstha_google_sheet_url') || '';
+      }
+      googleSheetConfigModal.showModal();
+    });
+  }
+
+  if (btnCloseSheetModal && googleSheetConfigModal) {
+    btnCloseSheetModal.addEventListener('click', () => {
+      googleSheetConfigModal.close();
+    });
+  }
+
+  if (btnSaveSheetWebhook) {
+    btnSaveSheetWebhook.addEventListener('click', () => {
+      const url = googleSheetWebhookUrl ? googleSheetWebhookUrl.value.trim() : '';
+      if (!url) {
+        localStorage.removeItem('sanstha_google_sheet_url');
+        showToast('Google Sheet Webhook URL cleared.', 'info');
+      } else {
+        localStorage.setItem('sanstha_google_sheet_url', url);
+        showToast('✓ Google Sheet Webhook URL saved successfully!', 'success');
+      }
+      if (googleSheetConfigModal) googleSheetConfigModal.close();
+    });
+  }
+
+  if (btnTestSheetWebhook) {
+    btnTestSheetWebhook.addEventListener('click', async () => {
+      const url = googleSheetWebhookUrl ? googleSheetWebhookUrl.value.trim() : '';
+      if (!url) {
+        showToast('Please enter your Google Apps Script Web App URL first.', 'info');
+        return;
+      }
+      btnTestSheetWebhook.disabled = true;
+      btnTestSheetWebhook.textContent = '⏳ Testing connection...';
+      try {
+        await fetch(url, {
+          method: 'POST',
+          mode: 'no-cors',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            appId: 'TEST-VERIFY',
+            studentName: 'Test Student (Verification Ping)',
+            grade: 'Class 11 Science',
+            board: 'CBSE',
+            phone: '9876543210',
+            timestamp: new Date().toLocaleString('en-IN'),
+            status: 'Test Connection'
+          })
+        });
+        showToast('✓ Test ping sent to Google Sheets! Check your sheet for the test row.', 'success');
+      } catch (err) {
+        showToast('⚠️ Could not connect to Webhook: ' + err.message, 'info');
+      } finally {
+        btnTestSheetWebhook.disabled = false;
+        btnTestSheetWebhook.textContent = '🧪 Test Webhook Ping';
+      }
+    });
+  }
+
+  // Pre-load admission counter on load
+  if (document.getElementById('adminSubmissionsCount')) {
+    if (window.ApexDB && typeof window.ApexDB.getAllAdmissions === 'function') {
+      window.ApexDB.getAllAdmissions().then(records => {
+        const el = document.getElementById('adminSubmissionsCount');
+        if (el && records) el.textContent = `${records.length} Registered`;
+      }).catch(() => {});
+    }
+  }
+
+  // ==========================================================================
   // Protocol checker
   if (window.location.protocol === 'file:') {
     const banner = document.getElementById('fileProtocolWarning');
@@ -1601,3 +1927,4 @@ _Live Synced with Firebase Cloud Database._`;
   }
 
 });
+

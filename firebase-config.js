@@ -256,6 +256,34 @@ window.SansthaDB = window.ApexDB = {
     return null;
   },
 
+  // Fetch all admissions from Cloud Firestore for Excel export and admin view
+  async getAllAdmissions() {
+    try {
+      const url = `${FIRESTORE_BASE_URL}/admissions?pageSize=300&key=${firebaseConfig.apiKey}`;
+      const res = await fetch(url);
+      if (res.ok) {
+        const data = await res.json();
+        if (data && data.documents && data.documents.length > 0) {
+          return data.documents.map(doc => {
+            const fields = fromFirestoreFields(doc.fields);
+            return {
+              ...fields,
+              firestoreDocId: doc.name.split('/').pop()
+            };
+          });
+        }
+      }
+    } catch (e) {
+      console.warn("Could not fetch cloud admissions:", e);
+    }
+    // Fallback to local storage
+    try {
+      return JSON.parse(localStorage.getItem('apex_admissions') || '[]');
+    } catch (e) {
+      return [];
+    }
+  },
+
   // Save Book Demo Class request to 'demo_requests' collection
   async saveDemoRequest(demoData) {
     const payload = {

@@ -461,6 +461,66 @@
       </div>
     </section>
 
+    <!-- ADMIN & EXCEL SYNCHRONIZATION MANAGEMENT SECTION -->
+    <section class="section-padded admin-excel-section" id="adminExcelPanel">
+      <div class="container">
+        <div class="admin-excel-card">
+          <div class="admin-excel-header">
+            <div class="admin-excel-badge">
+              <span>📊 Real-Time Excel & Google Sheets Synchronization</span>
+            </div>
+            <h2 class="admin-excel-title">
+              Admissions Spreadsheet & Records Console
+            </h2>
+            <p class="admin-excel-subtitle">
+              Every admission submitted above is automatically stored in the cloud. Access, view, and export all student registrations instantly on your laptop or mobile phone.
+            </p>
+          </div>
+
+          <div class="admin-excel-grid">
+            <!-- Card 1: Instant Excel Download -->
+            <div class="admin-action-card">
+              <div class="action-card-icon" style="background:#dbeafe; color:#1d4ed8;">📥</div>
+              <div class="action-card-body">
+                <h3>Direct Excel Download (.xlsx / .csv)</h3>
+                <p>Download all submitted admission records instantly as an Excel spreadsheet to open on your laptop or mobile phone.</p>
+                <button type="button" class="btn btn-primary w-100" id="btnExportAdmissionsExcel">
+                  <span>📊 Download Excel Sheet</span>
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
+                </button>
+              </div>
+            </div>
+
+            <!-- Card 2: Interactive Submissions Viewer (Laptop & Mobile) -->
+            <div class="admin-action-card">
+              <div class="action-card-icon" style="background:#fef3c7; color:#b45309;">👁️</div>
+              <div class="action-card-body">
+                <h3>Live Submissions Viewer</h3>
+                <p>View, search, and call applicants directly from an interactive live table on any mobile phone or computer.</p>
+                <button type="button" class="btn btn-secondary w-100" id="btnOpenSubmissionsViewer">
+                  <span>📋 View All Applications</span>
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path><circle cx="12" cy="12" r="3"></circle></svg>
+                </button>
+              </div>
+            </div>
+
+            <!-- Card 3: Google Sheets Live Sync Setup -->
+            <div class="admin-action-card">
+              <div class="action-card-icon" style="background:#d1fae5; color:#047857;">🟢</div>
+              <div class="action-card-body">
+                <h3>Google Sheets Auto-Sync</h3>
+                <p>Connect your personal Google Sheet so every new submission appends a new row in real-time to your mobile sheet.</p>
+                <button type="button" class="btn btn-outline w-100" id="btnOpenSheetConfigModal" style="border-color:#10b981; color:#065f46; font-weight:700;">
+                  <span>⚙️ Configure Google Sheet</span>
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"></circle><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"></path></svg>
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
   </main>
 
   <!-- FOOTER -->
@@ -475,7 +535,7 @@
           </div>
         </div>
         <p class="footer-desc">
-          Premier tuition and academic excellence center exclusively for Classes 11th & 12th (Science & Commerce Wings) and competitive examination prep in Sangli, Maharashtra.
+          Premier tuition and academic excellence center exclusively for Classes 11th & 12th (Science Wing) and competitive examination prep in Sangli, Maharashtra.
         </p>
         <div class="sanstha-trust-badge">
           🏛️ <strong>A Century of Academic Trust (1919 - 2026)</strong>
@@ -622,6 +682,96 @@
         </a>
         <button class="btn btn-primary" id="btnCloseReceipt">
           Done & Close
+        </button>
+      </div>
+    </div>
+  </dialog>
+
+  <!-- MODAL: LIVE SUBMISSIONS VIEWER (EXCEL / SPREADSHEET MANAGER) -->
+  <dialog id="adminSubmissionsModal" class="admin-submissions-dialog">
+    <div class="admin-modal-container">
+      <div class="admin-modal-header">
+        <div>
+          <h3>📋 Registered Student Admissions</h3>
+          <p>Live sync from Cloud Database & Local Storage • Click Export to get Excel (.csv)</p>
+        </div>
+        <button type="button" class="btn btn-sm btn-outline" id="btnCloseSubmissionsModal" style="color:#ffffff; border-color:rgba(255,255,255,0.3); font-size:1.1rem; padding:0.25rem 0.6rem;">✕</button>
+      </div>
+
+      <div class="admin-modal-body">
+        <div class="admin-controls-bar">
+          <div class="admin-search-wrap">
+            <span class="admin-search-icon">🔍</span>
+            <input type="text" id="adminSearchInput" class="admin-search-input" placeholder="Search by student name, phone number, or Application ID...">
+          </div>
+          <div style="display:flex; gap:0.5rem;">
+            <button type="button" class="btn btn-sm btn-primary" id="btnExportFromModal">
+              📊 Export to Excel
+            </button>
+            <button type="button" class="btn btn-sm btn-outline" id="btnRefreshSubmissions">
+              🔄 Refresh List
+            </button>
+          </div>
+        </div>
+
+        <div class="admin-table-wrap">
+          <table class="admin-table" id="adminSubmissionsTable">
+            <thead>
+              <tr>
+                <th>#</th>
+                <th>App ID</th>
+                <th>Submission Date</th>
+                <th>Student Full Name</th>
+                <th>Grade & Board</th>
+                <th>Previous %</th>
+                <th>Parent Name</th>
+                <th>Mobile Number</th>
+                <th>Direct Actions</th>
+              </tr>
+            </thead>
+            <tbody id="adminTableBody">
+              <tr>
+                <td colspan="9" style="text-align:center; padding:2rem; color:#64748b;">
+                  Loading admissions records...
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </dialog>
+
+  <!-- MODAL: GOOGLE SHEETS LIVE SYNC CONFIGURATION -->
+  <dialog id="googleSheetConfigModal" class="styled-dialog" style="max-width:600px;">
+    <div class="modal-box">
+      <div class="modal-head">
+        <div>
+          <span class="badge-gold">Live Cloud Sync</span>
+          <h3>Google Sheets & Excel Setup</h3>
+          <p class="modal-subtitle">Automatically push every form submission to your personal Google Sheet in real time.</p>
+        </div>
+        <button type="button" class="modal-close-btn" id="btnCloseSheetModal" aria-label="Close">✕</button>
+      </div>
+
+      <div style="margin-bottom:1.25rem; font-size:0.875rem; color:#334155; line-height:1.6;">
+        <p><strong>Step 1:</strong> Open your Google Sheet &gt; <em>Extensions &gt; Apps Script</em>.</p>
+        <p><strong>Step 2:</strong> Paste the code from <code>google-sheet-script.gs</code> and click <em>Deploy as Web App</em> (Access: Anyone).</p>
+        <p><strong>Step 3:</strong> Paste your Web App URL below:</p>
+      </div>
+
+      <div class="form-field" style="margin-bottom:1.25rem;">
+        <label for="googleSheetWebhookUrl">Google Apps Script Web App URL</label>
+        <input type="url" id="googleSheetWebhookUrl" placeholder="https://script.google.com/macros/s/.../exec" style="font-family:monospace; font-size:0.85rem;">
+        <span class="field-hint">Stored securely in your local browser settings.</span>
+      </div>
+
+      <div style="display:flex; justify-content:space-between; gap:0.75rem; flex-wrap:wrap;">
+        <button type="button" class="btn btn-outline" id="btnTestSheetWebhook">
+          🧪 Test Webhook Ping
+        </button>
+        <button type="button" class="btn btn-primary" id="btnSaveSheetWebhook">
+          💾 Save & Connect
         </button>
       </div>
     </div>
