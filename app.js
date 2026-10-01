@@ -6,6 +6,9 @@
 
 document.addEventListener('DOMContentLoaded', () => {
 
+  // Default Google Sheets Webhook URL for Sangli Shikshan Sanstha
+  const DEFAULT_GOOGLE_SHEET_URL = "https://script.google.com/macros/s/AKfycbyddYRf45qYdqHieYHN5Hmf7XDHzN77z-XrSQvDvP5yLK-KP4YiUueCfk4_JKoSp9Lu/exec";
+
   // ==========================================================================
   // URL QUERY PARAMETER PREFILL HANDLER (e.g. admission.html?grade=...&course=...)
   // ==========================================================================
@@ -1145,17 +1148,17 @@ document.addEventListener('DOMContentLoaded', () => {
 
       // Sync with Google Sheets / Excel Webhook if configured
       let sheetSuccess = false;
-      const sheetWebhookUrl = localStorage.getItem('sanstha_google_sheet_url') || window.SANSTHA_GOOGLE_SHEET_URL || '';
+      const sheetWebhookUrl = localStorage.getItem('sanstha_google_sheet_url') || DEFAULT_GOOGLE_SHEET_URL;
       if (sheetWebhookUrl) {
         try {
           await fetch(sheetWebhookUrl, {
             method: 'POST',
             mode: 'no-cors',
-            headers: { 'Content-Type': 'application/json' },
+            headers: { 'Content-Type': 'text/plain;charset=utf-8' },
             body: JSON.stringify(applicationRecord)
           });
           sheetSuccess = true;
-          console.log('✅ [Google Sheet Sync] Application row appended successfully');
+          console.log('✅ [Google Sheet Sync] Application row appended successfully to Google Sheets');
         } catch (sErr) {
           console.warn('Google Sheet webhook sync notice:', sErr);
         }
@@ -1849,7 +1852,7 @@ _Live Synced with Firebase Cloud Database._`;
   if (btnOpenSheetConfigModal && googleSheetConfigModal) {
     btnOpenSheetConfigModal.addEventListener('click', () => {
       if (googleSheetWebhookUrl) {
-        googleSheetWebhookUrl.value = localStorage.getItem('sanstha_google_sheet_url') || '';
+        googleSheetWebhookUrl.value = localStorage.getItem('sanstha_google_sheet_url') || DEFAULT_GOOGLE_SHEET_URL;
       }
       googleSheetConfigModal.showModal();
     });
@@ -1888,7 +1891,7 @@ _Live Synced with Firebase Cloud Database._`;
         await fetch(url, {
           method: 'POST',
           mode: 'no-cors',
-          headers: { 'Content-Type': 'application/json' },
+          headers: { 'Content-Type': 'text/plain;charset=utf-8' },
           body: JSON.stringify({
             appId: 'TEST-VERIFY',
             studentName: 'Test Student (Verification Ping)',
