@@ -601,6 +601,41 @@ document.addEventListener('DOMContentLoaded', () => {
     }, 200);
   }
 
+  // Bilingual PDF Download Link Synchronizer
+  function updateBilingualDownloadLinks(lang) {
+    const isMr = lang === 'mr' || (window.SansthaI18n && window.SansthaI18n.getLanguage() === 'mr');
+    const syllabusFile = isMr ? 'Sangli_Shikshan_Sanstha_Syllabus_Guide_Marathi.pdf' : 'Sangli_Shikshan_Sanstha_Class11_12_Syllabus_Guide.pdf';
+    const feeFile = isMr ? 'Sangli_Shikshan_Sanstha_Fee_Sheet_Marathi.pdf' : 'Sangli_Shikshan_Sanstha_Official_Fee_Sheet.pdf';
+    const prospectusFile = isMr ? 'Sangli_Shikshan_Sanstha_Prospectus_Marathi.pdf' : 'Sangli_Shikshan_Sanstha_Prospectus_2026-27.pdf';
+
+    const btnSyllabus = document.getElementById('btnDownloadSyllabusAction');
+    if (btnSyllabus) {
+      btnSyllabus.setAttribute('href', syllabusFile);
+      btnSyllabus.setAttribute('download', syllabusFile);
+    }
+    const btnFee = document.getElementById('btnFeeSheetDownload');
+    if (btnFee) {
+      btnFee.setAttribute('href', feeFile);
+      btnFee.setAttribute('download', feeFile);
+    }
+    const btnPros = document.getElementById('btnDownloadProspectus');
+    if (btnPros) {
+      btnPros.setAttribute('href', prospectusFile);
+      btnPros.setAttribute('download', prospectusFile);
+    }
+  }
+
+  window.addEventListener('languageChanged', (e) => {
+    const lang = (e && e.detail && e.detail.lang) || (window.SansthaI18n ? window.SansthaI18n.getLanguage() : 'en');
+    updateBilingualDownloadLinks(lang);
+  });
+
+  // Initial sync once DOM ready
+  setTimeout(() => {
+    const initialLang = window.SansthaI18n ? window.SansthaI18n.getLanguage() : 'en';
+    updateBilingualDownloadLinks(initialLang);
+  }, 100);
+
   // ==========================================================================
   // 3C. SYLLABUS & FEE GUIDE MODAL HANDLER
   // ==========================================================================
@@ -625,11 +660,14 @@ document.addEventListener('DOMContentLoaded', () => {
 
   if (btnDownloadSyllabusAction) {
     btnDownloadSyllabusAction.addEventListener('click', (e) => {
-      triggerRealDownload('Apex_Scholars_Class11_12_Syllabus_Guide.pdf', 'Apex_Scholars_Class11_12_Syllabus_Guide.pdf');
-      showToast('Downloading official 2026-27 Syllabus & Curriculum Guide PDF...', 'info');
+      e.preventDefault();
+      const isMr = window.SansthaI18n && window.SansthaI18n.getLanguage() === 'mr';
+      const file = isMr ? 'Sangli_Shikshan_Sanstha_Syllabus_Guide_Marathi.pdf' : 'Sangli_Shikshan_Sanstha_Class11_12_Syllabus_Guide.pdf';
+      triggerRealDownload(file, file);
+      showToast(isMr ? 'सांगली शिक्षण संस्था अभ्यासक्रम व फी मार्गदर्शक (मराठी) PDF डाउनलोड होत आहे...' : 'Downloading Sangli Shikshan Sanstha Syllabus & Curriculum Guide PDF...', 'info');
       setTimeout(() => {
         if (syllabusModal) syllabusModal.close();
-        showToast('Complete Syllabus & Fee Guide downloaded successfully!', 'success');
+        showToast(isMr ? 'अभ्यासक्रम व फी मार्गदर्शक यशस्वीरीत्या डाउनलोड झाले!' : 'Complete Syllabus & Fee Guide downloaded successfully!', 'success');
       }, 800);
     });
   }
@@ -679,10 +717,13 @@ document.addEventListener('DOMContentLoaded', () => {
 
   if (btnFeeSheetDownload) {
     btnFeeSheetDownload.addEventListener('click', (e) => {
-      triggerRealDownload('Apex_Scholars_Official_Fee_Sheet.pdf', 'Apex_Scholars_Official_Fee_Sheet.pdf');
-      showToast(`Downloading official fee sheet for ${activeFeeSheetCourse}...`, 'info');
+      e.preventDefault();
+      const isMr = window.SansthaI18n && window.SansthaI18n.getLanguage() === 'mr';
+      const file = isMr ? 'Sangli_Shikshan_Sanstha_Fee_Sheet_Marathi.pdf' : 'Sangli_Shikshan_Sanstha_Official_Fee_Sheet.pdf';
+      triggerRealDownload(file, file);
+      showToast(isMr ? 'अधिकृत फी वेळापत्रक (मराठी) PDF डाउनलोड होत आहे...' : `Downloading official fee sheet for ${activeFeeSheetCourse}...`, 'info');
       setTimeout(() => {
-        showToast('Official Fee Sheet PDF downloaded successfully!', 'success');
+        showToast(isMr ? 'अधिकृत फी वेळापत्रक PDF यशस्वीरीत्या डाउनलोड झाले!' : 'Official Fee Sheet PDF downloaded successfully!', 'success');
       }, 800);
     });
   }
@@ -1457,10 +1498,13 @@ _Live Synced with Firebase Cloud Database._`;
   const btnDownloadProspectus = document.getElementById('btnDownloadProspectus');
   if (btnDownloadProspectus) {
     btnDownloadProspectus.addEventListener('click', (e) => {
-      triggerRealDownload('Apex_Scholars_Prospectus_2026-27.pdf', 'Apex_Scholars_Prospectus_2026-27.pdf');
-      showToast('Downloading Sangli Shikshan Sanstha 2026-27 Prospectus & Fee Structure PDF...', 'info');
+      e.preventDefault();
+      const isMr = window.SansthaI18n && window.SansthaI18n.getLanguage() === 'mr';
+      const file = isMr ? 'Sangli_Shikshan_Sanstha_Prospectus_Marathi.pdf' : 'Sangli_Shikshan_Sanstha_Prospectus_2026-27.pdf';
+      triggerRealDownload(file, file);
+      showToast(isMr ? 'सांगली शिक्षण संस्था अधिकृत माहितीपुस्तिका (मराठी) PDF डाउनलोड होत आहे...' : 'Downloading Sangli Shikshan Sanstha 2026-27 Prospectus PDF...', 'info');
       setTimeout(() => {
-        showToast('Sangli Shikshan Sanstha Admission Prospectus PDF downloaded successfully!', 'success');
+        showToast(isMr ? 'सांगली शिक्षण संस्था माहितीपुस्तिका यशस्वीरीत्या डाउनलोड झाली!' : 'Sangli Shikshan Sanstha Admission Prospectus PDF downloaded successfully!', 'success');
       }, 800);
     });
   }
