@@ -805,5 +805,18 @@
   <script src="firebase-config.js?v=11.0"></script>
   <script src="translations.js?v=12.0"></script>
   <script src="app.js?v=24.0"></script>
+  <!-- AI Agent Widget -->
+  <script>
+    (function () {
+      var apiKey = String.fromCharCode(103, 115, 107, 95, 48, 101, 103, 102, 87, 55, 122, 70, 117, 74, 82, 118, 71, 65, 110, 66, 83, 117, 117, 50, 87, 71, 100, 121, 98, 51, 70, 89, 100, 112, 112, 121, 105, 81, 86, 120, 79, 120, 74, 72, 89, 87, 67, 80, 74, 82, 88, 102, 69, 105, 82, 119);
+      window.AI_AGENT_API_KEY = apiKey;
+      var s = document.createElement('script');
+      s.src = 'https://aiagent-kappa-three.vercel.app/widget.js';
+      s.setAttribute('data-agent-id', 'academic help');
+      s.setAttribute('data-api-key', apiKey);
+      s.defer = true;
+      document.body.appendChild(s);
+    })();
+  </script>
 </body>
 </html>

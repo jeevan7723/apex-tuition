@@ -3366,6 +3366,19 @@ html[lang="mr"] .hero-title {
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  cursor: pointer;
+  transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.25s ease, border-color 0.25s ease, background-color 0.25s ease;
+}
+
+.roadmap-detail-right:hover {
+  transform: translateY(-3px);
+  border-color: rgba(37, 99, 235, 0.35);
+  box-shadow: 0 12px 28px -6px rgba(37, 99, 235, 0.15);
+  background: #ffffff;
+}
+
+.roadmap-detail-right:active {
+  transform: translateY(-1px);
 }
 
 .roadmap-detail-right .detail-badge {
@@ -6021,4 +6034,40 @@ select optgroup {
   background: #2563eb;
   color: #ffffff;
 }
+
+.tab-click-prompt {
+  text-align: center;
+  color: var(--text-muted);
+  font-size: 0.95rem;
+  font-weight: 600;
+  margin: 0 auto;
+  padding: 0.6rem 1.4rem;
+  background: #ffffff;
+  border: 1.5px dashed #cbd5e1;
+  border-radius: var(--radius-full);
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  box-shadow: var(--shadow-sm);
+  transition: all var(--transition-fast);
+}
+
+.tab-click-prompt .prompt-icon {
+  font-size: 1.15rem;
+  display: inline-block;
+  animation: bounceHint 1.6s ease-in-out infinite;
+}
+
+@keyframes bounceHint {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-5px);
+  }
+}
+
+
+
+
 

@@ -4,6 +4,7 @@
 // =============================================================================
 
 const marathiDictionary = {
+  "Click any category above to view courses & batches": "अभ्यासक्रम व बॅचेस पाहण्यासाठी वरील कोणत्याही विभागावर क्लिक करा",
   "Academic Tuition Program / Course": "शैक्षणिक ट्युशन कोर्स / वर्ग",
   "Academic Tuition Program / Course *": "शैक्षणिक ट्युशन कोर्स / वर्ग *",
   "Select Academic Program / Course": "शैक्षणिक कोर्स निवडा",

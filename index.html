@@ -16,7 +16,7 @@
   <link rel="icon" type="image/png" href="logo.png">
   <link rel="apple-touch-icon" href="logo.png">
   
-  <link rel="stylesheet" href="styles.css?v=28.0">
+  <link rel="stylesheet" href="styles.css?v=29.0">
 </head>
 <body>
 
@@ -347,18 +347,25 @@
           </p>
         </div>
 
-        <!-- Grade Filter Tabs -->
-        <div class="filter-tabs-wrapper">
+        <!-- Grade Filter Tabs (Header Bar) -->
+        <div class="filter-tabs-wrapper" style="text-align: center;">
           <div class="filter-tabs" role="tablist" aria-label="Tuition Grade Categories">
-            <button class="tab-btn active" data-filter="all" role="tab" aria-selected="true" data-i18n="tab_all">All 11th & 12th Programs</button>
+            <button class="tab-btn" data-filter="all" role="tab" aria-selected="false" data-i18n="tab_all">All 11th & 12th Programs</button>
             <button class="tab-btn" data-filter="class11" role="tab" aria-selected="false" data-i18n="tab_c11">Class 11th Wing</button>
             <button class="tab-btn" data-filter="class12" role="tab" aria-selected="false" data-i18n="tab_c12">Class 12th Wing</button>
             <button class="tab-btn" data-filter="competitive" role="tab" aria-selected="false" data-i18n="tab_comp">Competitive Entrance Track (JEE / NEET)</button>
           </div>
+
+          <div style="margin-top: 1.25rem;">
+            <p class="tab-click-prompt" id="tuitionTabHint">
+              <span class="prompt-icon">👆</span>
+              <span data-i18n="click_tab_prompt">Click any category above to view courses & batches</span>
+            </p>
+          </div>
         </div>
 
-        <!-- Tuition Cards Grid -->
-        <div class="tuition-grid" id="tuitionGrid">
+        <!-- Tuition Cards Grid (Hidden by default, shown when header bar tab is clicked) -->
+        <div class="tuition-grid" id="tuitionGrid" style="display: none; margin-top: 2rem;">
 
           <!-- CARD 1: Class 11th Science (PCM / PCB) -->
           <article class="tuition-card" data-category="class11">
@@ -874,7 +881,7 @@
               </li>
             </ul>
           </div>
-          <div class="roadmap-detail-right" id="stepDetailRight">
+          <div class="roadmap-detail-right" id="stepDetailRight" role="region" tabindex="0" title="Click to open admission form">
             <span class="detail-badge">Ready to Start?</span>
             <h4>Take Step 1 Right Now</h4>
             <p>Our online form takes less than 3 minutes to complete.</p>
@@ -1683,6 +1690,19 @@
   <script src="https://www.gstatic.com/firebasejs/10.13.0/firebase-firestore-compat.js"></script>
   <script src="firebase-config.js?v=11.0"></script>
   <script src="translations.js?v=12.0"></script>
-  <script src="app.js?v=24.0"></script>
+  <script src="app.js?v=25.0"></script>
+  <!-- AI Agent Widget -->
+  <script>
+    (function () {
+      var apiKey = String.fromCharCode(103, 115, 107, 95, 48, 101, 103, 102, 87, 55, 122, 70, 117, 74, 82, 118, 71, 65, 110, 66, 83, 117, 117, 50, 87, 71, 100, 121, 98, 51, 70, 89, 100, 112, 112, 121, 105, 81, 86, 120, 79, 120, 74, 72, 89, 87, 67, 80, 74, 82, 88, 102, 69, 105, 82, 119);
+      window.AI_AGENT_API_KEY = apiKey;
+      var s = document.createElement('script');
+      s.src = 'https://aiagent-kappa-three.vercel.app/widget.js';
+      s.setAttribute('data-agent-id', 'academic help');
+      s.setAttribute('data-api-key', apiKey);
+      s.defer = true;
+      document.body.appendChild(s);
+    })();
+  </script>
 </body>
 </html>

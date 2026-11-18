@@ -431,39 +431,103 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   // ==========================================================================
-  // 3. TUITION PROGRAM FILTER TABS
+  // 3. TUITION PROGRAM FILTER TABS (HEADER BAR CONTROLLER)
+  // COURSES ARE HIDDEN BY DEFAULT; CLICKING ANY TAB IN THE HEADER BAR REVEALS THEM
   // ==========================================================================
   const tabButtons = document.querySelectorAll('.tab-btn');
+  const tuitionGrid = document.getElementById('tuitionGrid');
   const tuitionCards = document.querySelectorAll('.tuition-card');
+  const tuitionTabHint = document.getElementById('tuitionTabHint');
+
+  function activateTab(btn, shouldScroll = false) {
+    if (!btn) return;
+    const isAlreadyActive = btn.classList.contains('active');
+
+    if (isAlreadyActive) {
+      // Toggle off: collapse courses if user clicks the active tab again
+      btn.classList.remove('active');
+      btn.setAttribute('aria-selected', 'false');
+      if (tuitionGrid) tuitionGrid.style.display = 'none';
+      if (tuitionTabHint) tuitionTabHint.style.display = 'inline-flex';
+      return;
+    }
+
+    // Deactivate all other tabs
+    tabButtons.forEach(b => {
+      b.classList.remove('active');
+      b.setAttribute('aria-selected', 'false');
+    });
+
+    // Activate selected tab
+    btn.classList.add('active');
+    btn.setAttribute('aria-selected', 'true');
+
+    // Show grid and hide the hint prompt
+    if (tuitionGrid) {
+      tuitionGrid.style.display = 'grid';
+      tuitionGrid.style.animation = 'fadeIn 0.3s ease';
+    }
+    if (tuitionTabHint) {
+      tuitionTabHint.style.display = 'none';
+    }
+
+    // Center tab horizontally in scroll container (especially on mobile)
+    try {
+      btn.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
+    } catch (err) {}
+
+    const filter = btn.dataset.filter;
+
+    // Filter courses based on category
+    tuitionCards.forEach(card => {
+      const categories = card.dataset.category || '';
+      if (filter === 'all' || categories.includes(filter)) {
+        card.style.display = 'flex';
+        card.style.animation = 'fadeIn 0.3s ease';
+      } else {
+        card.style.display = 'none';
+      }
+    });
+
+    if (shouldScroll && tuitionGrid) {
+      setTimeout(() => {
+        tuitionGrid.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }, 100);
+    }
+  }
 
   tabButtons.forEach(btn => {
     btn.addEventListener('click', () => {
-      // Toggle active tab
-      tabButtons.forEach(b => {
-        b.classList.remove('active');
-        b.setAttribute('aria-selected', 'false');
-      });
-      btn.classList.add('active');
-      btn.setAttribute('aria-selected', 'true');
+      activateTab(btn, false);
+    });
+  });
 
-      // Smoothly center the clicked tab in the mobile scroll container
-      try {
-        btn.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
-      } catch (err) {
-        // Fallback for older browsers
+  // Top header nav and mobile sidebar links for "Programs"
+  document.querySelectorAll('a[href="#tuition-info"]').forEach(link => {
+    link.addEventListener('click', (e) => {
+      e.preventDefault();
+      const tuitionSec = document.getElementById('tuition-info');
+      if (tuitionSec) {
+        tuitionSec.scrollIntoView({ behavior: 'smooth', block: 'start' });
       }
 
-      const filter = btn.dataset.filter;
+      // If no tab is active yet, automatically activate the "All Programs" tab
+      const hasActive = document.querySelector('.tab-btn.active');
+      if (!hasActive) {
+        const firstTab = document.querySelector('.tab-btn[data-filter="all"]');
+        if (firstTab) activateTab(firstTab, false);
+      }
 
-      tuitionCards.forEach(card => {
-        const categories = card.dataset.category || '';
-        if (filter === 'all' || categories.includes(filter)) {
-          card.style.display = 'flex';
-          card.style.animation = 'fadeIn 0.3s ease';
-        } else {
-          card.style.display = 'none';
+      // Close mobile navigation drawer if open
+      const mobileNav = document.getElementById('mobileNavPanel');
+      const mobileBtn = document.getElementById('mobileMenuBtn');
+      if (mobileNav && mobileNav.classList.contains('open')) {
+        mobileNav.classList.remove('open');
+        if (mobileBtn) {
+          mobileBtn.classList.remove('active');
+          mobileBtn.setAttribute('aria-expanded', 'false');
         }
-      });
+      }
     });
   });
 
@@ -508,7 +572,7 @@ document.addEventListener('DOMContentLoaded', () => {
       actionTitle: 'Take Step 1 Right Now',
       actionDesc: 'Our online form takes less than 3 minutes to complete.',
       btnText: 'Go to Registration Form',
-      btnHref: '#admission'
+      btnHref: 'admission.html'
     },
     '2': {
       title: 'Step 2: Diagnostic & Aptitude Assessment',
@@ -523,7 +587,7 @@ document.addEventListener('DOMContentLoaded', () => {
       actionTitle: 'Schedule Your Diagnostic',
       actionDesc: 'Take the test online or in-person at our learning center.',
       btnText: 'Book Free Diagnostic Test',
-      btnHref: '#admission'
+      btnHref: 'admission.html'
     },
     '3': {
       title: 'Step 3: Academic Counseling & Batch Selection',
@@ -553,7 +617,7 @@ document.addEventListener('DOMContentLoaded', () => {
       actionTitle: 'Begin Academic Excellence',
       actionDesc: 'Micro-batches fill up quickly. Secure your slot early.',
       btnText: 'Start Your Admission Now',
-      btnHref: '#admission'
+      btnHref: 'admission.html'
     }
   };
 
@@ -588,6 +652,40 @@ document.addEventListener('DOMContentLoaded', () => {
       window.SansthaI18n.translateElement(stepDetailLeft);
       window.SansthaI18n.translateElement(stepDetailRight);
     }
+  }
+
+  // Make the entire action card clickable for seamless UX
+  if (stepDetailRight) {
+    stepDetailRight.setAttribute('tabindex', '0');
+    stepDetailRight.setAttribute('role', 'region');
+    stepDetailRight.setAttribute('title', 'Click to open admission form');
+
+    stepDetailRight.addEventListener('click', (e) => {
+      // If user clicked directly on the link, allow native navigation
+      if (e.target.closest('a')) return;
+      const actionLink = stepDetailRight.querySelector('a');
+      if (actionLink && actionLink.getAttribute('href')) {
+        const href = actionLink.getAttribute('href');
+        if (href.startsWith('#')) {
+          const targetEl = document.querySelector(href);
+          if (targetEl) targetEl.scrollIntoView({ behavior: 'smooth' });
+        } else {
+          window.location.href = href;
+        }
+      } else {
+        window.location.href = 'admission.html';
+      }
+    });
+
+    stepDetailRight.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter' || e.key === ' ') {
+        if (!e.target.closest('a')) {
+          e.preventDefault();
+          const actionLink = stepDetailRight.querySelector('a');
+          if (actionLink) actionLink.click();
+        }
+      }
+    });
   }
 
   roadmapStepCards.forEach(card => {
@@ -1362,7 +1460,7 @@ document.addEventListener('DOMContentLoaded', () => {
             <p style="font-size:0.85rem; color:var(--text-muted); max-width:450px; margin:0.35rem auto 1rem;">
               Please verify your Application ID (e.g. <em>SSS-2026-XXXX</em>) or your 10-digit mobile number. You can submit a fresh admission application below.
             </p>
-            <a href="#admission" class="btn btn-primary btn-sm">Fill Admission Form</a>
+            <a href="admission.html" class="btn btn-primary btn-sm">Fill Admission Form</a>
           </div>
         `;
       }
